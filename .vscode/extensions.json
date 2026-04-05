@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "ritwickdey.LiveServer",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "formulahendry.auto-rename-tag",
+    "formulahendry.auto-close-tag",
+    "christian-kohler.path-intellisense",
+    "pranaygp.vscode-css-peek",
+    "ecmel.vscode-html-css",
+    "vincaslt.highlight-matching-tag",
+    "pkief.material-icon-theme",
+    "zhuangtongfa.material-theme",
+    "naumovs.color-highlight",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}
