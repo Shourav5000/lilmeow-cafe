@@ -129,27 +129,54 @@ const progWidths=['33%','66%','100%'];
 window.go=function(n){
 if(n>curStep){
 if(curStep===1){
-if(!document.getElementById('rDate').value){window.showToast('🗓️ Please pick a date!');return;}
-if(!document.getElementById('rGuests').value){window.showToast('👥 Please select guest count!');return;}
-if(!selT){window.showToast('⏰ Please pick a time slot!');return;}
+if(!document.getElementById('rDate').value){window.showToast('🗓️ Please pick a date first!');document.getElementById('rDate').focus();return;}
+if(!document.getElementById('rGuests').value){window.showToast('👥 How many guests are coming?');document.getElementById('rGuests').focus();return;}
+if(!selT){window.showToast('⏰ Pick a time slot to continue!');return;}
+window.showToast('😻 Great choices! Now pick your package...');
 }
-if(curStep===2&&!selPkg){window.showToast('🎟️ Please choose a package!');return;}
+if(curStep===2&&!selPkg){window.showToast('🎟️ Choose a package to continue!');return;}
+if(curStep===2&&selPkg){window.showToast('🐾 Almost there! Just your details...');}
 if(curStep===3){
-if(!document.getElementById('rFirst').value){window.showToast('💕 Please enter your first name!');return;}
-if(!document.getElementById('rLast').value){window.showToast('💕 Please enter your last name!');return;}
-if(!document.getElementById('rEmail').value.includes('@')){window.showToast('📧 Please enter a valid email!');return;}
-if(!document.getElementById('rPhone').value){window.showToast('📞 Please enter your phone!');return;}
+if(!document.getElementById('rFirst').value){window.showToast('💕 Please enter your first name!');document.getElementById('rFirst').focus();return;}
+if(!document.getElementById('rLast').value){window.showToast('💕 Please enter your last name!');document.getElementById('rLast').focus();return;}
+if(!document.getElementById('rEmail').value.includes('@')){window.showToast('📧 Please enter a valid email!');document.getElementById('rEmail').focus();return;}
+if(!document.getElementById('rPhone').value){window.showToast('📞 Please enter your phone!');document.getElementById('rPhone').focus();return;}
 }
 if(n===3) fillSum();
 }
-document.querySelectorAll('.spanel').forEach(p=>p.classList.remove('on'));
+// Animate out current panel
+var currentPanel=document.getElementById('s'+curStep);
+if(currentPanel){
+currentPanel.style.opacity='0';
+currentPanel.style.transform='translateX(-30px)';
+currentPanel.style.transition='opacity 0.25s ease, transform 0.25s ease';
+}
+setTimeout(function(){
+document.querySelectorAll('.spanel').forEach(p=>{p.classList.remove('on');p.style.opacity='';p.style.transform='';p.style.transition='';});
 document.querySelectorAll('.sp').forEach(s=>s.classList.remove('on'));
 document.getElementById('s'+n).classList.add('on');
 document.getElementById('sp'+n).classList.add('on');
-for(let i=1;i<n;i++) document.getElementById('sp'+i).classList.add('done');
+for(var i=1;i<n;i++) document.getElementById('sp'+i).classList.add('done');
 document.getElementById('resProg').style.width=progWidths[n-1];
 curStep=n;
-document.getElementById('resCard').scrollIntoView({behavior:'smooth',block:'nearest'});
+// Animate in new panel
+var newPanel=document.getElementById('s'+n);
+if(newPanel){
+newPanel.style.opacity='0';
+newPanel.style.transform='translateX(30px)';
+newPanel.style.transition='opacity 0.3s ease, transform 0.3s ease';
+setTimeout(function(){
+newPanel.style.opacity='1';
+newPanel.style.transform='translateX(0)';
+},20);
+}
+// Scroll to top of booking card
+var card=document.getElementById('resCard');
+if(card){
+var top=card.getBoundingClientRect().top+window.pageYOffset-100;
+window.scrollTo({top:top,behavior:'smooth'});
+}
+},250);
 };
 window.pickT=function(el){
 document.querySelectorAll('.ts').forEach(s=>s.classList.remove('on'));
