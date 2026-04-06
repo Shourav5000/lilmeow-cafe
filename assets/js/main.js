@@ -72,12 +72,37 @@ document.addEventListener('mousemove', (e) => {
     });
   }
 });
-const heroEmojis = ['🐾', '🌸', '⭐', '✨', '💕', '🐱', '😸'];
+const heroEmojis = ['🌸', '⭐', '✨', '😸'];
+
 setInterval(() => {
   const el = document.createElement('div');
   el.className = 'float-emoji';
   el.textContent = heroEmojis[Math.floor(Math.random() * heroEmojis.length)];
-  el.style.cssText = `left:${Math.random() * 100}%;bottom:0;font-size:${1.15 + Math.random() * 1.35}rem;animation-duration:${6 + Math.random() * 8}s;animation-delay:0s`;
+
+  const isMobile = window.innerWidth <= 768;
+
+  let left;
+  if (isMobile) {
+    const lanes = [8, 18, 28, 72, 82, 92];
+    left = lanes[Math.floor(Math.random() * lanes.length)];
+  } else {
+    left = Math.random() * 100;
+  }
+
+  const size = isMobile ? 1.1 + Math.random() * 0.6 : 1 + Math.random() * 1.5;
+
+  const duration = isMobile ? 7 + Math.random() * 4 : 6 + Math.random() * 8;
+
+  el.style.cssText = `
+    left:${left}%;
+    bottom:-10px;
+    font-size:${size}rem;
+    animation-duration:${duration}s;
+    animation-delay:0s;
+    z-index:5;
+    pointer-events:none;
+  `;
+
   const hero = document.querySelector('.hero');
   if (hero) {
     hero.appendChild(el);
@@ -153,7 +178,7 @@ window.closeLb = function (e) {
   if (!e || e.target === document.getElementById('lightbox') || e.currentTarget.classList.contains('lb-close'))
     document.getElementById('lightbox').classList.remove('open');
 };
-const catReactions = ['😻', '😹', '🙀', '😾', '😸', '🐱', '😺'];
+const catReactions = ['😻', '😹', '🙀', '😾', '😸', '🐱', '😺', '😽'];
 let ri = 0;
 window.catReact = function (el) {
   el.textContent = catReactions[ri % catReactions.length];
@@ -361,7 +386,7 @@ window.pay = function () {
 };
 function launchConfetti() {
   const container = document.getElementById('confettiBox');
-  const emojis = ['🎉', '🐾', '🌸', '😻', '☕', '✨', '💕', '🎊'];
+  const emojis = ['🎉', '🐾', '🌸', '😻', '☕', '✨', '💕', '🎊', '😽'];
   const style = document.createElement('style');
   style.textContent = '@keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}';
   document.head.appendChild(style);
@@ -427,7 +452,7 @@ const reviews = [
     rating: 5,
     date: '3 weeks ago',
     text: 'The Purr Extra Special add-on is SO worth it. Getting to hand-feed the cats treats and take home a Polaroid was the cutest thing ever. Nishi is my new best friend.',
-    avatar: '😸',
+    avatar: '😽',
   },
   {
     name: 'Tom R.',

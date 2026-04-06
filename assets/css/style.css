@@ -3238,3 +3238,34 @@ footer a:hover {
     box-shadow: 0 10px 30px rgba(255, 143, 171, 0.08);
   }
 }
+/* ===== MOBILE FLOATING EMOJIS: MAKE THEM VISIBLE ===== */
+.hero {
+  position: relative;
+}
+
+.float-emoji {
+  z-index: 4;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .float-emoji {
+    z-index: 5 !important;
+    opacity: 0.9 !important;
+    font-size: 1.35rem !important;
+    filter: drop-shadow(0 6px 14px rgba(255, 143, 171, 0.22));
+  }
+}
+
+@media (max-width: 480px) {
+  .float-emoji {
+    z-index: 5 !important;
+    opacity: 0.95 !important;
+    font-size: 1.2rem !important;
+  }
+}
