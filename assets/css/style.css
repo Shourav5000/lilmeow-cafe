@@ -2716,12 +2716,13 @@ nav::after {
   pointer-events: none;
 }
 .hero-content {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.18));
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.38));
+  border: 1px solid rgba(255, 255, 255, 0.55);
   box-shadow:
-    0 24px 60px rgba(255, 143, 171, 0.14),
+    0 20px 40px rgba(255, 143, 171, 0.10),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-radius: 34px;
   padding: 2.4rem 2rem;
   transition: transform 0.25s ease;
@@ -3175,69 +3176,6 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* ===== iPhone / small-screen blur cleanup ===== */
-@media (max-width: 768px) {
-  .hero::before,
-  .section-glow::before,
-  .sparkle-field,
-  .steam-wrap {
-    opacity: 0.35;
-  }
-
-  .hero {
-    overflow: hidden;
-  }
-
-  .hero-content {
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-
-  .hero-stickers {
-    opacity: 0.45;
-  }
-
-  .hero-stickers .sticker {
-    transform: scale(0.72);
-  }
-
-  .hero-3d-layer {
-    opacity: 0.4;
-    transform: scale(0.72);
-  }
-
-  .float-emoji {
-    opacity: 0.28 !important;
-  }
-
-  .section-glow::before {
-    width: 70%;
-    height: 90px;
-    filter: blur(28px);
-  }
-}
-
-@media (max-width: 480px) {
-  .hero::before,
-  .section-glow::before {
-    opacity: 0.18;
-    filter: blur(18px);
-  }
-
-  .hero-stickers,
-  .hero-3d-layer,
-  .float-emoji,
-  .sparkle-field,
-  .steam-wrap {
-    display: none !important;
-  }
-
-  .hero-content {
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    box-shadow: 0 10px 30px rgba(255, 143, 171, 0.08);
-  }
-}
 /* ===== MOBILE HERO CLEANUP: LESS FOG, MORE CLARITY ===== */
 @media (max-width: 768px) {
   body {
