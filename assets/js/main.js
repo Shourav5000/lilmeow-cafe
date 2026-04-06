@@ -72,7 +72,7 @@ document.addEventListener('mousemove', (e) => {
     });
   }
 });
-const heroEmojis = ['🌸', '⭐', '✨', '😸', '😽', '☕', '🐾'];
+const heroEmojis = ['🌸', '⭐', '✨', '😸', '😽'];
 
 setInterval(() => {
   const hero = document.querySelector('.hero');
@@ -84,9 +84,7 @@ setInterval(() => {
 
   const isMobile = window.innerWidth <= 768;
   const lanes = isMobile ? [8, 18, 28, 72, 82, 92] : null;
-  const left = isMobile
-    ? lanes[Math.floor(Math.random() * lanes.length)]
-    : Math.random() * 100;
+  const left = isMobile ? lanes[Math.floor(Math.random() * lanes.length)] : Math.random() * 100;
 
   const size = isMobile ? 1.2 + Math.random() * 0.25 : 1 + Math.random() * 1.2;
   const duration = isMobile ? 6 + Math.random() * 2 : 6 + Math.random() * 6;
@@ -100,8 +98,8 @@ setInterval(() => {
   el.style.opacity = `1`;
 
   hero.appendChild(el);
-  setTimeout(() => el.remove(), 12000);
-}, 550);
+  setTimeout(() => el.remove(), 10000);
+}, 1600);
 const catEmojis = ['🐱', '😺', '😸', '😻', '🐾'];
 let ci = 0;
 setInterval(() => {

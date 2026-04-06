@@ -3168,130 +3168,62 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* ===== iPhone / small-screen blur cleanup ===== */
-@media (max-width: 768px) {
-  .hero::before,
-  .section-glow::before,
-  .sparkle-field,
-  .steam-wrap {
-    opacity: 0.35;
-  }
 
+/* ===== FINAL MOBILE HERO SETTINGS ===== */
+@media (max-width: 768px) {
   .hero {
+    min-height: 100vh;
     overflow: hidden;
   }
 
   .hero-content {
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .hero-stickers {
-    opacity: 0.45;
+    opacity: 0.45 !important;
   }
 
-  .hero-stickers .sticker {
-    transform: scale(0.72);
-  }
-
-  .hero-3d-layer {
-    opacity: 0.4;
-    transform: scale(0.72);
-  }
-
-  .float-emoji {
-    opacity: 0.28 !important;
-  }
-
-  .section-glow::before {
-    width: 70%;
-    height: 90px;
-    filter: blur(28px);
-  }
-}
-
-@media (max-width: 480px) {
-  .hero::before,
-  .section-glow::before {
-    opacity: 0.18;
-    filter: blur(18px);
-  }
-
-  .hero-stickers,
   .hero-3d-layer,
-  .float-emoji,
-  .sparkle-field,
-  .steam-wrap {
-    display: none !important;
-  }
-
-  .hero-content {
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    box-shadow: 0 10px 30px rgba(255, 143, 171, 0.08);
-  }
-}
-/* ===== MOBILE FLOATING EMOJIS: MAKE THEM VISIBLE ===== */
-.hero {
-  position: relative;
-}
-
-.float-emoji {
-  z-index: 4;
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  .hero-content {
-    position: relative;
-    z-index: 2;
+  .sparkle-field {
+    opacity: 0.24 !important;
   }
 
   .float-emoji {
     z-index: 5 !important;
-    opacity: 0.9 !important;
-    font-size: 1.35rem !important;
-    filter: drop-shadow(0 6px 14px rgba(255, 143, 171, 0.22));
-  }
-}
-
-@media (max-width: 480px) {
-  .float-emoji {
-    z-index: 5 !important;
-    opacity: 0.95 !important;
-    font-size: 1.2rem !important;
-  }
-}
-
-
-/* ===== MINIMAL MOBILE FLOAT-EMOJI VISIBILITY FIX ===== */
-@media (max-width: 768px) {
-  .hero {
-    min-height: 92vh;
-  }
-
-  .float-emoji {
-    z-index: 9 !important;
-    opacity: 1 !important;
-    font-size: 1.35rem !important;
-    filter: drop-shadow(0 6px 14px rgba(255, 143, 171, 0.22));
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
+    opacity: 0.7 !important;
+    font-size: 1.15rem !important;
+    display: block !important;
+    pointer-events: none;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
-    min-height: 88vh;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .hero-stickers {
+    opacity: 0.5 !important;
   }
 
   .float-emoji {
-    z-index: 9 !important;
-    opacity: 1 !important;
-    font-size: 1.2rem !important;
+    z-index: 5 !important;
+    opacity: 0.8 !important;
+    font-size: 1.05rem !important;
+    display: block !important;
+    pointer-events: none;
   }
 }
 
