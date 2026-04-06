@@ -369,10 +369,13 @@ nav.scrolled {
 .hero h1 {
   font-family: 'Pacifico', cursive;
   font-size: clamp(3rem, 8vw, 5.5rem);
-  color: var(--pink);
   line-height: 1.1;
   margin-bottom: 0.6rem;
-  text-shadow: 3px 6px 0 rgba(255, 107, 157, 0.12);
+  background: linear-gradient(90deg, #cfa8de 0%, #9a8cf5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 6px 18px rgba(141, 130, 243, 0.14);
   animation: heroText 1s ease 0.3s both;
 }
 @keyframes heroText {
@@ -395,9 +398,9 @@ nav.scrolled {
 .title-ear {
   width: 24px;
   height: 30px;
-  background: var(--pink);
+  background: linear-gradient(90deg, #cfa8de 0%, #9a8cf5 100%);
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  opacity: 0.6;
+  opacity: 0.75;
 }
 .hero-tag {
   font-size: clamp(1rem, 2.2vw, 1.25rem);
@@ -3168,7 +3171,6 @@ footer a:hover {
   text-decoration: underline;
 }
 
-
 /* ===== FINAL MOBILE HERO SETTINGS ===== */
 @media (max-width: 768px) {
   .hero {
@@ -3226,4 +3228,3 @@ footer a:hover {
     pointer-events: none;
   }
 }
-
