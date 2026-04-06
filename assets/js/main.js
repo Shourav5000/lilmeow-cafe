@@ -83,25 +83,25 @@ setInterval(() => {
   el.textContent = heroEmojis[Math.floor(Math.random() * heroEmojis.length)];
 
   const isMobile = window.innerWidth <= 768;
-  const lanes = isMobile ? [12, 24, 36, 64, 76, 88] : null;
+  const lanes = isMobile ? [8, 18, 28, 72, 82, 92] : null;
   const left = isMobile
     ? lanes[Math.floor(Math.random() * lanes.length)]
     : Math.random() * 100;
 
-  const size = isMobile ? 1.35 + Math.random() * 0.35 : 1 + Math.random() * 1.2;
-  const duration = isMobile ? 4.5 + Math.random() * 2 : 6 + Math.random() * 6;
+  const size = isMobile ? 1.2 + Math.random() * 0.25 : 1 + Math.random() * 1.2;
+  const duration = isMobile ? 6 + Math.random() * 2 : 6 + Math.random() * 6;
 
   el.style.left = `${left}%`;
   el.style.bottom = `-16px`;
   el.style.fontSize = `${size}rem`;
   el.style.animationDuration = `${duration}s`;
   el.style.animationDelay = `0s`;
-  el.style.zIndex = `8`;
+  el.style.zIndex = `9`;
   el.style.opacity = `1`;
 
   hero.appendChild(el);
-  setTimeout(() => el.remove(), 10000);
-}, 450);
+  setTimeout(() => el.remove(), 12000);
+}, 550);
 const catEmojis = ['🐱', '😺', '😸', '😻', '🐾'];
 let ci = 0;
 setInterval(() => {

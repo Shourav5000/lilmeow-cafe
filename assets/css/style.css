@@ -3262,3 +3262,36 @@ footer a:hover {
     font-size: 1.2rem !important;
   }
 }
+
+
+/* ===== MINIMAL MOBILE FLOAT-EMOJI VISIBILITY FIX ===== */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 92vh;
+  }
+
+  .float-emoji {
+    z-index: 9 !important;
+    opacity: 1 !important;
+    font-size: 1.35rem !important;
+    filter: drop-shadow(0 6px 14px rgba(255, 143, 171, 0.22));
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 88vh;
+  }
+
+  .float-emoji {
+    z-index: 9 !important;
+    opacity: 1 !important;
+    font-size: 1.2rem !important;
+  }
+}
+
