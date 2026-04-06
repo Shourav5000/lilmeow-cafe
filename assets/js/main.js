@@ -77,14 +77,14 @@ setInterval(() => {
   const el = document.createElement('div');
   el.className = 'float-emoji';
   el.textContent = heroEmojis[Math.floor(Math.random() * heroEmojis.length)];
-  el.style.cssText = `left:${Math.random() * 100}%;bottom:0;font-size:${1 + Math.random() * 1.5}rem;animation-duration:${6 + Math.random() * 8}s;animation-delay:0s`;
+  el.style.cssText = `left:${Math.random() * 100}%;bottom:0;font-size:${1.15 + Math.random() * 1.35}rem;animation-duration:${6 + Math.random() * 8}s;animation-delay:0s`;
   const hero = document.querySelector('.hero');
   if (hero) {
     hero.appendChild(el);
-    setTimeout(() => el.remove(), 14000);
+    setTimeout(() => el.remove(), 16000);
   }
-}, 1200);
-const catEmojis = ['🐱', '😺', '😸', '😻', '😽', '🐾', '💕'];
+}, 700);
+const catEmojis = ['🐱', '😺', '😸', '😻', '🐾'];
 let ci = 0;
 setInterval(() => {
   const h = document.getElementById('heroCat');
@@ -281,7 +281,7 @@ window.pickP = function (el, n, p) {
 function fillSum() {
   const dt = document.getElementById('rDate').value;
   const g = parseInt(document.getElementById('rGuests').value) || 1;
-  const addonCost = addonSelected ? 10 * g : 0;
+  const addonCost = addonSelected ? 15 * g : 0;
   const total = selPrice * g + addonCost;
   const fmt = dt
     ? new Date(dt + 'T12:00:00').toLocaleDateString('en-US', {
@@ -333,8 +333,8 @@ window.pay = function () {
   btn.disabled = true;
   const ref = 'LMC-' + Math.floor(100000 + Math.random() * 900000);
   const guests = document.getElementById('rGuests').value || '1';
-  const total = selPrice * parseInt(guests) + (addonSelected ? 10 * parseInt(guests) : 0);
-  const addon = addonSelected ? 'Yes — Cat Treats + Polaroid Photo (+$10/person)' : 'No';
+  const total = selPrice * parseInt(guests) + (addonSelected ? 15 * parseInt(guests) : 0);
+  const addon = addonSelected ? 'Yes — Cat Treats + Polaroid Photo (+$15/person)' : 'No';
   const templateParams = {
     to_name: document.getElementById('rFirst').value + ' ' + document.getElementById('rLast').value,
     to_email: document.getElementById('rEmail').value,
@@ -399,7 +399,7 @@ window.toggleAddon = function (el) {
     check.textContent = '✓';
     check.style.background = 'var(--yellow)';
     check.style.color = 'var(--brown)';
-    showToast('📸 Purr Extra Special added! +$10/person');
+    showToast('📸 Purr Extra Special added! +$15/person');
   } else {
     el.style.background = 'linear-gradient(135deg,#FFFBE6,#FFF8DC)';
     el.style.borderColor = 'var(--yellow)';
