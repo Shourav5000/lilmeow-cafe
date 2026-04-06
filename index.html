@@ -109,8 +109,18 @@
 </div>
 
 <!-- HERO -->
-<section class="hero" id="home">
+<section class="hero section-glow" id="home">
+  <div class="sparkle-field" id="sparkleField"></div>
+  <div class="steam-wrap" aria-hidden="true"><span class="steam s1"></span><span class="steam s2"></span><span class="steam s3"></span></div>
   <div class="hero-ears" id="heroEars"></div>
+  <div class="hero-stickers" aria-hidden="true">
+    <span class="sticker s1">☕</span>
+    <span class="sticker s2">😽</span>
+    <span class="sticker s3">🐾</span>
+    <span class="sticker s4">🍰</span>
+    <span class="sticker s5">✨</span>
+    <span class="sticker s6">😸</span>
+  </div>
   <div class="hero-content">
     <div class="hero-badge">🌸 Now Open in Totowa, NJ · Grand Opening! 🌸</div>
     <div class="hero-cat-wrap">
@@ -121,8 +131,15 @@
     <h1>Lil' Meow Café</h1>
     <p class="hero-tag">☕ Sip. Purr. Repeat.<br>Your coziest corner for coffee, cats & good vibes.<br><span style="font-size:.85em;opacity:.8">🚶 Walk-ins always welcome · No booking required!</span></p>
     <div class="hero-ctas">
-      <a href="#reserve" class="btn btn-pink">🗓️ Book a Visit</a>
-      <a href="#cats" class="btn btn-outline">🐾 Meet Our Cats</a>
+      <a href="#menu" class="btn btn-premium">☕ See the Cute Menu</a>
+      <a href="#reserve" class="btn btn-pink magnet-btn">🗓️ Book a Visit</a>
+      <a href="#cats" class="btn btn-outline magnet-btn">🐾 Meet Our Cats</a>
+    </div>
+    <div class="mood-rail rv" aria-label="Fun reasons to visit">
+      <button class="mchip" onclick="showToast('☕ Cozy coffee date mode activated!')">☕ Cozy coffee</button>
+      <button class="mchip" onclick="showToast('😻 Maximum cuddle energy unlocked!')">😻 Cat cuddles</button>
+      <button class="mchip" onclick="showToast('📸 Camera ready — cutest photos incoming!')">📸 Cute pics</button>
+      <button class="mchip" onclick="showToast('✨ Soft, happy, playful vibes only!')">✨ Happy vibes</button>
     </div>
   </div>
 </section>
@@ -132,7 +149,7 @@
   <div class="qi">📍<span><strong>248 Union Blvd</strong>, Totowa, NJ</span></div>
   <div class="qi">📞<span><strong>(929) 301-9368</strong></span></div>
   <div class="qi">🕐<span>Mon, Thu–Sun · <strong>11am–2:30pm</strong> & <strong>4–8pm</strong> · Tue &amp; Wed Closed</span></div>
-  <div class="qi">✉️<span><strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a525f5656557a565356575f554d595b5c5f14595557">[email&#160;protected]</a></strong></span></div>
+ <div class="qi">✉️<span><strong><a href="mailto:lilmeowcafe@gmail.com">lilmeowcafe@gmail.com</a></strong></span></div>
 </div>
 
 <!-- PILLARS -->
@@ -383,7 +400,7 @@
         <div class="exp-img e2" style="background:linear-gradient(135deg,#FFF8DC,#FFE680)">📸</div>
         <div class="exp-body">
           <h3>The Purr Extra Special</h3>
-          <span class="exp-price" style="color:var(--yellow);text-shadow:0 1px 0 rgba(0,0,0,.08)">+$15/person</span>
+          <span class="exp-price" style="color:var(--yellow);text-shadow:0 1px 0 rgba(0,0,0,.08)">+$10/person</span>
           <p>Add on to any visit! Get a bag of our house cat treats to hand-feed the kitties <strong>plus</strong> a printed Polaroid photo of you with your favourite resident cat to take home. 🐾🎞️</p>
           <button class="exp-btn" style="border-color:var(--yellow);color:#7A5C00;background:#FFFBE6" onclick="showToast('📸 Add the Purr Extra Special when booking — just mention it in Special Requests!')">Add This On →</button>
         </div>
@@ -507,7 +524,7 @@
           <div style="border:2.5px solid var(--yellow);border-radius:18px;padding:1.2rem 1.4rem;background:linear-gradient(135deg,#FFFBE6,#FFF8DC);display:flex;align-items:center;gap:14px;cursor:pointer" onclick="toggleAddon(this)">
             <div id="addonCheck" style="width:24px;height:24px;border-radius:8px;border:2.5px solid var(--yellow);background:white;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:all .25s">•</div>
             <div>
-              <div style="font-weight:800;font-size:.92rem;color:var(--brown)">📸 The Purr Extra Special — <span style="color:#B8860B">+$15/person</span></div>
+              <div style="font-weight:800;font-size:.92rem;color:var(--brown)">📸 The Purr Extra Special — <span style="color:#B8860B">+$10/person</span></div>
               <div style="font-size:.78rem;color:var(--brown-l);font-weight:600;margin-top:2px">Cat treats to hand-feed the kitties + a printed Polaroid photo to take home 🐾🎞️</div>
             </div>
           </div>
@@ -577,7 +594,7 @@
       <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>I have a cat allergy — can I still visit?</span><div class="fq-icon">▾</div></div><div class="fq-a">We do have cats throughout the lounge so we can't guarantee an allergen-free environment. If you have mild allergies, antihistamines taken beforehand can help. We recommend checking with your doctor if you have severe cat allergies before visiting.</div></div>
       <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>What is the minimum age?</span><div class="fq-icon">▾</div></div><div class="fq-a">Children aged 5 and above are welcome at all times. For the comfort and safety of our resident cats, we kindly ask that younger children visit another time. All guests under 18 must be accompanied by an adult.</div></div>
       <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>How do I pay when I arrive?</span><div class="fq-icon">▾</div></div><div class="fq-a">All payments are made in person at the café — no payment is required when booking online. We accept <strong>Credit Card</strong>, <strong>Debit Card</strong> and <strong>Zelle</strong>. 💳</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>What is the Purr Extra Special add-on?</span><div class="fq-icon">▾</div></div><div class="fq-a">For an extra $15 per person you can add our special experience — a bag of house cat treats to hand-feed the kitties yourself, plus a printed Polaroid photo of you with your favourite resident cat to take home as a keepsake! 📸🐾 Just mention it when you book or ask at the door.</div></div>
+      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>What is the Purr Extra Special add-on?</span><div class="fq-icon">▾</div></div><div class="fq-a">For an extra $10 per person you can add our special experience — a bag of house cat treats to hand-feed the kitties yourself, plus a printed Polaroid photo of you with your favourite resident cat to take home as a keepsake! 📸🐾 Just mention it when you book or ask at the door.</div></div>
     </div>
   </div>
 </section>
@@ -613,7 +630,7 @@
             title="Lil Meow Cafe Location">
           </iframe>
         </div>
-        <p class="addr">🏠 248 Union Blvd<br>Totowa, NJ 07512<br><br>📞 (929) 301-9368<br>✉️ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="78101d14141738141114151d170f1b191e1d561b1715">[email&#160;protected]</a></p>
+        <p class="addr">🏠 248 Union Blvd<br>Totowa, NJ 07512<br><br>📞 (929) 301-9368<br>✉️ <a href="mailto:lilmeowcafe@gmail.com">lilmeowcafe@gmail.com</a></p>
         <a href="https://maps.google.com/?q=248+Union+Blvd+Totowa+NJ+07512" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:var(--pink-soft);border:2px solid var(--pink-light);color:var(--pink-deep);padding:8px 18px;border-radius:50px;font-weight:800;font-size:.82rem;text-decoration:none;margin-top:.8rem;transition:all .25s" onmouseover="this.style.background='var(--pink)';this.style.color='white'" onmouseout="this.style.background='var(--pink-soft)';this.style.color='var(--pink-deep)'">📍 Get Directions →</a>
       </div>
       <div class="vc rv" style="transition-delay:.2s">
@@ -634,37 +651,41 @@
 <!-- FOOTER -->
 <!-- CONTACT -->
 <section id="contact-section" style="background:white;padding:4rem 2rem">
-  <div style="max-width:700px;margin:0 auto;text-align:center">
+  <div style="max-width:1100px;margin:0 auto;text-align:center">
     <div class="tag-pill rv">Get In Touch ✉️</div>
-    <h2 class="rv" style="font-family:'Pacifico',cursive;font-size:clamp(1.8rem,4vw,2.5rem);color:var(--brown);margin:.6rem 0 .5rem">Contact Us</h2>
-    <p class="rv" style="color:var(--brown-l);font-weight:600;font-size:.95rem;margin-bottom:2rem">We'd love to hear from you! Reach out any way that works best. 🐾</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:2rem">
+    <h2 class="rv" style="font-family:'Pacifico',cursive;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--brown);margin:.6rem 0 .7rem">Contact Us</h2>
+    <p class="rv" style="color:var(--brown-l);font-weight:600;font-size:1rem;margin-bottom:2.2rem">We'd love to hear from you! Reach out any way that works best. 🐾</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;align-items:stretch">
       <a href="tel:9293019368" style="text-decoration:none">
-        <div class="rv" style="background:var(--pink-soft);border:2.5px solid var(--pink-light);border-radius:20px;padding:1.5rem;transition:all .3s" onmouseover="this.style.borderColor='var(--pink)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--pink-light)';this.style.transform='translateY(0)'">
-          <div style="font-size:2rem;margin-bottom:.5rem">📞</div>
-          <div style="font-weight:800;color:var(--brown);font-size:.9rem">Call Us</div>
-          <div style="color:var(--pink-deep);font-weight:700;font-size:.85rem;margin-top:3px">(929) 301-9368</div>
+        <div class="rv" style="height:100%;background:var(--pink-soft);border:3px solid var(--pink-light);border-radius:28px;padding:2rem 1.5rem;transition:all .3s;box-shadow:var(--sh)"
+             onmouseover="this.style.borderColor='var(--pink)';this.style.transform='translateY(-6px)';this.style.boxShadow='var(--sh-lg)'"
+             onmouseout="this.style.borderColor='var(--pink-light)';this.style.transform='translateY(0)';this.style.boxShadow='var(--sh)'">
+          <div style="font-size:3rem;margin-bottom:.8rem">📞</div>
+          <div style="font-weight:800;color:var(--brown);font-size:1.55rem;line-height:1.2">Call Us</div>
+          <div style="color:var(--pink-deep);font-weight:700;font-size:1.15rem;margin-top:14px">(929) 301-9368</div>
         </div>
       </a>
-      <a href="/cdn-cgi/l/email-protection#f39b969f9f9cb39f9a9f9e969c8490929596dd909c9e" style="text-decoration:none">
-        <div class="rv" style="background:var(--yellow-light);border:2.5px solid #FFE4B5;border-radius:20px;padding:1.5rem;transition:all .3s" onmouseover="this.style.borderColor='var(--yellow)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#FFE4B5';this.style.transform='translateY(0)'">
-          <div style="font-size:2rem;margin-bottom:.5rem">✉️</div>
-          <div style="font-weight:800;color:var(--brown);font-size:.9rem">Email Us</div>
-          <div style="color:var(--brown-m);font-weight:700;font-size:.85rem;margin-top:3px"><span class="__cf_email__" data-cfemail="3b535e5757547b575257565e544c585a5d5e15585456">[email&#160;protected]</span></div>
+
+      <a href="mailto:lilmeowcafe@gmail.com" style="text-decoration:none">
+        <div class="rv" style="height:100%;background:var(--yellow-light);border:3px solid #FFE4B5;border-radius:28px;padding:2rem 1.5rem;transition:all .3s;box-shadow:var(--sh)"
+             onmouseover="this.style.borderColor='var(--yellow)';this.style.transform='translateY(-6px)';this.style.boxShadow='var(--sh-lg)'"
+             onmouseout="this.style.borderColor='#FFE4B5';this.style.transform='translateY(0)';this.style.boxShadow='var(--sh)'">
+          <div style="font-size:3rem;margin-bottom:.8rem">✉️</div>
+          <div style="font-weight:800;color:var(--brown);font-size:1.55rem;line-height:1.2">Email Us</div>
+          <div style="color:var(--brown-m);font-weight:700;font-size:1.08rem;margin-top:14px;word-break:break-word">lilmeowcafe@gmail.com</div>
         </div>
       </a>
+
       <a href="https://maps.google.com/?q=248+Union+Blvd+Totowa+NJ+07512" target="_blank" rel="noopener" style="text-decoration:none">
-        <div class="rv" style="background:var(--mint);border:2.5px solid #A0D9C5;border-radius:20px;padding:1.5rem;transition:all .3s" onmouseover="this.style.borderColor='var(--mint-dark)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#A0D9C5';this.style.transform='translateY(0)'">
-          <div style="font-size:2rem;margin-bottom:.5rem">📍</div>
-          <div style="font-weight:800;color:var(--brown);font-size:.9rem">Find Us</div>
-          <div style="color:#1B6B4A;font-weight:700;font-size:.85rem;margin-top:3px">248 Union Blvd</div>
+        <div class="rv" style="height:100%;background:var(--mint);border:3px solid #A0D9C5;border-radius:28px;padding:2rem 1.5rem;transition:all .3s;box-shadow:var(--sh)"
+             onmouseover="this.style.borderColor='#7BC7A8';this.style.transform='translateY(-6px)';this.style.boxShadow='var(--sh-lg)'"
+             onmouseout="this.style.borderColor='#A0D9C5';this.style.transform='translateY(0)';this.style.boxShadow='var(--sh)'">
+          <div style="font-size:3rem;margin-bottom:.8rem">📍</div>
+          <div style="font-weight:800;color:var(--brown);font-size:1.55rem;line-height:1.2">Find Us</div>
+          <div style="color:#1B6B4A;font-weight:700;font-size:1.15rem;margin-top:14px">248 Union Blvd</div>
         </div>
       </a>
-    </div>
-    <div class="rv" style="display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap">
-      <a href="https://www.instagram.com/lilmeowcafe" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:.85rem;padding:10px 22px">📸 Instagram</a>
-      <a href="https://www.tiktok.com/@lilmeowcafe" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:.85rem;padding:10px 22px">🎵 TikTok</a>
-      <a href="https://www.facebook.com/lilmeowcafe" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:.85rem;padding:10px 22px">📘 Facebook</a>
     </div>
   </div>
 </section>
