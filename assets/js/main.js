@@ -72,44 +72,36 @@ document.addEventListener('mousemove', (e) => {
     });
   }
 });
-
-const heroEmojis = ['🌸', '✨', '😸'];
+const heroEmojis = ['🌸', '⭐', '✨', '😸', '😽', '☕', '🐾'];
 
 setInterval(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
   const el = document.createElement('div');
   el.className = 'float-emoji';
   el.textContent = heroEmojis[Math.floor(Math.random() * heroEmojis.length)];
 
   const isMobile = window.innerWidth <= 768;
+  const lanes = isMobile ? [12, 24, 36, 64, 76, 88] : null;
+  const left = isMobile
+    ? lanes[Math.floor(Math.random() * lanes.length)]
+    : Math.random() * 100;
 
-  let left;
-  if (isMobile) {
-    const lanes = [10, 20, 30, 70, 80, 90];
-    left = lanes[Math.floor(Math.random() * lanes.length)];
-  } else {
-    left = Math.random() * 100;
-  }
+  const size = isMobile ? 1.35 + Math.random() * 0.35 : 1 + Math.random() * 1.2;
+  const duration = isMobile ? 4.5 + Math.random() * 2 : 6 + Math.random() * 6;
 
-  const size = isMobile ? 1.35 + Math.random() * 0.45 : 1 + Math.random() * 1.5;
-  const duration = isMobile ? 5.5 + Math.random() * 2.5 : 6 + Math.random() * 8;
+  el.style.left = `${left}%`;
+  el.style.bottom = `-16px`;
+  el.style.fontSize = `${size}rem`;
+  el.style.animationDuration = `${duration}s`;
+  el.style.animationDelay = `0s`;
+  el.style.zIndex = `8`;
+  el.style.opacity = `1`;
 
-  el.style.cssText = `
-    left:${left}%;
-    bottom:-14px;
-    font-size:${size}rem;
-    animation-duration:${duration}s;
-    animation-delay:0s;
-    z-index:6;
-    pointer-events:none;
-    opacity:0.95;
-  `;
-
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    hero.appendChild(el);
-    setTimeout(() => el.remove(), 12000);
-  }
-}, 500);
+  hero.appendChild(el);
+  setTimeout(() => el.remove(), 10000);
+}, 450);
 const catEmojis = ['🐱', '😺', '😸', '😻', '🐾'];
 let ci = 0;
 setInterval(() => {

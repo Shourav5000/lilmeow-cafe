@@ -420,6 +420,7 @@ nav.scrolled {
   pointer-events: none;
   animation: floatUp linear infinite;
   opacity: 0;
+  z-index: 4;
 }
 @keyframes floatUp {
   0% {
@@ -2630,46 +2631,7 @@ body {
     transform: translate(-50%, -130%) scale(1.25) rotate(15deg);
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto !important;
-  }
 
-  /* Keep the site generally calmer */
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms;
-    animation-iteration-count: 1;
-  }
-
-  /* But allow the hero floating emojis and a few decorative hero effects */
-  .float-emoji,
-  .hero-cat,
-  .hero-cat-shadow,
-  .hero-stickers .sticker,
-  .sparkle,
-  .steam,
-  .hero-badge {
-    animation-duration: inherit !important;
-    animation-iteration-count: infinite !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .float-emoji {
-    position: absolute !important;
-    z-index: 6 !important;
-    opacity: 0.95 !important;
-    pointer-events: none;
-    will-change: transform, opacity;
-  }
-
-  .hero-content {
-    z-index: 2;
-  }
-}
 @media (max-width: 768px) {
   .sticker {
     width: 48px;
