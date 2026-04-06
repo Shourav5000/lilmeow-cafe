@@ -72,7 +72,8 @@ document.addEventListener('mousemove', (e) => {
     });
   }
 });
-const heroEmojis = ['🌸', '⭐', '✨', '😸'];
+
+const heroEmojis = ['🌸', '✨', '😸'];
 
 setInterval(() => {
   const el = document.createElement('div');
@@ -83,32 +84,32 @@ setInterval(() => {
 
   let left;
   if (isMobile) {
-    const lanes = [8, 18, 28, 72, 82, 92];
+    const lanes = [10, 20, 30, 70, 80, 90];
     left = lanes[Math.floor(Math.random() * lanes.length)];
   } else {
     left = Math.random() * 100;
   }
 
-  const size = isMobile ? 1.1 + Math.random() * 0.6 : 1 + Math.random() * 1.5;
-
-  const duration = isMobile ? 7 + Math.random() * 4 : 6 + Math.random() * 8;
+  const size = isMobile ? 1.35 + Math.random() * 0.45 : 1 + Math.random() * 1.5;
+  const duration = isMobile ? 5.5 + Math.random() * 2.5 : 6 + Math.random() * 8;
 
   el.style.cssText = `
     left:${left}%;
-    bottom:-10px;
+    bottom:-14px;
     font-size:${size}rem;
     animation-duration:${duration}s;
     animation-delay:0s;
-    z-index:5;
+    z-index:6;
     pointer-events:none;
+    opacity:0.95;
   `;
 
   const hero = document.querySelector('.hero');
   if (hero) {
     hero.appendChild(el);
-    setTimeout(() => el.remove(), 16000);
+    setTimeout(() => el.remove(), 12000);
   }
-}, 700);
+}, 500);
 const catEmojis = ['🐱', '😺', '😸', '😻', '🐾'];
 let ci = 0;
 setInterval(() => {
