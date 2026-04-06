@@ -2721,7 +2721,7 @@ nav::after {
   box-shadow:
     0 24px 60px rgba(255, 143, 171, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
   border-radius: 34px;
   padding: 2.4rem 2rem;
   transition: transform 0.25s ease;
@@ -2890,7 +2890,7 @@ nav::after {
   left: 50%;
   transform: translateX(-50%);
   width: min(900px, 90%);
-  height: 180px;
+  height: 120px;
   background: radial-gradient(ellipse at center, rgba(255, 214, 224, 0.32), transparent 70%);
   pointer-events: none;
   z-index: 0;
@@ -3173,4 +3173,147 @@ footer a {
 .contact a:hover,
 footer a:hover {
   text-decoration: underline;
+}
+
+/* ===== iPhone / small-screen blur cleanup ===== */
+@media (max-width: 768px) {
+  .hero::before,
+  .section-glow::before,
+  .sparkle-field,
+  .steam-wrap {
+    opacity: 0.35;
+  }
+
+  .hero {
+    overflow: hidden;
+  }
+
+  .hero-content {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .hero-stickers {
+    opacity: 0.45;
+  }
+
+  .hero-stickers .sticker {
+    transform: scale(0.72);
+  }
+
+  .hero-3d-layer {
+    opacity: 0.4;
+    transform: scale(0.72);
+  }
+
+  .float-emoji {
+    opacity: 0.28 !important;
+  }
+
+  .section-glow::before {
+    width: 70%;
+    height: 90px;
+    filter: blur(28px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero::before,
+  .section-glow::before {
+    opacity: 0.18;
+    filter: blur(18px);
+  }
+
+  .hero-stickers,
+  .hero-3d-layer,
+  .float-emoji,
+  .sparkle-field,
+  .steam-wrap {
+    display: none !important;
+  }
+
+  .hero-content {
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    box-shadow: 0 10px 30px rgba(255, 143, 171, 0.08);
+  }
+}
+/* ===== MOBILE HERO CLEANUP: LESS FOG, MORE CLARITY ===== */
+@media (max-width: 768px) {
+  body {
+    background: linear-gradient(180deg, #fffafc 0%, #fffaf6 55%, #fffdf9 100%) !important;
+  }
+
+  body::before {
+    display: none !important;
+  }
+
+  .hero::before,
+  .section-glow::before {
+    display: none !important;
+  }
+
+  .sparkle-field {
+    opacity: 0.18 !important;
+  }
+
+  .steam-wrap {
+    opacity: 0.18 !important;
+    transform: scale(0.7);
+  }
+
+  .hero-stickers {
+    opacity: 0.32 !important;
+  }
+
+  .hero-stickers .sticker {
+    transform: scale(0.68);
+    box-shadow: 0 8px 18px rgba(255, 143, 171, 0.08) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.82) !important;
+  }
+
+  .hero-3d-layer,
+  .float-emoji {
+    opacity: 0.2 !important;
+  }
+
+  .hero-content {
+    background: rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 10px 24px rgba(255, 143, 171, 0.08) !important;
+    border: 1px solid rgba(255, 214, 224, 0.65) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    background: linear-gradient(180deg, #fffcfd 0%, #fffbf8 100%) !important;
+  }
+
+  .hero-stickers,
+  .hero-3d-layer,
+  .float-emoji,
+  .sparkle-field,
+  .steam-wrap {
+    display: none !important;
+  }
+
+  .hero-content {
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 8px 18px rgba(255, 143, 171, 0.06) !important;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 2rem 1rem 3rem;
+  }
+
+  .hero h1 {
+    text-shadow: none !important;
+  }
 }
