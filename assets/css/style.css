@@ -1610,7 +1610,7 @@ nav.scrolled {
 .pc {
   border: 2.5px solid var(--pink-light);
   border-radius: 20px;
-  padding: 1.5rem 1rem;
+  padding: 1.9rem 1rem 1.5rem;
   text-align: center;
   cursor: none;
   background: var(--cream);
@@ -1647,7 +1647,7 @@ nav.scrolled {
 }
 .pc-pop {
   position: absolute;
-  top: -11px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--yellow);
@@ -1659,6 +1659,7 @@ nav.scrolled {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
+  z-index: 2;
 }
 .pc-icon {
   font-size: 2.5rem;
@@ -3252,3 +3253,288 @@ footer a:hover {
 @media(max-width:768px){.tgrid{grid-template-columns:1fr 1fr}.pgrid{grid-template-columns:1fr!important}.snav{flex-wrap:wrap;gap:.6rem}.snav .btn,.snav .bbtn{flex:1;min-width:120px;text-align:center}.res-card{padding:1.2rem 1rem!important}}
 @media(max-width:480px){.step-bar{flex-direction:column;border-radius:16px}.sp{font-size:.75rem;border-radius:12px}.ts{font-size:.77rem;padding:8px 4px}.pc{padding:1.2rem .8rem}}
 @media(max-width:768px){.adopt-inner{grid-template-columns:1fr!important;padding:1.5rem!important;gap:1.2rem!important}.adopt-home-cta{padding:2.5rem 1rem!important}}
+
+
+/* ===== Mobile booking + adoption fixes ===== */
+nav,
+.mobile-menu,
+.res-wrap,
+.res-card,
+#adoptCard,
+#adoptCard * {
+  max-width: 100%;
+}
+
+.booking-card-grid,
+.card-mini-grid,
+.security-badge,
+.adopt-pill-row,
+.adopt-step-bar,
+.adopt-main-section,
+.adopt-main-wrap,
+.adopt-note {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 0 1rem;
+  }
+
+  .nav-logo {
+    font-size: 1.2rem;
+    gap: 4px;
+    max-width: calc(100vw - 84px);
+  }
+
+  .mobile-menu {
+    top: 72px;
+    padding: 1rem;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+  }
+
+  .res-wrap {
+    padding: 3rem 1rem;
+  }
+
+  .res-card {
+    padding: 1.15rem !important;
+    border-radius: 24px;
+  }
+
+  .step-bar {
+    flex-wrap: wrap;
+    border-radius: 20px;
+    gap: 0.45rem;
+  }
+
+  .sp {
+    min-width: calc(50% - 0.25rem);
+    border-radius: 14px;
+    font-size: 0.76rem;
+    line-height: 1.25;
+    padding: 10px 8px;
+  }
+
+  .tgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ts {
+    min-width: 0;
+  }
+
+  .snav {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .snav > span {
+    display: none;
+  }
+
+  .snav .btn,
+  .snav .bbtn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .card-mini-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.8rem !important;
+  }
+
+  .security-badge {
+    flex-wrap: wrap;
+    align-items: flex-start !important;
+  }
+
+  .security-badge > div:last-child {
+    margin-left: 0 !important;
+    width: 100%;
+    justify-content: flex-start !important;
+  }
+
+  .adopt-main-section {
+    padding: 2rem 1rem 3rem !important;
+  }
+
+  .adopt-note {
+    padding: 1.2rem !important;
+    border-radius: 18px !important;
+  }
+
+  #adoptCard {
+    padding: 1.15rem !important;
+    border-radius: 24px !important;
+  }
+
+  .adopt-step-bar {
+    border-radius: 20px !important;
+    gap: 0.45rem !important;
+  }
+
+  .adopt-step-bar > div {
+    min-width: calc(50% - 0.25rem) !important;
+    border-radius: 14px !important;
+    line-height: 1.25;
+    padding: 10px 8px !important;
+  }
+
+  .adopt-pill-row {
+    gap: 0.6rem !important;
+  }
+
+  .adopt-pill-row > div {
+    width: 100%;
+    text-align: center;
+    border-radius: 18px !important;
+    padding: 10px 14px !important;
+  }
+
+  .cat-profiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    font-size: 0.74rem;
+    padding: 8px 0.75rem;
+  }
+
+  nav {
+    height: 64px;
+  }
+
+  .mobile-menu {
+    top: 64px;
+    max-height: calc(100vh - 64px);
+  }
+
+  .nav-logo {
+    font-size: 1.02rem;
+  }
+
+  .res-wrap {
+    padding: 2.4rem 0.75rem;
+  }
+
+  .res-card {
+    padding: 0.95rem !important;
+    border-radius: 20px;
+  }
+
+  .step-bar,
+  .adopt-step-bar {
+    flex-direction: column;
+    border-radius: 16px !important;
+  }
+
+  .sp,
+  .adopt-step-bar > div {
+    min-width: 100% !important;
+    width: 100%;
+    border-radius: 12px !important;
+    font-size: 0.74rem !important;
+  }
+
+  .tgrid,
+  .cat-profiles {
+    grid-template-columns: 1fr;
+  }
+
+  .ts {
+    font-size: 0.78rem;
+    padding: 10px 6px;
+  }
+
+  .pc {
+    padding: 1rem 0.85rem;
+  }
+
+  .adopt-hero {
+    padding: 2.4rem 1rem 1.6rem;
+  }
+
+  .adopt-hero h1 {
+    font-size: clamp(2rem, 9vw, 2.6rem);
+  }
+
+  .adopt-hero p {
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .adopt-main-section {
+    padding: 1.6rem 0.75rem 2.5rem !important;
+  }
+
+  .adopt-note,
+  #adoptCard {
+    padding: 0.95rem !important;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .pc-pop {
+    top: 8px;
+    font-size: 0.6rem;
+    padding: 3px 10px;
+    max-width: calc(100% - 2rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pc {
+    padding: 1.85rem 0.85rem 1rem;
+  }
+}
+
+/* --- Stronger booking badge fix --- */
+.pc {
+  overflow: visible !important;
+  padding-top: 3.75rem !important;
+}
+
+.pc-pop {
+  top: 12px !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  max-width: calc(100% - 24px) !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  z-index: 5 !important;
+}
+
+@media (max-width: 768px) {
+  .pc {
+    padding-top: 4.1rem !important;
+  }
+
+  .pc-pop {
+    top: 12px !important;
+    max-width: calc(100% - 20px) !important;
+    font-size: 0.68rem !important;
+    padding: 5px 10px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .pc {
+    padding-top: 4.5rem !important;
+  }
+
+  .pc-pop {
+    top: 10px !important;
+    font-size: 0.64rem !important;
+    padding: 5px 9px !important;
+    max-width: calc(100% - 16px) !important;
+  }
+}
