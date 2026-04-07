@@ -3240,3 +3240,11 @@ footer a:hover {
     pointer-events: none;
   }
 }
+
+/* ── Stripe Card Element ── */
+#card-element{transition:border-color .3s,box-shadow .3s}
+#card-element:focus-within{border-color:var(--pink)!important;box-shadow:0 0 0 4px rgba(255,143,171,.12)!important}
+#card-error{animation:slideInRight .3s ease}
+.StripeElement--focus{border-color:var(--pink)!important}
+.StripeElement--invalid{border-color:#EF5350!important}
+.StripeElement--complete{border-color:#4CAF50!important}

@@ -343,7 +343,7 @@ window.go = function (n) {
       }
     }
 
-    if (n === 3) fillSum();
+    if (n === 3) { fillSum(); setTimeout(initStripe, 400); }
   }
 
   const currentPanel = document.getElementById('s' + curStep);
@@ -470,7 +470,38 @@ window.validateEmail = function (el) {
   el.classList.toggle('invalid', !ok && el.value.length > 0);
 };
 
-window.pay = function () {
+// ── Stripe Setup ──
+var stripe = null;
+var cardElement = null;
+
+function initStripe() {
+  if (stripe) return;
+  stripe = Stripe('pk_test_51TJOPpQ099dXCJOyFUMzdbeWGLOsAwYzLR2OXDsvm9ornt1Fr8eznibpQP5hvg2TBQzRnYBsRgOoLLquR6JUuM5z00OqMMgKHj');
+  var elements = stripe.elements();
+  cardElement = elements.create('card', {
+    style: {
+      base: {
+        fontFamily: "'Quicksand', sans-serif",
+        fontSize: '15px',
+        color: '#3D1F0D',
+        fontWeight: '600',
+        '::placeholder': { color: '#B07A5A' },
+        iconColor: '#FF8FAB',
+      },
+      invalid: { color: '#EF5350', iconColor: '#EF5350' }
+    }
+  });
+  cardElement.mount('#card-element');
+  cardElement.on('change', function(e) {
+    var errEl = document.getElementById('card-error');
+    if (e.error) { errEl.textContent = e.error.message; errEl.style.display = 'block'; }
+    else { errEl.style.display = 'none'; }
+    var cardEl = document.getElementById('card-element');
+    if (cardEl) cardEl.style.borderColor = e.error ? '#EF5350' : e.complete ? '#4CAF50' : 'var(--pink-light)';
+  });
+}
+
+window.pay = async function () {
   const rFirst = document.getElementById('rFirst');
   const rLast = document.getElementById('rLast');
   const rEmail = document.getElementById('rEmail');
@@ -479,59 +510,87 @@ window.pay = function () {
   const payBtn = document.getElementById('payBtn');
 
   if (!rFirst || !rFirst.value || !rLast || !rLast.value) {
-    window.showToast('💕 Please fill in your name!');
-    return;
+    window.showToast('💕 Please fill in your name!'); return;
   }
   if (!rEmail || !rEmail.value.includes('@')) {
-    window.showToast('📧 Please enter a valid email!');
-    return;
+    window.showToast('📧 Please enter a valid email!'); return;
   }
   if (!rPhone || !rPhone.value) {
-    window.showToast('📞 Please enter your phone number!');
-    return;
+    window.showToast('📞 Please enter your phone number!'); return;
+  }
+  if (!cardElement) {
+    window.showToast('💳 Please enter your card details!'); return;
   }
   if (!payBtn) return;
 
-  payBtn.innerHTML = '⏳ Confirming...';
+  payBtn.innerHTML = '⏳ Processing...';
   payBtn.disabled = true;
 
   const ref = 'LMC-' + Math.floor(100000 + Math.random() * 900000);
   const guests = rGuests ? rGuests.value || '1' : '1';
   const total = selPrice * parseInt(guests, 10) + (addonSelected ? 15 * parseInt(guests, 10) : 0);
   const addon = addonSelected ? 'Yes — Cat Treats + Polaroid Photo (+$15/person)' : 'No';
+  const name = rFirst.value + ' ' + rLast.value;
 
-  const templateParams = {
-    to_name: rFirst.value + ' ' + rLast.value,
-    to_email: rEmail.value,
-    booking_ref: ref,
-    date: document.getElementById('sd') ? document.getElementById('sd').textContent : '',
-    time: selT,
-    guests: guests + ' guest' + (parseInt(guests, 10) > 1 ? 's' : ''),
-    package: selPkg,
-    total: '$' + total + '.00 (pay on arrival)',
-    addon: addon,
-    phone: rPhone.value,
-  };
+  try {
+    const res = await fetch('/api/create-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount: total, guests, package: selPkg, name, email: rEmail.value })
+    });
+    if (!res.ok) throw new Error('Payment setup failed');
+    const { clientSecret } = await res.json();
 
-  function showSuccess() {
-    const resCard = document.getElementById('resCard');
-    const bCode = document.getElementById('bCode');
-    const succBox = document.getElementById('succBox');
+    const result = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: cardElement,
+        billing_details: { name, email: rEmail.value, phone: rPhone.value }
+      }
+    });
 
-    if (resCard) resCard.style.display = 'none';
-    if (bCode) bCode.textContent = ref;
-    if (succBox) succBox.classList.add('show');
+    if (result.error) {
+      var errEl = document.getElementById('card-error');
+      if (errEl) { errEl.textContent = result.error.message; errEl.style.display = 'block'; }
+      window.showToast('❌ ' + result.error.message);
+      payBtn.innerHTML = '💳 Pay & Confirm';
+      payBtn.disabled = false;
+      return;
+    }
 
-    launchConfetti();
-    window.showToast('✉️ Confirmation sent to ' + rEmail.value + '!');
+    window.showToast('✅ Payment successful!');
+
+    const templateParams = {
+      to_name: name, to_email: rEmail.value, booking_ref: ref,
+      date: document.getElementById('sd') ? document.getElementById('sd').textContent : '',
+      time: selT,
+      guests: guests + ' guest' + (parseInt(guests, 10) > 1 ? 's' : ''),
+      package: selPkg,
+      total: '$' + total + '.00 (paid online ✅)',
+      addon, phone: rPhone.value,
+    };
+
+    function showSuccess() {
+      const resCard = document.getElementById('resCard');
+      const bCode = document.getElementById('bCode');
+      const succBox = document.getElementById('succBox');
+      if (resCard) resCard.style.display = 'none';
+      if (bCode) bCode.textContent = ref;
+      if (succBox) succBox.classList.add('show');
+      launchConfetti();
+      window.showToast('✉️ Confirmation sent to ' + rEmail.value + '!');
+    }
+
+    emailjs.send('service_rlsav7s', 'template_z8fdc9g', templateParams)
+      .then(showSuccess)
+      .catch(function() { showSuccess(); });
+
+  } catch (err) {
+    console.error('Payment error:', err);
+    window.showToast('❌ Payment failed. Please try again.');
+    payBtn.innerHTML = '💳 Pay & Confirm';
+    payBtn.disabled = false;
   }
-
-  emailjs
-    .send('service_rlsav7s', 'template_z8fdc9g', templateParams)
-    .then(() => showSuccess())
-    .catch(() => showSuccess());
 };
-
 function launchConfetti() {
   const container = document.getElementById('confettiBox');
   if (!container) return;

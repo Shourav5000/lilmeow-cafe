@@ -25,6 +25,7 @@
 <title>Lil' Meow Café 🐾</title>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
 
 
   <link rel="stylesheet" href="assets/css/style.css">
@@ -153,7 +154,7 @@
   <div class="qi">📞<span><strong>(929) 301-9368</strong></span></div>
   <div class="qi">🕐<span>Mon, Thu–Sun · <strong>11am–2:30pm</strong> & <strong>4–8pm</strong> · Tue &amp; Wed Closed</span></div>
   <div class="qi">🐾<span><strong><a href="adopt.html">Adoption applications open</a></strong></span></div>
- <div class="qi">✉️<span><strong><a href="mailto:lilmeowcafe@gmail.com">lilmeowcafe@gmail.com</a></strong></span></div>
+ <div class="qi">✉️<span><strong><a href="/cdn-cgi/l/email-protection#4b272227262e243c282a2d2e0b2c262a222765282426"><span class="__cf_email__" data-cfemail="e68a8f8a8b83899185878083a6818b878f8ac885898b">[email&#160;protected]</span></a></strong></span></div>
 </div>
 
 <!-- PILLARS -->
@@ -600,19 +601,20 @@
           <div class="sr"><span>⏰ Time</span><span id="st">—</span></div>
           <div class="sr"><span>👥 Guests</span><span id="sg">—</span></div>
           <div class="sr"><span>🎟️ Package</span><span id="spkg">—</span></div>
-          <div class="sr tot"><span>Total Due on Arrival</span><span class="amt" id="sa">—</span></div>
+          <div class="sr tot"><span>Total Due Now</span><span class="amt" id="sa">—</span></div>
         </div>
 
-        <!-- Payment methods note -->
-        <div style="background:var(--mint);border-radius:16px;padding:1.2rem 1.4rem;display:flex;align-items:flex-start;gap:12px;margin-bottom:1.2rem">
-          <span style="font-size:1.6rem">💳</span>
-          <div>
-            <div style="font-weight:800;font-size:.9rem;color:#1B6B4A;margin-bottom:4px">Payment is collected in person at the café</div>
-            <div style="font-size:.82rem;color:#2D7A5E;font-weight:600;line-height:1.6">We accept <strong>Credit Card</strong>, <strong>Debit Card</strong> & <strong>Zelle</strong> 🐾<br>No payment needed to complete this reservation.</div>
-          </div>
+        <!-- Stripe Payment -->
+        <div style="margin-top:1.4rem">
+          <label class="fl">💳 Card Details <em>*</em></label>
+          <div id="card-element" style="background:var(--cream);border:2.5px solid var(--pink-light);border-radius:14px;padding:14px 16px;transition:border-color .3s"></div>
+          <div id="card-error" style="color:#EF5350;font-size:.8rem;font-weight:700;margin-top:6px;display:none"></div>
         </div>
-
-        <div class="snav"><button class="bbtn" onclick="go(2)">← Back</button><button class="btn btn-pink" id="payBtn" onclick="pay()">🐾 Confirm Reservation</button></div>
+        <div style="background:var(--pink-soft);border:2px solid var(--pink-light);border-radius:14px;padding:.9rem 1.2rem;margin:1rem 0;display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.3rem">🔒</span>
+          <span style="font-size:.78rem;font-weight:700;color:var(--brown-l)">Payments secured by <strong style="color:var(--brown)">Stripe</strong> — we never store your card details</span>
+        </div>
+        <div class="snav"><button class="bbtn" onclick="go(2)">← Back</button><button class="btn btn-pink" id="payBtn" onclick="pay()">💳 Pay & Confirm</button></div>
       </div>
     </div>
 
@@ -644,7 +646,7 @@
       <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>What should I wear?</span><div class="fq-icon">▾</div></div><div class="fq-a">Wear whatever makes you comfortable! The one rule is <strong>no shoes inside the lounge</strong> — clean socks are required. We sell adorable cat-themed socks at the door if you forget. We also recommend avoiding strong perfumes or colognes as cats have sensitive noses. 🐾</div></div>
       <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>I have a cat allergy — can I still visit?</span><div class="fq-icon">▾</div></div><div class="fq-a">We do have cats throughout the lounge so we can't guarantee an allergen-free environment. If you have mild allergies, antihistamines taken beforehand can help. We recommend checking with your doctor if you have severe cat allergies before visiting.</div></div>
       <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>What is the minimum age?</span><div class="fq-icon">▾</div></div><div class="fq-a">Children aged 5 and above are welcome at all times. For the comfort and safety of our resident cats, we kindly ask that younger children visit another time. All guests under 18 must be accompanied by an adult.</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>How do I pay when I arrive?</span><div class="fq-icon">▾</div></div><div class="fq-a">All payments are made in person at the café — no payment is required when booking online. We accept <strong>Credit Card</strong>, <strong>Debit Card</strong> and <strong>Zelle</strong>. 💳</div></div>
+      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>How do I pay for my visit?</span><div class="fq-icon">▾</div></div><div class="fq-a">We use <strong>secure online payment</strong> via Stripe — you pay when completing your booking. We accept all major credit and debit cards. Your payment is processed securely and you'll receive a confirmation email instantly. 💳</div></div>
       <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>What is the Purr Extra Special add-on?</span><div class="fq-icon">▾</div></div><div class="fq-a">For an extra $10 per person you can add our special experience — a bag of house cat treats to hand-feed the kitties yourself, plus a printed Polaroid photo of you with your favourite resident cat to take home as a keepsake! 📸🐾 Just mention it when you book or ask at the door.</div></div>
     </div>
   </div>
@@ -681,7 +683,7 @@
             title="Lil Meow Cafe Location">
           </iframe>
         </div>
-        <p class="addr">🏠 21 Lenox Avenue<br>Paterson, NJ 07502<br><br>📞 (929) 301-9368<br>✉️ <a href="mailto:lilmeowcafe@gmail.com">lilmeowcafe@gmail.com</a></p>
+        <p class="addr">🏠 21 Lenox Avenue<br>Paterson, NJ 07502<br><br>📞 (929) 301-9368<br>✉️ <a href="/cdn-cgi/l/email-protection#eb878287868e849c888a8d8eab8c868a8287c5888486"><span class="__cf_email__" data-cfemail="e28e8b8e8f878d9581838487a2858f838b8ecc818d8f">[email&#160;protected]</span></a></p>
         <a href="https://maps.app.goo.gl/Y5ymFUZQy1QfnDLp9" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:var(--pink-soft);border:2px solid var(--pink-light);color:var(--pink-deep);padding:8px 18px;border-radius:50px;font-weight:800;font-size:.82rem;text-decoration:none;margin-top:.8rem;transition:all .25s" onmouseover="this.style.background='var(--pink)';this.style.color='white'" onmouseout="this.style.background='var(--pink-soft)';this.style.color='var(--pink-deep)'">📍 Get Directions →</a>
       </div>
       <div class="vc rv" style="transition-delay:.2s">
@@ -718,13 +720,13 @@
         </div>
       </a>
 
-      <a href="mailto:lilmeowcafe@gmail.com" style="text-decoration:none">
+      <a href="/cdn-cgi/l/email-protection#375b5e5b5a5258405456515277505a565e5b1954585a" style="text-decoration:none">
         <div class="rv" style="height:100%;background:var(--yellow-light);border:3px solid #FFE4B5;border-radius:28px;padding:2rem 1.5rem;transition:all .3s;box-shadow:var(--sh)"
              onmouseover="this.style.borderColor='var(--yellow)';this.style.transform='translateY(-6px)';this.style.boxShadow='var(--sh-lg)'"
              onmouseout="this.style.borderColor='#FFE4B5';this.style.transform='translateY(0)';this.style.boxShadow='var(--sh)'">
           <div style="font-size:3rem;margin-bottom:.8rem">✉️</div>
           <div style="font-weight:800;color:var(--brown);font-size:1.55rem;line-height:1.2">Email Us</div>
-          <div style="color:var(--brown-m);font-weight:700;font-size:1.08rem;margin-top:14px;word-break:break-word">lilmeowcafe@gmail.com</div>
+          <div style="color:var(--brown-m);font-weight:700;font-size:1.08rem;margin-top:14px;word-break:break-word"><span class="__cf_email__" data-cfemail="f4989d9899919b8397959291b49399959d98da979b99">[email&#160;protected]</span></div>
         </div>
       </a>
 
@@ -769,6 +771,7 @@
     <button onclick="cookieAccept()" style="background:linear-gradient(135deg,#FF8FAB,#FF6B9D);color:white;border:2px solid #FF6B9D;padding:9px 18px;border-radius:50px;font-family:'Quicksand',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;transition:all .25s" onmouseover="this.style.background='white';this.style.color='#FF8FAB'" onmouseout="this.style.background='linear-gradient(135deg,#FF8FAB,#FF6B9D)';this.style.color='white'">Accept 🐾</button>
   </div>
 </div>
+  
   <script src="assets/js/main.js"></script>
 <script>
 (function(){
