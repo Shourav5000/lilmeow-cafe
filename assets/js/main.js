@@ -478,27 +478,45 @@ function initStripe() {
   if (stripe) return;
   stripe = Stripe('pk_test_51TJOPpQ099dXCJOyFUMzdbeWGLOsAwYzLR2OXDsvm9ornt1Fr8eznibpQP5hvg2TBQzRnYBsRgOoLLquR6JUuM5z00OqMMgKHj');
   var elements = stripe.elements();
-  cardElement = elements.create('card', {
-    style: {
-      base: {
-        fontFamily: "'Quicksand', sans-serif",
-        fontSize: '15px',
-        color: '#3D1F0D',
-        fontWeight: '600',
-        '::placeholder': { color: '#B07A5A' },
-        iconColor: '#FF8FAB',
-      },
-      invalid: { color: '#EF5350', iconColor: '#EF5350' }
-    }
-  });
-  cardElement.mount('#card-element');
-  cardElement.on('change', function(e) {
+
+  var style = {
+    base: {
+      fontFamily: "'Quicksand', sans-serif",
+      fontSize: '15px',
+      color: '#3D1F0D',
+      fontWeight: '600',
+      '::placeholder': { color: '#B07A5A' },
+      iconColor: '#FF8FAB',
+    },
+    invalid: { color: '#EF5350', iconColor: '#EF5350' }
+  };
+
+  // Create split elements
+  var cardNumber = elements.create('cardNumber', { style: style, showIcon: true });
+  var cardExpiry = elements.create('cardExpiry', { style: style });
+  var cardCvc = elements.create('cardCvc', { style: style, placeholder: '•••' });
+
+  cardNumber.mount('#card-number-element');
+  cardExpiry.mount('#card-expiry-element');
+  cardCvc.mount('#card-cvc-element');
+
+  // Store cardNumber as the main element for payment confirmation
+  cardElement = cardNumber;
+
+  function handleChange(el, e) {
     var errEl = document.getElementById('card-error');
-    if (e.error) { errEl.textContent = e.error.message; errEl.style.display = 'block'; }
-    else { errEl.style.display = 'none'; }
-    var cardEl = document.getElementById('card-element');
-    if (cardEl) cardEl.style.borderColor = e.error ? '#EF5350' : e.complete ? '#4CAF50' : 'var(--pink-light)';
-  });
+    if (e.error) {
+      errEl.textContent = e.error.message;
+      errEl.style.display = 'block';
+    } else {
+      errEl.style.display = 'none';
+    }
+    el.style.borderColor = e.error ? '#EF5350' : e.complete ? '#4CAF50' : 'var(--pink-light)';
+  }
+
+  cardNumber.on('change', function(e) { handleChange(document.getElementById('card-number-element'), e); });
+  cardExpiry.on('change', function(e) { handleChange(document.getElementById('card-expiry-element'), e); });
+  cardCvc.on('change', function(e) { handleChange(document.getElementById('card-cvc-element'), e); });
 }
 
 window.pay = async function () {
