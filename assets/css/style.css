@@ -3243,17 +3243,76 @@ footer a:hover {
 }
 
 /* ── Stripe Card Element ── */
-#card-element{transition:border-color .3s,box-shadow .3s}
-#card-element:focus-within{border-color:var(--pink)!important;box-shadow:0 0 0 4px rgba(255,143,171,.12)!important}
-#card-error{animation:slideInRight .3s ease}
-.StripeElement--focus{border-color:var(--pink)!important}
-.StripeElement--invalid{border-color:#EF5350!important}
-.StripeElement--complete{border-color:#4CAF50!important}
+#card-element {
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+#card-element:focus-within {
+  border-color: var(--pink) !important;
+  box-shadow: 0 0 0 4px rgba(255, 143, 171, 0.12) !important;
+}
+#card-error {
+  animation: slideInRight 0.3s ease;
+}
+.StripeElement--focus {
+  border-color: var(--pink) !important;
+}
+.StripeElement--invalid {
+  border-color: #ef5350 !important;
+}
+.StripeElement--complete {
+  border-color: #4caf50 !important;
+}
 
-@media(max-width:768px){.tgrid{grid-template-columns:1fr 1fr}.pgrid{grid-template-columns:1fr!important}.snav{flex-wrap:wrap;gap:.6rem}.snav .btn,.snav .bbtn{flex:1;min-width:120px;text-align:center}.res-card{padding:1.2rem 1rem!important}}
-@media(max-width:480px){.step-bar{flex-direction:column;border-radius:16px}.sp{font-size:.75rem;border-radius:12px}.ts{font-size:.77rem;padding:8px 4px}.pc{padding:1.2rem .8rem}}
-@media(max-width:768px){.adopt-inner{grid-template-columns:1fr!important;padding:1.5rem!important;gap:1.2rem!important}.adopt-home-cta{padding:2.5rem 1rem!important}}
-
+@media (max-width: 768px) {
+  .tgrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pgrid {
+    grid-template-columns: 1fr !important;
+  }
+  .snav {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .snav .btn,
+  .snav .bbtn {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+  .res-card {
+    padding: 1.2rem 1rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .step-bar {
+    flex-direction: column;
+    border-radius: 16px;
+  }
+  .sp {
+    font-size: 0.75rem;
+    border-radius: 12px;
+  }
+  .ts {
+    font-size: 0.77rem;
+    padding: 8px 4px;
+  }
+  .pc {
+    padding: 1.2rem 0.8rem;
+  }
+}
+@media (max-width: 768px) {
+  .adopt-inner {
+    grid-template-columns: 1fr !important;
+    padding: 1.5rem !important;
+    gap: 1.2rem !important;
+  }
+  .adopt-home-cta {
+    padding: 2.5rem 1rem !important;
+  }
+}
 
 /* ===== Mobile booking + adoption fixes ===== */
 nav,
@@ -3479,7 +3538,6 @@ nav,
   }
 }
 
-
 @media (max-width: 480px) {
   .pc-pop {
     top: 8px;
@@ -3536,5 +3594,151 @@ nav,
     font-size: 0.64rem !important;
     padding: 5px 9px !important;
     max-width: calc(100% - 16px) !important;
+  }
+}
+/* ===== Adoption page mobile overflow fix ===== */
+@media (max-width: 768px) {
+  .adopt-hero {
+    padding: 2.5rem 1rem 1.75rem !important;
+  }
+
+  .adopt-hero h1 {
+    line-height: 1.15 !important;
+    word-break: break-word;
+  }
+
+  .adopt-hero p {
+    font-size: 0.92rem !important;
+    line-height: 1.65 !important;
+  }
+
+  /* adoption hero pills row */
+  .adopt-hero > div[style*='display: flex'][style*='justify-content: center'] {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.65rem !important;
+    margin-top: 1.25rem !important;
+  }
+
+  .adopt-hero > div[style*='display: flex'][style*='justify-content: center'] > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    padding: 10px 14px !important;
+    border-radius: 18px !important;
+  }
+
+  /* main adoption section */
+  section[style*='padding: 3rem 2rem 5rem'] {
+    padding: 2rem 1rem 3rem !important;
+  }
+
+  /* agreement notice card */
+  div[style*='margin-bottom: 2rem'][style*='line-height: 1.9'] {
+    padding: 1.15rem !important;
+    border-radius: 18px !important;
+    font-size: 0.82rem !important;
+    line-height: 1.7 !important;
+  }
+
+  /* adoption form card */
+  #adoptCard {
+    padding: 1.15rem !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+  }
+
+  /* adoption step pills */
+  #adoptCard > div[style*='display: flex'][style*='gap: 4px'][style*='border-radius: 50px'] {
+    flex-wrap: wrap !important;
+    gap: 0.45rem !important;
+    border-radius: 18px !important;
+    padding: 0.45rem !important;
+  }
+
+  #adoptCard > div[style*='display: flex'][style*='gap: 4px'][style*='border-radius: 50px'] > div {
+    min-width: calc(50% - 0.25rem) !important;
+    flex: 1 1 calc(50% - 0.25rem) !important;
+    border-radius: 14px !important;
+    font-size: 0.74rem !important;
+    line-height: 1.2 !important;
+    padding: 10px 8px !important;
+  }
+
+  /* form fields */
+  .frow {
+    grid-template-columns: 1fr !important;
+  }
+
+  .fi,
+  select.fi,
+  textarea.fi {
+    min-width: 0 !important;
+  }
+
+  .snav {
+    flex-wrap: wrap !important;
+    gap: 0.65rem !important;
+  }
+
+  .snav > span {
+    display: none !important;
+  }
+
+  .snav .btn,
+  .snav .bbtn {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .cat-profiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+
+  .cat-chip {
+    min-width: 0 !important;
+    padding: 0.85rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .adopt-hero {
+    padding: 2.2rem 0.85rem 1.5rem !important;
+  }
+
+  .adopt-hero h1 {
+    font-size: clamp(2rem, 9vw, 2.55rem) !important;
+  }
+
+  section[style*='padding: 3rem 2rem 5rem'] {
+    padding: 1.6rem 0.75rem 2.5rem !important;
+  }
+
+  div[style*='margin-bottom: 2rem'][style*='line-height: 1.9'] {
+    padding: 0.95rem !important;
+  }
+
+  #adoptCard {
+    padding: 0.95rem !important;
+    border-radius: 20px !important;
+  }
+
+  #adoptCard > div[style*='display: flex'][style*='gap: 4px'][style*='border-radius: 50px'] {
+    flex-direction: column !important;
+    border-radius: 16px !important;
+  }
+
+  #adoptCard > div[style*='display: flex'][style*='gap: 4px'][style*='border-radius: 50px'] > div {
+    min-width: 100% !important;
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    border-radius: 12px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .cat-profiles {
+    grid-template-columns: 1fr !important;
   }
 }
