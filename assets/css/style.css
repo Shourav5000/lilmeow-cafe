@@ -2237,36 +2237,48 @@ footer {
 .toast-close:hover {
   color: white;
 }
-.rv {
+.rv,
+.rv-left,
+.rv-right {
+  opacity: 1;
+  transform: none;
+}
+
+.js .rv {
   opacity: 0;
   transform: translateY(32px);
   transition:
     opacity 0.7s ease,
     transform 0.7s ease;
 }
-.rv.in {
+
+.js .rv.in {
   opacity: 1;
   transform: translateY(0);
 }
-.rv-left {
+
+.js .rv-left {
   opacity: 0;
   transform: translateX(-32px);
   transition:
     opacity 0.7s ease,
     transform 0.7s ease;
 }
-.rv-left.in {
+
+.js .rv-left.in {
   opacity: 1;
   transform: translateX(0);
 }
-.rv-right {
+
+.js .rv-right {
   opacity: 0;
   transform: translateX(32px);
   transition:
     opacity 0.7s ease,
     transform 0.7s ease;
 }
-.rv-right.in {
+
+.js .rv-right.in {
   opacity: 1;
   transform: translateX(0);
 }

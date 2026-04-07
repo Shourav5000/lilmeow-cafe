@@ -1,77 +1,106 @@
+document.documentElement.classList.add('js');
+
 (function () {
   if (typeof emailjs !== 'undefined') {
     emailjs.init({ publicKey: '5MW4lMv5kQQFbX-BW' });
   }
 })();
+
 const cur = document.getElementById('cursor');
 const curT = document.getElementById('cursor-trail');
-document.addEventListener('mousemove', (e) => {
-  cur.style.left = e.clientX + 'px';
-  cur.style.top = e.clientY + 'px';
-  setTimeout(() => {
-    curT.style.left = e.clientX + 'px';
-    curT.style.top = e.clientY + 'px';
-  }, 80);
-});
-document.addEventListener('mousedown', () => cur.classList.add('clicked'));
-document.addEventListener('mouseup', () => cur.classList.remove('clicked'));
-document
-  .querySelectorAll('a,button,.pillar,.cat-card,.exp-card,.mi,.ts,.pc,.fq,.gallery-item,.today-cat,.soc,.sbox,.pill')
-  .forEach((el) => {
-    el.addEventListener('mouseenter', () => cur.classList.add('hovered'));
-    el.addEventListener('mouseleave', () => cur.classList.remove('hovered'));
+
+if (cur && curT) {
+  document.addEventListener('mousemove', (e) => {
+    cur.style.left = e.clientX + 'px';
+    cur.style.top = e.clientY + 'px';
+
+    setTimeout(() => {
+      curT.style.left = e.clientX + 'px';
+      curT.style.top = e.clientY + 'px';
+    }, 80);
   });
+
+  document.addEventListener('mousedown', () => cur.classList.add('clicked'));
+  document.addEventListener('mouseup', () => cur.classList.remove('clicked'));
+
+  document
+    .querySelectorAll('a,button,.pillar,.cat-card,.exp-card,.mi,.ts,.pc,.fq,.gallery-item,.today-cat,.soc,.sbox,.pill')
+    .forEach((el) => {
+      el.addEventListener('mouseenter', () => cur.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => cur.classList.remove('hovered'));
+    });
+}
+
 const canvas = document.getElementById('pawCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-window.addEventListener('resize', () => {
+let ctx = null;
+const paws = [];
+
+if (canvas) {
+  ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-});
-const paws = [];
-function drawPaw(x, y, size, opacity, color) {
-  ctx.save();
-  ctx.globalAlpha = opacity;
-  ctx.fillStyle = color;
-  ctx.beginPath();
-  ctx.arc(x, y, size, 0, Math.PI * 2);
-  ctx.fill();
-  [
-    [-0.7, -0.9, 0.4],
-    [0.7, -0.9, 0.4],
-    [-0.5, -0.5, 0.35],
-    [0.5, -0.5, 0.35],
-  ].forEach(([tx, ty, tr]) => {
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  function drawPaw(x, y, size, opacity, color) {
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.arc(x + tx * size, y + ty * size, tr * size, 0, Math.PI * 2);
+    ctx.arc(x, y, size, 0, Math.PI * 2);
     ctx.fill();
-  });
-  ctx.restore();
-}
-(function animPaws() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  paws.forEach((p, i) => {
-    p.y -= p.speed;
-    p.opacity -= 0.003;
-    if (p.opacity <= 0) paws.splice(i, 1);
-    drawPaw(p.x, p.y, p.size, p.opacity, p.color);
-  });
-  requestAnimationFrame(animPaws);
-})();
-document.addEventListener('mousemove', (e) => {
-  if (Math.random() < 0.06) {
-    const c = ['#FF8FAB', '#FFD6E0', '#C9B8FF', '#B5EAD7'][Math.floor(Math.random() * 4)];
-    paws.push({
-      x: e.clientX,
-      y: e.clientY,
-      size: 8 + Math.random() * 10,
-      speed: 0.6 + Math.random(),
-      opacity: 0.5 + Math.random() * 0.3,
-      color: c,
+
+    [
+      [-0.7, -0.9, 0.4],
+      [0.7, -0.9, 0.4],
+      [-0.5, -0.5, 0.35],
+      [0.5, -0.5, 0.35],
+    ].forEach(([tx, ty, tr]) => {
+      ctx.beginPath();
+      ctx.arc(x + tx * size, y + ty * size, tr * size, 0, Math.PI * 2);
+      ctx.fill();
     });
+
+    ctx.restore();
   }
-});
+
+  (function animPaws() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = paws.length - 1; i >= 0; i--) {
+      const p = paws[i];
+      p.y -= p.speed;
+      p.opacity -= 0.003;
+
+      if (p.opacity <= 0) {
+        paws.splice(i, 1);
+        continue;
+      }
+
+      drawPaw(p.x, p.y, p.size, p.opacity, p.color);
+    }
+
+    requestAnimationFrame(animPaws);
+  })();
+
+  document.addEventListener('mousemove', (e) => {
+    if (Math.random() < 0.06) {
+      const c = ['#FF8FAB', '#FFD6E0', '#C9B8FF', '#B5EAD7'][Math.floor(Math.random() * 4)];
+      paws.push({
+        x: e.clientX,
+        y: e.clientY,
+        size: 8 + Math.random() * 10,
+        speed: 0.6 + Math.random(),
+        opacity: 0.5 + Math.random() * 0.3,
+        color: c,
+      });
+    }
+  });
+}
+
 const heroEmojis = ['🌸', '⭐', '✨', '😸', '😽'];
 
 setInterval(() => {
@@ -100,21 +129,31 @@ setInterval(() => {
   hero.appendChild(el);
   setTimeout(() => el.remove(), 10000);
 }, 1600);
+
 const catEmojis = ['🐱', '😺', '😸', '😻', '🐾'];
 let ci = 0;
 setInterval(() => {
   const h = document.getElementById('heroCat');
   if (h) h.textContent = catEmojis[(ci = (ci + 1) % catEmojis.length)];
 }, 3000);
+
 window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
-  document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
+  const nav = document.getElementById('nav');
+  const btt = document.getElementById('btt');
+
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+
   highlightToday();
 });
+
 window.toggleMobile = function () {
-  document.getElementById('mobileMenu').classList.toggle('open');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (mobileMenu) mobileMenu.classList.toggle('open');
 };
+
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 function highlightToday() {
   const today = days[new Date().getDay()];
   document.querySelectorAll('.hlist li').forEach((li) => {
@@ -124,6 +163,7 @@ function highlightToday() {
   });
 }
 highlightToday();
+
 let purrDone = false;
 const obs = new IntersectionObserver(
   (entries) =>
@@ -135,79 +175,128 @@ const obs = new IntersectionObserver(
     }),
   { threshold: 0.1 }
 );
+
 document.querySelectorAll('.rv,.rv-left,.rv-right').forEach((el) => obs.observe(el));
+
 function animatePurrBars() {
   purrDone = true;
   document.querySelectorAll('.purr-fill').forEach((bar) => {
     setTimeout(() => (bar.style.width = bar.dataset.width + '%'), 300);
   });
 }
+
 let toastTimer;
 window.showToast = function (msg) {
   clearTimeout(toastTimer);
-  document.getElementById('toastMsg').textContent = msg;
+
+  const toastMsg = document.getElementById('toastMsg');
   const t = document.getElementById('toast');
+
+  if (!toastMsg || !t) return;
+
+  toastMsg.textContent = msg;
   t.classList.add('show');
   toastTimer = setTimeout(() => t.classList.remove('show'), 4500);
 };
+
 window.closeToast = function () {
-  document.getElementById('toast').classList.remove('show');
+  const toast = document.getElementById('toast');
+  if (toast) toast.classList.remove('show');
 };
+
 window.openCat = function (name, emoji, desc) {
-  document.getElementById('lbEmoji').textContent = emoji;
-  document.getElementById('lbName').textContent = name;
-  document.getElementById('lbDesc').textContent = desc;
-  document.getElementById('lightbox').classList.add('open');
+  const lbEmoji = document.getElementById('lbEmoji');
+  const lbName = document.getElementById('lbName');
+  const lbDesc = document.getElementById('lbDesc');
+  const lightbox = document.getElementById('lightbox');
+
+  if (!lbEmoji || !lbName || !lbDesc || !lightbox) return;
+
+  lbEmoji.textContent = emoji;
+  lbName.textContent = name;
+  lbDesc.textContent = desc;
+  lightbox.classList.add('open');
 };
+
 window.openGallery = function (emoji, name, desc) {
-  document.getElementById('lbEmoji').textContent = emoji;
-  document.getElementById('lbName').textContent = name;
-  document.getElementById('lbDesc').textContent = desc;
-  document.getElementById('lightbox').classList.add('open');
+  const lbEmoji = document.getElementById('lbEmoji');
+  const lbName = document.getElementById('lbName');
+  const lbDesc = document.getElementById('lbDesc');
+  const lightbox = document.getElementById('lightbox');
+
+  if (!lbEmoji || !lbName || !lbDesc || !lightbox) return;
+
+  lbEmoji.textContent = emoji;
+  lbName.textContent = name;
+  lbDesc.textContent = desc;
+  lightbox.classList.add('open');
 };
+
 window.closeLb = function (e) {
-  if (!e || e.target === document.getElementById('lightbox') || e.currentTarget.classList.contains('lb-close'))
-    document.getElementById('lightbox').classList.remove('open');
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+
+  if (!e || e.target === lightbox || (e.currentTarget && e.currentTarget.classList.contains('lb-close'))) {
+    lightbox.classList.remove('open');
+  }
 };
+
 const catReactions = ['😻', '😹', '🙀', '😾', '😸', '🐱', '😺', '😽'];
 let ri = 0;
 window.catReact = function (el) {
+  if (!el) return;
   el.textContent = catReactions[ri % catReactions.length];
   ri++;
   window.showToast('🐾 Click again for another reaction!');
 };
+
 window.switchTab = function (btn, id) {
   document.querySelectorAll('.mtab').forEach((t) => t.classList.remove('on'));
   document.querySelectorAll('.mpanel').forEach((p) => p.classList.remove('on'));
-  btn.classList.add('on');
-  document.getElementById('tab-' + id).classList.add('on');
+
+  if (btn) btn.classList.add('on');
+
+  const panel = document.getElementById('tab-' + id);
+  if (panel) panel.classList.add('on');
 };
+
 window.faqToggle = function (el) {
+  if (!el) return;
+
   const item = el.parentElement;
+  if (!item) return;
+
   const open = item.classList.contains('open');
   document.querySelectorAll('.fq').forEach((f) => f.classList.remove('open'));
   if (!open) item.classList.add('open');
 };
-let selT = '',
-  selPkg = '',
-  selPrice = 0,
-  curStep = 1;
+
+let selT = '';
+let selPkg = '';
+let selPrice = 0;
+let curStep = 1;
+
 const tomorrow = new Date();
 tomorrow.setDate(tomorrow.getDate() + 1);
 const dateEl = document.getElementById('rDate');
 if (dateEl) dateEl.min = tomorrow.toISOString().split('T')[0];
+
 const progWidths = ['33%', '66%', '100%'];
+
 window.go = function (n) {
   if (n > curStep) {
     if (curStep === 1) {
-      if (!document.getElementById('rDate').value) {
+      const rDate = document.getElementById('rDate');
+      const rGuests = document.getElementById('rGuests');
+
+      if (!rDate || !rDate.value) {
         window.showToast('🗓️ Please pick a date first!');
-        document.getElementById('rDate').focus();
+        if (rDate) rDate.focus();
         return;
       }
-      if (!document.getElementById('rGuests').value) {
+      if (!rGuests || !rGuests.value) {
         window.showToast('👥 How many guests are coming?');
-        document.getElementById('rGuests').focus();
+        if (rGuests) rGuests.focus();
         return;
       }
       if (!selT) {
@@ -216,43 +305,54 @@ window.go = function (n) {
       }
       window.showToast('😻 Great choices! Now pick your package...');
     }
+
     if (curStep === 2 && !selPkg) {
       window.showToast('🎟️ Choose a package to continue!');
       return;
     }
+
     if (curStep === 2 && selPkg) {
       window.showToast('🐾 Almost there! Just your details...');
     }
+
     if (curStep === 3) {
-      if (!document.getElementById('rFirst').value) {
+      const rFirst = document.getElementById('rFirst');
+      const rLast = document.getElementById('rLast');
+      const rEmail = document.getElementById('rEmail');
+      const rPhone = document.getElementById('rPhone');
+
+      if (!rFirst || !rFirst.value) {
         window.showToast('💕 Please enter your first name!');
-        document.getElementById('rFirst').focus();
+        if (rFirst) rFirst.focus();
         return;
       }
-      if (!document.getElementById('rLast').value) {
+      if (!rLast || !rLast.value) {
         window.showToast('💕 Please enter your last name!');
-        document.getElementById('rLast').focus();
+        if (rLast) rLast.focus();
         return;
       }
-      if (!document.getElementById('rEmail').value.includes('@')) {
+      if (!rEmail || !rEmail.value.includes('@')) {
         window.showToast('📧 Please enter a valid email!');
-        document.getElementById('rEmail').focus();
+        if (rEmail) rEmail.focus();
         return;
       }
-      if (!document.getElementById('rPhone').value) {
+      if (!rPhone || !rPhone.value) {
         window.showToast('📞 Please enter your phone!');
-        document.getElementById('rPhone').focus();
+        if (rPhone) rPhone.focus();
         return;
       }
     }
+
     if (n === 3) fillSum();
   }
-  var currentPanel = document.getElementById('s' + curStep);
+
+  const currentPanel = document.getElementById('s' + curStep);
   if (currentPanel) {
     currentPanel.style.opacity = '0';
     currentPanel.style.transform = 'translateX(-30px)';
     currentPanel.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
   }
+
   setTimeout(function () {
     document.querySelectorAll('.spanel').forEach((p) => {
       p.classList.remove('on');
@@ -260,45 +360,74 @@ window.go = function (n) {
       p.style.transform = '';
       p.style.transition = '';
     });
+
     document.querySelectorAll('.sp').forEach((s) => s.classList.remove('on'));
-    document.getElementById('s' + n).classList.add('on');
-    document.getElementById('sp' + n).classList.add('on');
-    for (var i = 1; i < n; i++) document.getElementById('sp' + i).classList.add('done');
-    document.getElementById('resProg').style.width = progWidths[n - 1];
+
+    const nextPanel = document.getElementById('s' + n);
+    const nextStep = document.getElementById('sp' + n);
+    const resProg = document.getElementById('resProg');
+
+    if (nextPanel) nextPanel.classList.add('on');
+    if (nextStep) nextStep.classList.add('on');
+
+    for (let i = 1; i < n; i++) {
+      const prevStep = document.getElementById('sp' + i);
+      if (prevStep) prevStep.classList.add('done');
+    }
+
+    if (resProg) resProg.style.width = progWidths[n - 1];
     curStep = n;
-    var newPanel = document.getElementById('s' + n);
-    if (newPanel) {
-      newPanel.style.opacity = '0';
-      newPanel.style.transform = 'translateX(30px)';
-      newPanel.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+    if (nextPanel) {
+      nextPanel.style.opacity = '0';
+      nextPanel.style.transform = 'translateX(30px)';
+      nextPanel.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
       setTimeout(function () {
-        newPanel.style.opacity = '1';
-        newPanel.style.transform = 'translateX(0)';
+        nextPanel.style.opacity = '1';
+        nextPanel.style.transform = 'translateX(0)';
       }, 20);
     }
-    var card = document.getElementById('resCard');
+
+    const card = document.getElementById('resCard');
     if (card) {
-      var top = card.getBoundingClientRect().top + window.pageYOffset - 100;
+      const top = card.getBoundingClientRect().top + window.pageYOffset - 100;
       window.scrollTo({ top: top, behavior: 'smooth' });
     }
   }, 250);
 };
+
 window.pickT = function (el) {
   document.querySelectorAll('.ts').forEach((s) => s.classList.remove('on'));
+  if (!el) return;
   el.classList.add('on');
   selT = el.dataset.t;
 };
+
 window.pickP = function (el, n, p) {
   document.querySelectorAll('.pc').forEach((c) => c.classList.remove('on'));
+  if (!el) return;
   el.classList.add('on');
   selPkg = n;
   selPrice = p;
 };
+
 function fillSum() {
-  const dt = document.getElementById('rDate').value;
-  const g = parseInt(document.getElementById('rGuests').value) || 1;
+  const rDate = document.getElementById('rDate');
+  const rGuests = document.getElementById('rGuests');
+  const sd = document.getElementById('sd');
+  const st = document.getElementById('st');
+  const sg = document.getElementById('sg');
+  const spkg = document.getElementById('spkg');
+  const sa = document.getElementById('sa');
+
+  if (!sd || !st || !sg || !spkg || !sa) return;
+
+  const dt = rDate ? rDate.value : '';
+  const g = parseInt(rGuests ? rGuests.value : '1', 10) || 1;
   const addonCost = addonSelected ? 15 * g : 0;
   const total = selPrice * g + addonCost;
+
   const fmt = dt
     ? new Date(dt + 'T12:00:00').toLocaleDateString('en-US', {
         weekday: 'long',
@@ -307,108 +436,154 @@ function fillSum() {
         year: 'numeric',
       })
     : '—';
-  document.getElementById('sd').textContent = fmt;
-  document.getElementById('st').textContent = selT;
-  document.getElementById('sg').textContent = g + ' guest' + (g > 1 ? 's' : '');
-  document.getElementById('spkg').textContent = selPkg + (addonSelected ? ' + 📸 Purr Extra Special' : '');
-  document.getElementById('sa').textContent = '$' + total + '.00';
+
+  sd.textContent = fmt;
+  st.textContent = selT || '—';
+  sg.textContent = g + ' guest' + (g > 1 ? 's' : '');
+  spkg.textContent = selPkg + (addonSelected ? ' + 📸 Purr Extra Special' : '');
+  sa.textContent = '$' + total + '.00';
 }
+
 window.fmtC = function (el) {
+  if (!el) return;
   let v = el.value.replace(/\D/g, '').substring(0, 16);
   el.value = v.replace(/(.{4})/g, '$1 ').trim();
 };
+
 window.fmtE = function (el) {
+  if (!el) return;
   let v = el.value.replace(/\D/g, '');
   if (v.length >= 2) v = v.substring(0, 2) + ' / ' + v.substring(2, 4);
   el.value = v;
 };
+
 window.validateField = function (el) {
+  if (!el) return;
   el.classList.toggle('valid', el.value.length > 0);
   el.classList.toggle('invalid', el.value.length === 0);
 };
+
 window.validateEmail = function (el) {
+  if (!el) return;
   const ok = el.value.includes('@') && el.value.includes('.');
   el.classList.toggle('valid', ok);
   el.classList.toggle('invalid', !ok && el.value.length > 0);
 };
+
 window.pay = function () {
-  if (!document.getElementById('rFirst').value || !document.getElementById('rLast').value) {
+  const rFirst = document.getElementById('rFirst');
+  const rLast = document.getElementById('rLast');
+  const rEmail = document.getElementById('rEmail');
+  const rPhone = document.getElementById('rPhone');
+  const rGuests = document.getElementById('rGuests');
+  const payBtn = document.getElementById('payBtn');
+
+  if (!rFirst || !rFirst.value || !rLast || !rLast.value) {
     window.showToast('💕 Please fill in your name!');
     return;
   }
-  if (!document.getElementById('rEmail').value.includes('@')) {
+  if (!rEmail || !rEmail.value.includes('@')) {
     window.showToast('📧 Please enter a valid email!');
     return;
   }
-  if (!document.getElementById('rPhone').value) {
+  if (!rPhone || !rPhone.value) {
     window.showToast('📞 Please enter your phone number!');
     return;
   }
-  const btn = document.getElementById('payBtn');
-  btn.innerHTML = '⏳ Confirming...';
-  btn.disabled = true;
+  if (!payBtn) return;
+
+  payBtn.innerHTML = '⏳ Confirming...';
+  payBtn.disabled = true;
+
   const ref = 'LMC-' + Math.floor(100000 + Math.random() * 900000);
-  const guests = document.getElementById('rGuests').value || '1';
-  const total = selPrice * parseInt(guests) + (addonSelected ? 15 * parseInt(guests) : 0);
+  const guests = rGuests ? rGuests.value || '1' : '1';
+  const total = selPrice * parseInt(guests, 10) + (addonSelected ? 15 * parseInt(guests, 10) : 0);
   const addon = addonSelected ? 'Yes — Cat Treats + Polaroid Photo (+$15/person)' : 'No';
+
   const templateParams = {
-    to_name: document.getElementById('rFirst').value + ' ' + document.getElementById('rLast').value,
-    to_email: document.getElementById('rEmail').value,
+    to_name: rFirst.value + ' ' + rLast.value,
+    to_email: rEmail.value,
     booking_ref: ref,
-    date: document.getElementById('sd').textContent,
+    date: document.getElementById('sd') ? document.getElementById('sd').textContent : '',
     time: selT,
-    guests: guests + ' guest' + (parseInt(guests) > 1 ? 's' : ''),
+    guests: guests + ' guest' + (parseInt(guests, 10) > 1 ? 's' : ''),
     package: selPkg,
     total: '$' + total + '.00 (pay on arrival)',
     addon: addon,
-    phone: document.getElementById('rPhone').value,
+    phone: rPhone.value,
   };
+
   function showSuccess() {
-    document.getElementById('resCard').style.display = 'none';
-    document.getElementById('bCode').textContent = ref;
-    document.getElementById('succBox').classList.add('show');
+    const resCard = document.getElementById('resCard');
+    const bCode = document.getElementById('bCode');
+    const succBox = document.getElementById('succBox');
+
+    if (resCard) resCard.style.display = 'none';
+    if (bCode) bCode.textContent = ref;
+    if (succBox) succBox.classList.add('show');
+
     launchConfetti();
-    window.showToast('✉️ Confirmation sent to ' + document.getElementById('rEmail').value + '!');
+    window.showToast('✉️ Confirmation sent to ' + rEmail.value + '!');
   }
+
   emailjs
     .send('service_rlsav7s', 'template_z8fdc9g', templateParams)
     .then(() => showSuccess())
     .catch(() => showSuccess());
 };
+
 function launchConfetti() {
   const container = document.getElementById('confettiBox');
+  if (!container) return;
+
   const emojis = ['🎉', '🐾', '🌸', '😻', '☕', '✨', '💕', '🎊', '😽'];
+
   const style = document.createElement('style');
   style.textContent = '@keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}';
   document.head.appendChild(style);
+
   for (let i = 0; i < 40; i++) {
     const el = document.createElement('div');
     el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
     el.style.cssText = `position:fixed;left:${Math.random() * 100}vw;top:-50px;font-size:${1.2 + Math.random() * 1.5}rem;pointer-events:none;z-index:9997;animation:confettiFall ${2 + Math.random() * 3}s ease-in ${Math.random() * 2}s forwards`;
     container.appendChild(el);
   }
+
   setTimeout(() => (container.innerHTML = ''), 7000);
 }
+
 window.subscribe = function () {
-  const e = document.getElementById('nlEmail').value;
+  const nlEmail = document.getElementById('nlEmail');
+  const nlForm = document.getElementById('nlForm');
+  const nlSuccess = document.getElementById('nlSuccess');
+
+  if (!nlEmail || !nlForm || !nlSuccess) return;
+
+  const e = nlEmail.value;
   if (!e || !e.includes('@')) {
     window.showToast('📧 Please enter a valid email!');
     return;
   }
+
   emailjs
     .send('service_rlsav7s', 'template_z8fdc9g', {
       to_email: e,
       to_name: e.split('@')[0],
     })
     .catch(() => {});
-  document.getElementById('nlForm').style.display = 'none';
-  document.getElementById('nlSuccess').classList.add('show');
+
+  nlForm.style.display = 'none';
+  nlSuccess.classList.add('show');
   window.showToast('🌸 Welcome to the Meow Club, ' + e + '! 💕');
 };
+
 let addonSelected = false;
 window.toggleAddon = function (el) {
-  addonSelected = !addonSelected;
   const check = document.getElementById('addonCheck');
+  if (!el || !check) return;
+
+  addonSelected = !addonSelected;
+
   if (addonSelected) {
     el.style.background = 'linear-gradient(135deg,#FFF3B0,#FFE55C)';
     el.style.borderColor = '#FFB300';
@@ -423,6 +598,7 @@ window.toggleAddon = function (el) {
     check.style.background = 'white';
   }
 };
+
 const reviews = [
   {
     name: 'Sarah M.',
@@ -467,9 +643,11 @@ const reviews = [
     avatar: '😻',
   },
 ];
+
 function renderReviews() {
   const grid = document.getElementById('reviewsGrid');
   if (!grid) return;
+
   grid.innerHTML = reviews
     .map(
       (r, i) => `
@@ -490,25 +668,32 @@ onmouseout="this.style.borderColor='var(--pink-light)';this.style.transform='tra
 `
     )
     .join('');
+
   grid.querySelectorAll('.rv').forEach((el) => obs.observe(el));
 }
 renderReviews();
+
 window.jumpBook = function () {
-  document.getElementById('reserve').scrollIntoView({ behavior: 'smooth' });
+  const reserve = document.getElementById('reserve');
+  if (reserve) reserve.scrollIntoView({ behavior: 'smooth' });
 };
 
 window.cookieAccept = function () {
   localStorage.setItem('lmc_cookie', 'accepted');
-  document.getElementById('cookieBanner').style.transform = 'translateY(100%)';
+  const banner = document.getElementById('cookieBanner');
+  if (banner) banner.style.transform = 'translateY(100%)';
 };
+
 window.cookieDecline = function () {
   localStorage.setItem('lmc_cookie', 'declined');
-  document.getElementById('cookieBanner').style.transform = 'translateY(100%)';
+  const banner = document.getElementById('cookieBanner');
+  if (banner) banner.style.transform = 'translateY(100%)';
 };
+
 (function () {
   setTimeout(function () {
     if (!localStorage.getItem('lmc_cookie')) {
-      var b = document.getElementById('cookieBanner');
+      const b = document.getElementById('cookieBanner');
       if (b) b.style.transform = 'translateY(0)';
     }
   }, 2500);
@@ -518,6 +703,7 @@ window.cookieDecline = function () {
 (function () {
   const hero = document.querySelector('.hero');
   const heroContent = document.querySelector('.hero-content');
+
   if (hero && heroContent) {
     hero.addEventListener('mousemove', (e) => {
       const rect = hero.getBoundingClientRect();
@@ -525,6 +711,7 @@ window.cookieDecline = function () {
       const py = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
       heroContent.style.transform = `rotateX(${(-py).toFixed(2)}deg) rotateY(${px.toFixed(2)}deg)`;
     });
+
     hero.addEventListener('mouseleave', () => {
       heroContent.style.transform = 'rotateX(0deg) rotateY(0deg)';
     });
@@ -532,12 +719,14 @@ window.cookieDecline = function () {
 
   document.querySelectorAll('.btn, .mchip, .exp-btn, .cc-btn, .nav-book').forEach((el) => {
     el.classList.add('magnet-btn');
+
     el.addEventListener('mousemove', (e) => {
       const r = el.getBoundingClientRect();
       const x = e.clientX - (r.left + r.width / 2);
       const y = e.clientY - (r.top + r.height / 2);
       el.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
     });
+
     el.addEventListener('mouseleave', () => {
       el.style.transform = '';
     });
@@ -557,12 +746,14 @@ window.cookieDecline = function () {
   const popEmojis = ['🐾', '☕', '😻', '✨', '💕', '🐱'];
   document.addEventListener('click', (e) => {
     if (!e.target.closest('button,a,.today-cat,.gallery-item,.cat-card,.pillar,.exp-card,.mi,.mchip')) return;
+
     const pop = document.createElement('span');
     pop.className = 'floating-pop';
     pop.textContent = popEmojis[Math.floor(Math.random() * popEmojis.length)];
     pop.style.left = e.clientX + 'px';
     pop.style.top = e.clientY + 'px';
     document.body.appendChild(pop);
+
     setTimeout(() => pop.remove(), 900);
   });
 
@@ -573,6 +764,7 @@ window.cookieDecline = function () {
     '✨ Cute overload is part of the experience.',
     '🍰 Coffee + cats + cozy corners = perfect day.',
   ];
+
   const badge = document.querySelector('.hero-badge');
   if (badge) {
     let factIndex = 0;
@@ -596,6 +788,7 @@ window.cookieDecline = function () {
   if (sparkleField && !sparkleField.dataset.ready) {
     sparkleField.dataset.ready = '1';
     const sparkleIcons = ['✨', '🌸', '💖', '☕', '🐾', '⭐'];
+
     for (let i = 0; i < 18; i++) {
       const s = document.createElement('span');
       s.className = 'sparkle';
@@ -615,6 +808,7 @@ window.cookieDecline = function () {
       const y = ((e.clientY - rect.top) / rect.height - 0.5) * 8;
       heroContent.style.transform = `perspective(1200px) rotateY(${x * 0.6}deg) rotateX(${y * -0.5}deg) translateY(-2px)`;
     });
+
     hero.addEventListener('mouseleave', () => {
       heroContent.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg)';
     });
@@ -627,6 +821,7 @@ window.cookieDecline = function () {
       const y = e.clientY - (r.top + r.height / 2);
       el.style.transform = `translate(${x * 0.04}px, ${y * 0.05}px) translateY(-2px)`;
     });
+
     el.addEventListener('mouseleave', () => {
       el.style.transform = '';
     });
@@ -634,17 +829,20 @@ window.cookieDecline = function () {
 
   const tapBurst = (x, y) => {
     const emojis = ['🐾', '☕', '💖', '✨', '😻', '🌸'];
+
     for (let i = 0; i < 6; i++) {
       const el = document.createElement('div');
       el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
       el.style.cssText = `position:fixed;left:${x}px;top:${y}px;z-index:99996;pointer-events:none;font-size:${0.9 + Math.random() * 0.7}rem;transition:transform .7s ease, opacity .7s ease`;
       document.body.appendChild(el);
+
       requestAnimationFrame(() => {
         const dx = (Math.random() - 0.5) * 90;
         const dy = -20 - Math.random() * 80;
         el.style.transform = `translate(${dx}px, ${dy}px) rotate(${(Math.random() - 0.5) * 90}deg)`;
         el.style.opacity = '0';
       });
+
       setTimeout(() => el.remove(), 800);
     }
   };
@@ -657,7 +855,8 @@ window.cookieDecline = function () {
 
   window.setCafeMood = function (btn, mood) {
     document.querySelectorAll('.mood-chip').forEach((ch) => ch.classList.remove('active'));
-    btn.classList.add('active');
+    if (btn) btn.classList.add('active');
+
     const note = document.getElementById('moodNote');
     const map = {
       cozy: '🌸 Cozy mode: soft music, slow blinks, warm drinks, and cuddly lap-cat energy.',
@@ -665,12 +864,14 @@ window.cookieDecline = function () {
       coffee: '☕ Coffee date mode: dreamy sips, cute corners, and a polished little café moment.',
       photo: '📸 Photo mood: best corners, cutest poses, and lots of pretty little details for pics.',
     };
+
     if (note) {
       note.textContent = map[mood] || "Lil' Meow is feeling adorable today.";
       note.classList.remove('reveal-soft');
       void note.offsetWidth;
       note.classList.add('reveal-soft');
     }
+
     if (window.showToast) {
       const toasts = {
         cozy: '🌸 Cozy mode activated!',
@@ -682,20 +883,19 @@ window.cookieDecline = function () {
     }
   };
 })();
+
 /* ===== SOFT 3D ANIMATION PACK ===== */
 (function () {
   const hero = document.querySelector('.hero');
   const heroContent = document.querySelector('.hero-content');
-
-  // add floating classes
   const heroCat = document.getElementById('heroCat');
+
   if (heroCat) heroCat.classList.add('float-3d');
 
   document.querySelectorAll('.pillar, .cat-card, .exp-card').forEach((el) => {
     el.classList.add('depth-shadow');
   });
 
-  // Hero mouse parallax with depth
   if (hero && heroContent) {
     hero.addEventListener('mousemove', (e) => {
       const rect = hero.getBoundingClientRect();
@@ -705,84 +905,11 @@ window.cookieDecline = function () {
       const rotateY = (x - 0.5) * 14;
       const rotateX = (0.5 - y) * 10;
 
-      heroContent.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-
-      document.querySelectorAll('.hero-3d-layer').forEach((el, i) => {
-        const depth = (i + 1) * 8;
-        const moveX = (x - 0.5) * depth;
-        const moveY = (y - 0.5) * depth;
-        el.style.transform = `perspective(1200px) translate(${moveX}px, ${moveY}px) rotateY(${rotateY * 0.6}deg) rotateX(${rotateX * 0.5}deg)`;
-      });
+      heroContent.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
     hero.addEventListener('mouseleave', () => {
-      heroContent.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0)';
-      document.querySelectorAll('.hero-3d-layer').forEach((el) => {
-        el.style.transform = '';
-      });
+      heroContent.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
     });
   }
-
-  // Card tilt by mouse position
-  document.querySelectorAll('.pillar, .cat-card, .exp-card, .today-cat, .gallery-item').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
-
-      const ry = (x - 0.5) * 10;
-      const rx = (0.5 - y) * 8;
-
-      card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-8px) scale(1.02)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-
-  if (hero && !document.getElementById('hero3dDecor')) {
-    const wrap = document.createElement('div');
-    wrap.id = 'hero3dDecor';
-
-    const stickers = [
-      { text: '💖', top: '16%', left: '3%', size: '1.9rem', delay: '0s' },
-      { text: '🌸', top: '42%', left: '20%', size: '1.5rem', delay: '1.4s' },
-      { text: '🐾', top: '12%', right: '14%', size: '1.8rem', delay: '.9s' },
-      { text: '😻', bottom: '60%', left: '12%', size: '2.1rem', delay: '1.8s' },
-      { text: '🌸', top: '42%', left: '80%', size: '1.5rem', delay: '1.4s' },
-      { text: '☕', top: '36%', left: '90%', size: '1.5rem', delay: '1.4s' },
-      { text: '💖', top: '68%', right: '16%', size: '1.6rem', delay: '2s' },
-      { text: '✨', bottom: '18%', left: '7%', size: '1.7rem', delay: '1.1s' },
-      { text: '😻', bottom: '6%', left: '34%', size: '2.1rem', delay: '1.8s' },
-      { text: '🧋', bottom: '16%', right: '26%', size: '1.8rem', delay: '2.5s' },
-    ];
-
-    stickers.forEach((item) => {
-      const s = document.createElement('div');
-      s.className = 'hero-3d-layer spin-3d-soft';
-      s.textContent = item.text;
-
-      s.style.top = item.top || 'auto';
-      s.style.left = item.left || 'auto';
-      s.style.right = item.right || 'auto';
-      s.style.bottom = item.bottom || 'auto';
-      s.style.fontSize = item.size;
-      s.style.animationDelay = item.delay;
-
-      wrap.appendChild(s);
-    });
-
-    hero.appendChild(wrap);
-  }
-
-  // cute bounce on important emoji items
-  document.querySelectorAll('.today-cat-emoji, .pillar-img, .exp-img').forEach((el) => {
-    el.addEventListener('mouseenter', () => {
-      el.style.transform = 'translateZ(45px) scale(1.12) rotate(6deg)';
-    });
-    el.addEventListener('mouseleave', () => {
-      el.style.transform = '';
-    });
-  });
 })();
