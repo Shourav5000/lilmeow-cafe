@@ -1616,14 +1616,15 @@ nav.scrolled {
 .pc {
   border: 2.5px solid var(--pink-light);
   border-radius: 20px;
-  padding: 1.5rem 1rem;
+  padding: 3.9rem 1rem 1.5rem;
   text-align: center;
   cursor: none;
   background: var(--cream);
   transition: all 0.35s;
   position: relative;
-  overflow: hidden;
+  overflow: visible !important;
 }
+
 .pc::before,
 .pc::after {
   content: '';
@@ -1633,65 +1634,114 @@ nav.scrolled {
   height: 18px;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
+
 .pc::before {
   left: 14px;
   background: var(--pink-light);
 }
+
 .pc::after {
   right: 14px;
   background: var(--pink-light);
 }
+
 .pc:hover {
   border-color: var(--pink);
   transform: translateY(-4px);
   box-shadow: var(--sh);
 }
+
 .pc.on {
   border-color: var(--pink-deep);
   background: var(--pink-soft);
   box-shadow: 0 8px 28px rgba(255, 143, 171, 0.25);
 }
+
 .pc-pop {
   position: absolute;
-  top: -11px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 12px !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--yellow);
   color: var(--brown-m);
-  padding: 3px 12px;
-  border-radius: 50px;
-  font-size: 0.66rem;
+  padding: 7px 14px !important;
+  border-radius: 999px;
+  font-size: 0.68rem !important;
   font-weight: 800;
+  line-height: 1.25 !important;
+  min-height: 30px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
+  letter-spacing: 0.4px;
+  white-space: nowrap !important;
+  max-width: calc(100% - 24px) !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  z-index: 5 !important;
 }
+
 .pc-icon {
   font-size: 2.5rem;
   display: block;
   margin-bottom: 0.5rem;
   transition: transform 0.3s;
 }
+
 .pc:hover .pc-icon,
 .pc.on .pc-icon {
   transform: scale(1.2) rotate(5deg);
 }
+
 .pc-name {
   font-family: 'Pacifico', cursive;
   font-size: 1.05rem;
   color: var(--brown);
 }
+
 .pc-price {
   color: var(--pink-deep);
   font-weight: 900;
   font-size: 1.15rem;
   margin: 4px 0;
 }
+
 .pc-desc {
   color: var(--brown-l);
   font-size: 0.74rem;
   font-weight: 600;
   line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .pc {
+    padding: 4.2rem 0.95rem 1.2rem;
+  }
+
+  .pc-pop {
+    top: 10px !important;
+    font-size: 0.66rem !important;
+    padding: 7px 12px !important;
+    min-height: 28px;
+    line-height: 1.2 !important;
+    max-width: calc(100% - 20px) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .pc {
+    padding: 4.5rem 0.85rem 1rem;
+  }
+
+  .pc-pop {
+    top: 10px !important;
+    font-size: 0.62rem !important;
+    padding: 6px 10px !important;
+    min-height: 26px;
+    max-width: calc(100% - 16px) !important;
+  }
 }
 .sum-box {
   background: linear-gradient(135deg, var(--pink-soft), var(--yellow-light));
