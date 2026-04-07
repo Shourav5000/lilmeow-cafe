@@ -1,0 +1,24 @@
+{
+  "name": "lilmeow-cafe",
+  "version": "1.0.0",
+  "description": "A fully custom cat café website with reservations, menu, reviews, gift cards, email confirmations and more.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shourav5000/lilmeow-cafe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Shourav5000/lilmeow-cafe/issues"
+  },
+  "homepage": "https://github.com/Shourav5000/lilmeow-cafe#readme",
+  "dependencies": {
+    "stripe": "^22.0.0"
+  }
+}
