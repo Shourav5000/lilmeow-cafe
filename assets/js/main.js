@@ -343,7 +343,10 @@ window.go = function (n) {
       }
     }
 
-    if (n === 3) { fillSum(); setTimeout(initStripe, 400); }
+    if (n === 3) {
+      fillSum();
+      setTimeout(initStripe, 400);
+    }
   }
 
   const currentPanel = document.getElementById('s' + curStep);
@@ -476,34 +479,25 @@ var cardElement = null;
 
 function initStripe() {
   if (stripe) return;
-  stripe = Stripe('pk_test_51TJOPpQ099dXCJOyFUMzdbeWGLOsAwYzLR2OXDsvm9ornt1Fr8eznibpQP5hvg2TBQzRnYBsRgOoLLquR6JUuM5z00OqMMgKHj');
+  stripe = Stripe(
+    'pk_test_51TJOPpQ099dXCJOyFUMzdbeWGLOsAwYzLR2OXDsvm9ornt1Fr8eznibpQP5hvg2TBQzRnYBsRgOoLLquR6JUuM5z00OqMMgKHj'
+  );
   var elements = stripe.elements();
-
-  var style = {
-    base: {
-      fontFamily: "'Quicksand', sans-serif",
-      fontSize: '15px',
-      color: '#3D1F0D',
-      fontWeight: '600',
-      '::placeholder': { color: '#B07A5A' },
-      iconColor: '#FF8FAB',
+  cardElement = elements.create('card', {
+    style: {
+      base: {
+        fontFamily: "'Quicksand', sans-serif",
+        fontSize: '15px',
+        color: '#3D1F0D',
+        fontWeight: '600',
+        '::placeholder': { color: '#B07A5A' },
+        iconColor: '#FF8FAB',
+      },
+      invalid: { color: '#EF5350', iconColor: '#EF5350' },
     },
-    invalid: { color: '#EF5350', iconColor: '#EF5350' }
-  };
-
-  // Create split elements
-  var cardNumber = elements.create('cardNumber', { style: style, showIcon: true });
-  var cardExpiry = elements.create('cardExpiry', { style: style });
-  var cardCvc = elements.create('cardCvc', { style: style, placeholder: '•••' });
-
-  cardNumber.mount('#card-number-element');
-  cardExpiry.mount('#card-expiry-element');
-  cardCvc.mount('#card-cvc-element');
-
-  // Store cardNumber as the main element for payment confirmation
-  cardElement = cardNumber;
-
-  function handleChange(el, e) {
+  });
+  cardElement.mount('#card-element');
+  cardElement.on('change', function (e) {
     var errEl = document.getElementById('card-error');
     if (e.error) {
       errEl.textContent = e.error.message;
@@ -511,12 +505,9 @@ function initStripe() {
     } else {
       errEl.style.display = 'none';
     }
-    el.style.borderColor = e.error ? '#EF5350' : e.complete ? '#4CAF50' : 'var(--pink-light)';
-  }
-
-  cardNumber.on('change', function(e) { handleChange(document.getElementById('card-number-element'), e); });
-  cardExpiry.on('change', function(e) { handleChange(document.getElementById('card-expiry-element'), e); });
-  cardCvc.on('change', function(e) { handleChange(document.getElementById('card-cvc-element'), e); });
+    var cardEl = document.getElementById('card-element');
+    if (cardEl) cardEl.style.borderColor = e.error ? '#EF5350' : e.complete ? '#4CAF50' : 'var(--pink-light)';
+  });
 }
 
 window.pay = async function () {
@@ -528,16 +519,20 @@ window.pay = async function () {
   const payBtn = document.getElementById('payBtn');
 
   if (!rFirst || !rFirst.value || !rLast || !rLast.value) {
-    window.showToast('💕 Please fill in your name!'); return;
+    window.showToast('💕 Please fill in your name!');
+    return;
   }
   if (!rEmail || !rEmail.value.includes('@')) {
-    window.showToast('📧 Please enter a valid email!'); return;
+    window.showToast('📧 Please enter a valid email!');
+    return;
   }
   if (!rPhone || !rPhone.value) {
-    window.showToast('📞 Please enter your phone number!'); return;
+    window.showToast('📞 Please enter your phone number!');
+    return;
   }
   if (!cardElement) {
-    window.showToast('💳 Please enter your card details!'); return;
+    window.showToast('💳 Please enter your card details!');
+    return;
   }
   if (!payBtn) return;
 
@@ -554,7 +549,7 @@ window.pay = async function () {
     const res = await fetch('/api/create-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: total, guests, package: selPkg, name, email: rEmail.value })
+      body: JSON.stringify({ amount: total, guests, package: selPkg, name, email: rEmail.value }),
     });
     if (!res.ok) throw new Error('Payment setup failed');
     const { clientSecret } = await res.json();
@@ -562,13 +557,16 @@ window.pay = async function () {
     const result = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: cardElement,
-        billing_details: { name, email: rEmail.value, phone: rPhone.value }
-      }
+        billing_details: { name, email: rEmail.value, phone: rPhone.value },
+      },
     });
 
     if (result.error) {
       var errEl = document.getElementById('card-error');
-      if (errEl) { errEl.textContent = result.error.message; errEl.style.display = 'block'; }
+      if (errEl) {
+        errEl.textContent = result.error.message;
+        errEl.style.display = 'block';
+      }
       window.showToast('❌ ' + result.error.message);
       payBtn.innerHTML = '💳 Pay & Confirm';
       payBtn.disabled = false;
@@ -578,13 +576,16 @@ window.pay = async function () {
     window.showToast('✅ Payment successful!');
 
     const templateParams = {
-      to_name: name, to_email: rEmail.value, booking_ref: ref,
+      to_name: name,
+      to_email: rEmail.value,
+      booking_ref: ref,
       date: document.getElementById('sd') ? document.getElementById('sd').textContent : '',
       time: selT,
       guests: guests + ' guest' + (parseInt(guests, 10) > 1 ? 's' : ''),
       package: selPkg,
       total: '$' + total + '.00 (paid online ✅)',
-      addon, phone: rPhone.value,
+      addon,
+      phone: rPhone.value,
     };
 
     function showSuccess() {
@@ -598,10 +599,12 @@ window.pay = async function () {
       window.showToast('✉️ Confirmation sent to ' + rEmail.value + '!');
     }
 
-    emailjs.send('service_rlsav7s', 'template_z8fdc9g', templateParams)
+    emailjs
+      .send('service_rlsav7s', 'template_z8fdc9g', templateParams)
       .then(showSuccess)
-      .catch(function() { showSuccess(); });
-
+      .catch(function () {
+        showSuccess();
+      });
   } catch (err) {
     console.error('Payment error:', err);
     window.showToast('❌ Payment failed. Please try again.');

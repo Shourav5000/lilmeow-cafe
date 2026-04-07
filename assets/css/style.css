@@ -3248,3 +3248,7 @@ footer a:hover {
 .StripeElement--focus{border-color:var(--pink)!important}
 .StripeElement--invalid{border-color:#EF5350!important}
 .StripeElement--complete{border-color:#4CAF50!important}
+
+@media(max-width:768px){.tgrid{grid-template-columns:1fr 1fr}.pgrid{grid-template-columns:1fr!important}.snav{flex-wrap:wrap;gap:.6rem}.snav .btn,.snav .bbtn{flex:1;min-width:120px;text-align:center}.res-card{padding:1.2rem 1rem!important}}
+@media(max-width:480px){.step-bar{flex-direction:column;border-radius:16px}.sp{font-size:.75rem;border-radius:12px}.ts{font-size:.77rem;padding:8px 4px}.pc{padding:1.2rem .8rem}}
+@media(max-width:768px){.adopt-inner{grid-template-columns:1fr!important;padding:1.5rem!important;gap:1.2rem!important}.adopt-home-cta{padding:2.5rem 1rem!important}}
