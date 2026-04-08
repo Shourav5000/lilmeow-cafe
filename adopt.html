@@ -1207,6 +1207,34 @@
             btn.disabled = false;
             showToast('❌ Email failed to send. Please try again.');
           });
+
+        // Save adoption to Google Sheets
+        fetch('https://script.google.com/macros/s/AKfycbyGUJm4xyzCsQ76P9E5-jd0X1Xr0GT05y2C_zRDQNRZ39bhnttm36TB6BdRj6aDUHRg/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: applicantName,
+            email: applicantEmail,
+            phone: applicantPhone,
+            age: applicantAge,
+            address: applicantAddress,
+            occupation: occupation,
+            heard_about: heardAbout,
+            housing_type: housingType,
+            own_or_rent: ownOrRent,
+            landlord: landlord,
+            people: people,
+            kids: kids,
+            other_pets: pets,
+            pet_details: petDesc,
+            allergy: allergy,
+            chosen_cat: chosenCat,
+            why_adopt: whyAdopt,
+            vet_info: vet,
+            notes: notes
+          })
+        }).catch(function() {});
       }
     </script>
   </body>
