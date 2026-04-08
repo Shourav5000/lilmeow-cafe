@@ -632,6 +632,28 @@ window.pay = async function () {
       .catch(function () {
         showSuccess();
       });
+
+    // Save booking to Google Sheets
+    fetch(
+      'https://script.google.com/macros/s/AKfycbwD-CwuboSJOlrQVw5E20k3Rik-7a8WQA65kdlGSYzR3kKlpu9O1AQOmFBwIwCafqvF/exec',
+      {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ref: ref,
+          name: name,
+          email: rEmail.value,
+          phone: rPhone.value,
+          date: document.getElementById('sd') ? document.getElementById('sd').textContent : '',
+          time: selT,
+          guests: guests,
+          package: selPkg,
+          addon: addon,
+          total: '$' + total + '.00',
+        }),
+      }
+    ).catch(function () {});
   } catch (err) {
     console.error('Payment error:', err);
     window.showToast('❌ Payment failed. Please try again.');
