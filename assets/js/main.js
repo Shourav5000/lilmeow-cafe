@@ -569,7 +569,7 @@ window.pay = async function () {
   const ref = 'LMC-' + Math.floor(100000 + Math.random() * 900000);
   const guests = rGuests ? rGuests.value || '1' : '1';
   const total = selPrice * parseInt(guests, 10) + (addonSelected ? 15 * parseInt(guests, 10) : 0);
-  const addon = addonSelected ? 'Yes — Cat Treats + Polaroid Photo (+$15/person)' : 'No';
+  const addon = addonSelected ? 'Yes — Polaroid Photo Keepsake (+$15/person)' : 'No';
   const name = rFirst.value + ' ' + rLast.value;
 
   try {
@@ -740,14 +740,14 @@ const reviews = [
     name: 'James K.',
     rating: 5,
     date: '1 month ago',
-    text: 'Brought my daughter for her birthday and she was in heaven. Lulu knocked her croissant off the table and then looked completely innocent 😂 The staff were so warm and welcoming.',
+    text: 'Brought my daughter for her birthday and she was in heaven. Lulu stole the spotlight the whole time and looked completely innocent 😂 The staff were so warm and welcoming.',
     avatar: '🐱',
   },
   {
     name: 'Priya L.',
     rating: 5,
     date: '3 weeks ago',
-    text: 'The Purr Extra Special add-on is SO worth it. Getting to hand-feed the cats treats and take home a Polaroid was the cutest thing ever. Nishi is my new best friend.',
+    text: 'The Purr Extra Special add-on is SO worth it. Getting to take home a Polaroid with the cats was the cutest thing ever. Nishi is my new best friend.',
     avatar: '😽',
   },
   {
@@ -891,7 +891,7 @@ window.cookieDecline = function () {
     '🐾 Tiny paws, giant personalities.',
     '😻 Slow blink at a cat and you might get one back.',
     '✨ Cute overload is part of the experience.',
-    '🍰 Coffee + cats + cozy corners = perfect day.',
+    '☕ Coffee + cats + cozy corners = perfect day.',
   ];
 
   const badge = document.querySelector('.hero-badge');

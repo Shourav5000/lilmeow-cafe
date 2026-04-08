@@ -1,906 +1,2435 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="description" content="Lil' Meow Café — your coziest corner for coffee, cats & good vibes. Visit our 10+ resident cats, sip specialty drinks, walk in anytime, or apply to adopt your future feline best friend. Open Mon & Thu–Sun · 21 Lenox Avenue, Paterson NJ 07502">
-<meta name="keywords" content="cat cafe, cat coffee shop, cat lounge, specialty coffee, cat therapy, walk-in cat cafe, Lil Meow Cafe">
-<meta name="author" content="Lil' Meow Café">
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#FF8FAB">
-<!-- Open Graph (Facebook, Instagram, WhatsApp previews) -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lil' Meow Café 🐾 — Coffee & Cats">
-<meta property="og:description" content="Your coziest corner for coffee, cats & good vibes. 10+ resident cats, specialty drinks, walk-ins always welcome, and adoption applications too!">
-<meta property="og:image" content="https://lilmeowcafe.com/og-image.jpg">
-<meta property="og:url" content="https://lilmeowcafe.com">
-<meta property="og:site_name" content="Lil' Meow Café">
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Lil' Meow Café 🐾 — Coffee & Cats">
-<meta name="twitter:description" content="Your coziest corner for coffee, cats & good vibes. Walk-ins always welcome — and you can apply to adopt too!">
-<meta name="twitter:image" content="https://lilmeowcafe.com/og-image.jpg">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lil' Meow Café 🐾</title>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="https://js.stripe.com/v3/"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Lil' Meow Café — your coziest corner for coffee, cats & good vibes. Visit our 10+ resident cats, sip specialty drinks, walk in anytime, or apply to adopt your future feline best friend. Open Mon & Thu–Sun · 21 Lenox Avenue, Paterson NJ 07502"
+    />
+    <meta
+      name="keywords"
+      content="cat cafe, cat coffee shop, cat lounge, specialty coffee, cat therapy, walk-in cat cafe, Lil Meow Cafe"
+    />
+    <meta name="author" content="Lil' Meow Café" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#FF8FAB" />
+    <!-- Open Graph (Facebook, Instagram, WhatsApp previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Lil' Meow Café 🐾 — Coffee & Cats" />
+    <meta
+      property="og:description"
+      content="Your coziest corner for coffee, cats & good vibes. 10+ resident cats, specialty drinks, walk-ins always welcome, and adoption applications too!"
+    />
+    <meta property="og:image" content="https://lilmeowcafe.com/og-image.jpg" />
+    <meta property="og:url" content="https://lilmeowcafe.com" />
+    <meta property="og:site_name" content="Lil' Meow Café" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lil' Meow Café 🐾 — Coffee & Cats" />
+    <meta
+      name="twitter:description"
+      content="Your coziest corner for coffee, cats & good vibes. Walk-ins always welcome — and you can apply to adopt too!"
+    />
+    <meta name="twitter:image" content="https://lilmeowcafe.com/og-image.jpg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lil' Meow Café 🐾</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
 
-
-  <link rel="stylesheet" href="assets/css/style.css">
-<style>
-#loader{position:fixed;inset:0;background:linear-gradient(160deg,#FFE8F0,#FFF6E0,#EAF9F3);z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center}
-@keyframes loaderBounce{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-18px) rotate(5deg)}}
-@keyframes loaderFade{0%,100%{opacity:1}50%{opacity:.5}}
-@keyframes ldotPulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.5);opacity:1}}
-.ldot{width:10px;height:10px;background:#FF8FAB;border-radius:50%;display:inline-block;animation:ldotPulse .8s ease-in-out infinite}
-</style>
-</head>
-<body>
-
-<!-- LOADING SCREEN -->
-<div id="loader">
-  <div id="loaderCat" style="font-size:5rem;animation:loaderBounce 1s ease-in-out infinite;filter:drop-shadow(0 8px 16px rgba(255,143,171,.4))">🐱</div>
-  <div style="font-family:'Pacifico',cursive;font-size:2rem;color:#FF8FAB;margin:.6rem 0 .3rem;animation:loaderFade 1.5s ease infinite">Lil' Meow Café</div>
-  <div style="font-family:'Quicksand',sans-serif;font-size:.85rem;font-weight:700;color:#B07A5A;letter-spacing:2px;text-transform:uppercase">Loading the cats...</div>
-  <div style="display:flex;gap:.5rem;margin-top:1.2rem">
-    <div class="ldot" style="animation-delay:0s"></div>
-    <div class="ldot" style="animation-delay:.2s"></div>
-    <div class="ldot" style="animation-delay:.4s"></div>
-  </div>
-</div>
-
-<!-- Custom cursor -->
-<div id="cursor"></div>
-<div id="cursor-trail"></div>
-
-<!-- Paw canvas -->
-<canvas id="pawCanvas"></canvas>
-
-<!-- Toast -->
-<div class="toast" id="toast"><span id="toastMsg">🐾</span><button class="toast-close" onclick="closeToast()">✕</button></div>
-
-<!-- Back to top -->
-<button class="btt" id="btt" onclick="scrollTo({top:0,behavior:'smooth'})">🐾</button>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLb(event)">
-  <div class="lightbox-inner">
-    <button class="lb-close" onclick="closeLb()">✕</button>
-    <span class="lb-emoji" id="lbEmoji">🐱</span>
-    <h3 id="lbName" style="font-family:'Pacifico',cursive;font-size:1.6rem;color:var(--brown);margin-bottom:.4rem"></h3>
-    <p id="lbDesc" style="color:var(--brown-l);font-size:.9rem;font-weight:600;line-height:1.6"></p>
-  </div>
-</div>
-
-<!-- TOPBAR -->
-<div class="topbar"><span>🐾 🌸 Open Mon, Thu–Sun · 11am–2:30pm &amp; 4–8pm · Tue &amp; Wed Closed · <a href="#reserve">Reserve or walk in!</a> 🐾</span></div>
-
-<!-- NAV -->
-<nav id="nav">
-  <a href="#home" class="nav-logo">
-    <span class="logo-ear"></span>🐾 Lil' Meow Café<span class="logo-ear"></span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#cats">Our Cats</a></li>
-    <li><a href="#experiences">Experiences</a></li>
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="adopt.html">🐾 Adopt</a></li>
-    <li><a href="#visit">Visit</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#reserve" class="nav-book">🗓️ Book Now</a></li>
-  </ul>
-  <div class="hamburger" id="ham" onclick="toggleMobile()"><span></span><span></span><span></span></div>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#about" onclick="toggleMobile()">🐱 About</a>
-  <a href="#cats" onclick="toggleMobile()">😻 Our Cats</a>
-  <a href="#experiences" onclick="toggleMobile()">🎉 Experiences</a>
-  <a href="#menu" onclick="toggleMobile()">☕ Menu</a>
-  <a href="#gallery" onclick="toggleMobile()">📸 Gallery</a>
-  <a href="#reviews" onclick="toggleMobile()">⭐ Reviews</a>
-  <a href="#faq" onclick="toggleMobile()">💬 FAQ</a>
-  <a href="adopt.html" onclick="toggleMobile()">🐾 Adopt a Cat</a>
-  <a href="#visit" onclick="toggleMobile()">📍 Visit</a>
-  <a href="#contact" onclick="toggleMobile()">✉️ Contact</a>
-  <a href="#reserve" onclick="toggleMobile()" style="background:linear-gradient(135deg,var(--pink),var(--pink-deep));color:white;text-align:center;margin-top:.5rem">🗓️ Book Now</a>
-</div>
-
-<!-- HERO -->
-<section class="hero section-glow" id="home">
-  <div class="sparkle-field" id="sparkleField"></div>
-  <div class="steam-wrap" aria-hidden="true"><span class="steam s1"></span><span class="steam s2"></span><span class="steam s3"></span></div>
-  <div class="hero-ears" id="heroEars"></div>
-  <div class="hero-stickers" aria-hidden="true">
-    <span class="sticker s1">☕</span>
-    <span class="sticker s2">😽</span>
-    <span class="sticker s3">🐾</span>
-    <span class="sticker s4">🍰</span>
-    <span class="sticker s5">✨</span>
-    <span class="sticker s6">😸</span>
-  </div>
-  <div class="hero-cat-cloud" aria-hidden="true">
-    <img src="assets/images/cat-snuggle.jpg" alt="" class="hero-cat-photo photo-a" />
-    <img src="assets/images/window-cats.jpg" alt="" class="hero-cat-photo photo-b" />
-    <img src="assets/images/cat-family-bed.jpg" alt="" class="hero-cat-photo photo-c" />
-    <img src="assets/images/kitten-cuddle.jpg" alt="" class="hero-cat-photo photo-d" />
-  </div>
-  <div class="hero-content">
-    <div class="hero-badge">🌸 Now Open in Paterson, NJ · Grand Opening! 🌸</div>
-    <div class="hero-cat-wrap">
-      <span class="hero-cat" id="heroCat">🐱</span>
-      <div class="hero-cat-shadow"></div>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      #loader {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(160deg, #ffe8f0, #fff6e0, #eaf9f3);
+        z-index: 999999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      @keyframes loaderBounce {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-5deg);
+        }
+        50% {
+          transform: translateY(-18px) rotate(5deg);
+        }
+      }
+      @keyframes loaderFade {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      @keyframes ldotPulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.4;
+        }
+        50% {
+          transform: scale(1.5);
+          opacity: 1;
+        }
+      }
+      .ldot {
+        width: 10px;
+        height: 10px;
+        background: #ff8fab;
+        border-radius: 50%;
+        display: inline-block;
+        animation: ldotPulse 0.8s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- LOADING SCREEN -->
+    <div id="loader">
+      <div
+        id="loaderCat"
+        style="
+          font-size: 5rem;
+          animation: loaderBounce 1s ease-in-out infinite;
+          filter: drop-shadow(0 8px 16px rgba(255, 143, 171, 0.4));
+        "
+      >
+        🐱
+      </div>
+      <div
+        style="
+          font-family: 'Pacifico', cursive;
+          font-size: 2rem;
+          color: #ff8fab;
+          margin: 0.6rem 0 0.3rem;
+          animation: loaderFade 1.5s ease infinite;
+        "
+      >
+        Lil' Meow Café
+      </div>
+      <div
+        style="
+          font-family: 'Quicksand', sans-serif;
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: #b07a5a;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        "
+      >
+        Loading the cats...
+      </div>
+      <div style="display: flex; gap: 0.5rem; margin-top: 1.2rem">
+        <div class="ldot" style="animation-delay: 0s"></div>
+        <div class="ldot" style="animation-delay: 0.2s"></div>
+        <div class="ldot" style="animation-delay: 0.4s"></div>
+      </div>
     </div>
-    <div class="title-ears"><div class="title-ear"></div><div class="title-ear"></div></div>
-    <h1>Lil' Meow Café</h1>
-    <p class="hero-tag">☕ Sip. Purr. Repeat.<br>Your coziest corner for coffee, cats & good vibes.<br><span style="font-size:.85em;opacity:.8">🚶 Walk-ins always welcome · No booking required · 🐾 Fall in love and apply to adopt</span></p>
-    <div class="hero-ctas">
-      <a href="#menu" class="btn btn-premium">☕ See the Cute Menu</a>
-      <a href="#reserve" class="btn btn-pink magnet-btn">🗓️ Book a Visit</a>
-      <a href="#cats" class="btn btn-outline magnet-btn">🐾 Meet Our Cats</a>
-      <a href="adopt.html" class="btn btn-outline magnet-btn" style="border-color:var(--lav-d);color:var(--lav-d)">😻 Adopt a Cat</a>
-    </div>
-    <div class="mood-rail rv" aria-label="Fun reasons to visit">
-      <button class="mchip" onclick="showToast('☕ Cozy coffee date mode activated!')">☕ Cozy coffee</button>
-      <button class="mchip" onclick="showToast('😻 Maximum cuddle energy unlocked!')">😻 Cat cuddles</button>
-      <button class="mchip" onclick="showToast('📸 Camera ready — cutest photos incoming!')">📸 Cute pics</button>
-      <button class="mchip" onclick="showToast('✨ Soft, happy, playful vibes only!')">✨ Happy vibes</button>
-    </div>
-  </div>
-</section>
 
-<!-- QUICKBAR -->
-<div class="quickbar">
-  <div class="qi">📍<span><strong>21 Lenox Avenue</strong>, Paterson, NJ</span></div>
-  <div class="qi">📞<span><strong>(929) 301-9368</strong></span></div>
-  <div class="qi">🕐<span>Mon, Thu–Sun · <strong>11am–2:30pm</strong> & <strong>4–8pm</strong> · Tue &amp; Wed Closed</span></div>
-  <div class="qi">🐾<span><strong><a href="adopt.html">Adoption applications open</a></strong></span></div>
- <div class="qi">✉️<span><strong><a href="mailto:lilmeowcafe@gmail.com" style="color:inherit;text-decoration:none">lilmeowcafe@gmail.com</a></strong></span></div>
-</div>
+    <!-- Custom cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-trail"></div>
 
-<!-- PILLARS -->
-<div class="pillars">
-  <div class="pillar rv" onclick="window.location.href='#reserve'" style="cursor:pointer">
-    <div class="pillar-img">🗓️</div>
-    <div class="pillar-body">
-      <h3>Book a Visit</h3>
-      <p>Book ahead to guarantee your spot — or just <strong>walk in anytime</strong> we're open! No reservation needed. 🚶</p>
-      <a href="#reserve" class="btn btn-pink" style="font-size:.85rem;padding:11px 24px">Reserve Now</a>
-    </div>
-  </div>
-<div class="pillar rv" onclick="window.location.href='#cats'" style="cursor:pointer;transition-delay:.1s">
-  <div class="pillar-img" style="padding:0;overflow:hidden;height:200px">
-    <img src="assets/images/360.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block">
-  </div>
-  <div class="pillar-body">
-    <h3>Meet Our Cats</h3>
-    <p>10 resident cats who call this café home. Always here, always ready for cuddles & lap time.</p>
-    <a href="#cats" class="btn btn-outline" style="font-size:.85rem;padding:11px 24px">Say Hello</a>
-  </div>
-</div>
-  <div class="pillar rv" onclick="window.location.href='#menu'" style="cursor:pointer;transition-delay:.2s">
-    <div class="pillar-img">☕</div>
-    <div class="pillar-body">
-      <h3>Our Menu</h3>
-      <p>Cat-themed lattes, mochi donuts & more — every sip and bite made with love. Cat-hair free, promise! 😄</p>
-      <a href="#menu" class="btn btn-outline" style="font-size:.85rem;padding:11px 24px">View Menu</a>
-    </div>
-  </div>
-  <div class="pillar rv" onclick="window.location.href='adopt.html'" style="cursor:pointer;transition-delay:.3s">
-    <div class="pillar-img">🐾</div>
-    <div class="pillar-body">
-      <h3>Adopt a Cat</h3>
-      <p>Meet a cat you cannot stop thinking about? Start an adoption application and see if one of our sweet residents is your perfect match.</p>
-      <a href="adopt.html" class="btn btn-outline" style="font-size:.85rem;padding:11px 24px;border-color:var(--lav-d);color:var(--lav-d)">Apply Now</a>
-    </div>
-  </div>
-</div>
+    <!-- Paw canvas -->
+    <canvas id="pawCanvas"></canvas>
 
-<div class="cat-divider">🐾 🐱 🐾 🐱 🐾 🐱 🐾</div>
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <span id="toastMsg">🐾</span><button class="toast-close" onclick="closeToast()">✕</button>
+    </div>
 
-<!-- ABOUT -->
-<section id="about" class="about-section">
-  <div class="s-wrap">
-    <div class="about-grid">
-      <div class="about-visual rv-left">
-        <div class="about-paw-pattern"></div>
-        <div class="about-photo-stack" aria-hidden="true">
-          <img src="assets/images/window-cats.jpg" alt="" class="about-stack-photo stack-1" />
-          <img src="assets/images/cat-family-bed.jpg" alt="" class="about-stack-photo stack-2" />
-          <img src="assets/images/cat-family-bed.jpg" alt="" class="about-stack-photo stack-3" />
+    <!-- Back to top -->
+    <button class="btt" id="btt" onclick="scrollTo({ top: 0, behavior: 'smooth' })">🐾</button>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLb(event)">
+      <div class="lightbox-inner">
+        <button class="lb-close" onclick="closeLb()">✕</button>
+        <span class="lb-emoji" id="lbEmoji">🐱</span>
+        <h3
+          id="lbName"
+          style="font-family: 'Pacifico', cursive; font-size: 1.6rem; color: var(--brown); margin-bottom: 0.4rem"
+        ></h3>
+        <p id="lbDesc" style="color: var(--brown-l); font-size: 0.9rem; font-weight: 600; line-height: 1.6"></p>
+      </div>
+    </div>
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <span
+        >🐾 🌸 Open Mon, Thu–Sun · 11am–2:30pm &amp; 4–8pm · Tue &amp; Wed Closed ·
+        <a href="#reserve">Reserve or walk in!</a> 🐾</span
+      >
+    </div>
+
+    <!-- NAV -->
+    <nav id="nav">
+      <a href="#home" class="nav-logo">
+        <span class="logo-ear"></span>🐾 Lil' Meow Café<span class="logo-ear"></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#cats">Our Cats</a></li>
+        <li><a href="#experiences">Experiences</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="adopt.html">🐾 Adopt</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#reserve" class="nav-book">🗓️ Book Now</a></li>
+      </ul>
+      <div class="hamburger" id="ham" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" onclick="toggleMobile()">🐱 About</a>
+      <a href="#cats" onclick="toggleMobile()">😻 Our Cats</a>
+      <a href="#experiences" onclick="toggleMobile()">🎉 Experiences</a>
+      <a href="#menu" onclick="toggleMobile()">☕ Menu</a>
+      <a href="#gallery" onclick="toggleMobile()">📸 Gallery</a>
+      <a href="#reviews" onclick="toggleMobile()">⭐ Reviews</a>
+      <a href="#faq" onclick="toggleMobile()">💬 FAQ</a>
+      <a href="adopt.html" onclick="toggleMobile()">🐾 Adopt a Cat</a>
+      <a href="#visit" onclick="toggleMobile()">📍 Visit</a>
+      <a href="#contact" onclick="toggleMobile()">✉️ Contact</a>
+      <a
+        href="#reserve"
+        onclick="toggleMobile()"
+        style="
+          background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+          color: white;
+          text-align: center;
+          margin-top: 0.5rem;
+        "
+        >🗓️ Book Now</a
+      >
+    </div>
+
+    <!-- HERO -->
+    <section class="hero section-glow" id="home">
+      <div class="sparkle-field" id="sparkleField"></div>
+      <div class="steam-wrap" aria-hidden="true">
+        <span class="steam s1"></span><span class="steam s2"></span><span class="steam s3"></span>
+      </div>
+      <div class="hero-ears" id="heroEars"></div>
+      <div class="hero-stickers" aria-hidden="true">
+        <span class="sticker s1">☕</span>
+        <span class="sticker s2">😽</span>
+        <span class="sticker s3">🐾</span>
+        <span class="sticker s4">🧋</span>
+        <span class="sticker s5">✨</span>
+        <span class="sticker s6">😸</span>
+      </div>
+      <div class="hero-cat-cloud" aria-hidden="true">
+        <img src="assets/images/cat-snuggle.jpg" alt="" class="hero-cat-photo photo-a" />
+        <img src="assets/images/window-cats.jpg" alt="" class="hero-cat-photo photo-b" />
+        <img src="assets/images/cat-family-bed.jpg" alt="" class="hero-cat-photo photo-c" />
+        <img src="assets/images/kitten-cuddle.jpg" alt="" class="hero-cat-photo photo-d" />
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">🌸 Now Open in Paterson, NJ · Grand Opening! 🌸</div>
+        <div class="hero-cat-wrap">
+          <span class="hero-cat" id="heroCat">🐱</span>
+          <div class="hero-cat-shadow"></div>
         </div>
-
-        <div class="big-cat" onclick="catReact(this)" title="Click me!">😻</div>
-        <div class="stats-grid">
-          <div class="sbox rv"><span class="snum">10 🐈</span><span class="slbl">Resident Cats</span></div>
-          <div class="sbox rv" style="transition-delay:.1s"><span class="snum">4.9⭐</span><span class="slbl">Google Rating</span></div>
-          <div class="sbox rv" style="transition-delay:.15s"><span class="snum">🆕</span><span class="slbl">Just Opened!</span></div>
-          <div class="sbox rv" style="transition-delay:.2s"><span class="snum">100%</span><span class="slbl">Pure Cat Vibes</span></div>
+        <div class="title-ears">
+          <div class="title-ear"></div>
+          <div class="title-ear"></div>
         </div>
-      </div>
-      <div class="about-text rv-right">
-        <span class="tag-pill">Our Story 🌸</span>
-        <h2 style="position:relative">A cozy corner for cat lovers</h2>
-        <p>Welcome to Lil' Meow Café — a magical little haven where every cup comes with a side of purring. Our permanent feline family makes every single visit unforgettable.</p>
-        <p>Our cats live here full-time and genuinely love company. Whether you're a regular or first-timer, expect warm laps, loud purrs, and a really good latte. ☕</p>
-        <div class="pills">
-          <span class="pill">🐱 Permanent Residents</span>
-          <span class="pill">☕ Specialty Coffee</span>
-          <span class="pill">🎂 Fresh Treats</span>
-          <span class="pill">💕 Cat Therapy</span>
-          <span class="pill">📸 Photo Moments</span>
-          
+        <h1>Lil' Meow Café</h1>
+        <p class="hero-tag">
+          ☕ Sip. Purr. Repeat.<br />Your coziest corner for coffee, cats & good vibes.<br /><span
+            style="font-size: 0.85em; opacity: 0.8"
+            >🚶 Walk-ins always welcome · No booking required · 🐾 Fall in love and apply to adopt</span
+          >
+        </p>
+        <div class="hero-ctas">
+          <a href="#menu" class="btn btn-premium">☕ See the Cute Menu</a>
+          <a href="#reserve" class="btn btn-pink magnet-btn">🗓️ Book a Visit</a>
+          <a href="#cats" class="btn btn-outline magnet-btn">🐾 Meet Our Cats</a>
+          <a
+            href="adopt.html"
+            class="btn btn-outline magnet-btn"
+            style="border-color: var(--lav-d); color: var(--lav-d)"
+            >😻 Adopt a Cat</a
+          >
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="cat-divider">😺 🌸 😺 🌸 😺 🌸 😺</div>
-
-<!-- TODAY'S CATS -->
-<section class="today-section">
-  <div class="s-wrap" style="padding:3rem 2rem">
-    <div class="today-card rv">
-      <div class="today-header">
-        <div class="today-dot"></div>
-        <div class="today-title">Who's in the Lounge Today?</div>
-        <span style="font-size:.78rem;color:var(--brown-l);font-weight:600;margin-left:auto">Live · Updates daily</span>
-      </div>
-      <div class="today-cats">
-        <div class="today-cat" onclick="showToast('😻 Mochi is feeling extra cuddly today!')"><div class="today-cat-emoji">🐱</div><div class="today-cat-name">Mochi</div><div class="today-cat-status">● In the lounge</div></div>
-        <div class="today-cat" onclick="showToast('😺 Boba is napping in the sun spot right now!')"><div class="today-cat-emoji">😽</div><div class="today-cat-name">Boba</div><div class="today-cat-status">● Sunbathing</div></div>
-        <div class="today-cat" onclick="showToast('😽 Matcha is chatty today — she has opinions!')"><div class="today-cat-emoji">😸</div><div class="today-cat-name">Matcha</div><div class="today-cat-status">● Very talkative</div></div>
-        <div class="today-cat" onclick="showToast('🐾 Latte & Espresso are curled up together as always!')"><div class="today-cat-emoji">🐾</div><div class="today-cat-name">Latte & Espresso</div><div class="today-cat-status">● Snuggled up</div></div>
-        <div class="today-cat" onclick="showToast('🌸 Nishi is doing her signature slow blink — she likes you!')"><div class="today-cat-emoji">😻</div><div class="today-cat-name">Nishi</div><div class="today-cat-status">● Slow blinking</div></div>
-        <div class="today-cat" onclick="showToast('💕 Lucy is chasing a feather toy — so playful today!')"><div class="today-cat-emoji">🐈</div><div class="today-cat-name">Lucy</div><div class="today-cat-status">● Playing</div></div>
-        <div class="today-cat" onclick="showToast('🎀 Lulu is exploring the top shelf again — such a climber!')"><div class="today-cat-emoji">😺</div><div class="today-cat-name">Lulu</div><div class="today-cat-status">● Exploring</div></div>
-        <div class="today-cat" onclick="showToast('🍵 Miso is quietly watching everyone from the cozy corner!')"><div class="today-cat-emoji">🐱</div><div class="today-cat-name">Miso</div><div class="today-cat-status">● Observing</div></div>
-        <div class="today-cat" onclick="showToast('🌙 Luna is curled in the moon bed — extra cozy today!')"><div class="today-cat-emoji">😽</div><div class="today-cat-name">Luna</div><div class="today-cat-status">● Napping</div></div>
-        <div class="today-cat" onclick="showToast('🍊 Pumpkin is zooming around — full of energy!')"><div class="today-cat-emoji">🐾</div><div class="today-cat-name">Pumpkin</div><div class="today-cat-status">● Zooming</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CATS -->
-<section id="cats" class="cats-section">
-  <div class="s-wrap">
-    <div class="s-head rv">
-      <div class="tag-pill">Our Feline Family 🐾</div>
-      <h2>Meet Our Resident Cats</h2>
-      <p>These cuties live here full-time and love every visitor. Each has a unique personality — come find your favourite!</p>
-    </div>
-    <div class="cats-grid">
-      <div class="cat-card rv" onclick="openCat('Mochi','🐱','Domestic Shorthair, 2 years old. She will be on your lap before you even sit down. Mochi is our most cuddly resident and absolutely loves head scratches. Her favourite spot is the window perch in the afternoon sun. ☀️')">
-        <div class="cc-top a"><span style="font-size:5rem">🐱</span><span class="cbadge b-pink">Staff Fave</span><span class="mood">☀️</span></div>
-        <div class="cc-body"><div class="cc-name">Mochi</div><div class="cc-sub">Domestic Shorthair · 2 yrs old · ♀ Female</div><div class="traits"><span class="tr">Cuddly</span><span class="tr">Playful</span><span class="tr">Loves Laps</span></div></div>
-        <div class="purr-meter"><div class="purr-label"><span>Purr Level</span><span>💜💜💜💜💜</span></div><div class="purr-bar"><div class="purr-fill" data-width="95"></div></div></div>
-        <button class="cc-btn" onclick="event.stopPropagation();openCat('Mochi','🐱','Domestic Shorthair, 2 yrs. She will be on your lap before you even sit down — the coziest lounge companion. ☀️')">Say Hi to Mochi</button>
-      </div>
-      <div class="cat-card rv" style="transition-delay:.1s" onclick="openCat('Boba','😺','Domestic Longhair, 3 years old. The undisputed gentle giant of Lil\'s Meow Café. Boba is impossibly fluffy and somehow gets bigger every time you look at him. He loves slow mornings and long naps in the sun. 🌞')">
-        <div class="cc-top b"><span style="font-size:5rem">😺</span><span class="cbadge b-mint">Gentle Giant</span><span class="mood">😴</span></div>
-        <div class="cc-body"><div class="cc-name">Boba</div><div class="cc-sub">Domestic Longhair · 3 yrs old · ♂ Male</div><div class="traits"><span class="tr">Fluffy</span><span class="tr">Gentle</span><span class="tr">Calm</span></div></div>
-        <div class="purr-meter"><div class="purr-label"><span>Purr Level</span><span>🧡🧡🧡🧡</span></div><div class="purr-bar"><div class="purr-fill" data-width="78"></div></div></div>
-        <button class="cc-btn" style="background:linear-gradient(135deg,#4ECDC4,#2D9E96)" onclick="event.stopPropagation();openCat('Boba','😺','Domestic Longhair, 3 yrs. The fluffiest boy — impossible to resist a snuggle! 🌞')">Say Hi to Boba</button>
-      </div>
-      <div class="cat-card rv" style="transition-delay:.2s" onclick="openCat('Matcha','😸','Domestic Shorthair, 1 year old. Our little diva. Matcha will meow at you until you pay full attention to her — and honestly, she deserves it. She is the smartest, sassiest cat in the room and she knows it. 👑')">
-        <div class="cc-top c"><span style="font-size:5rem">😸</span><span class="cbadge b-lav">Little Diva</span><span class="mood">👑</span></div>
-        <div class="cc-body"><div class="cc-name">Matcha</div><div class="cc-sub">Domestic Shorthair · 1 yr old · ♀ Female</div><div class="traits"><span class="tr">Sassy</span><span class="tr">Smart</span><span class="tr">Talkative</span></div></div>
-        <div class="purr-meter"><div class="purr-label"><span>Purr Level</span><span>💚💚💚</span></div><div class="purr-bar"><div class="purr-fill" data-width="60" style="background:linear-gradient(90deg,var(--lav),var(--lav-d))"></div></div></div>
-        <button class="cc-btn" style="background:linear-gradient(135deg,var(--lav),var(--lav-d))" onclick="event.stopPropagation();openCat('Matcha','😸','Domestic Shorthair, 1 yr. Sassy, smart & always talkative — she is in charge and she knows it! 👑')">Say Hi to Matcha</button>
-      </div>
-      <div class="cat-card rv" style="transition-delay:.3s" onclick="openCat('Latte & Espresso','🐾','Domestic Shorthairs, 4 years old. This bonded brother & sister duo has been inseparable since day one. You will always find them curled up together — one big fluffy pile of love. ☕☕')">
-        <div class="cc-top d"><span style="font-size:5rem">🐾</span><span class="cbadge b-yel">BFFs Forever</span><span class="mood">💛</span></div>
-        <div class="cc-body"><div class="cc-name">Latte & Espresso</div><div class="cc-sub">Domestic Shorthair · 4 yrs old · ♂♀ Siblings</div><div class="traits"><span class="tr">Bonded Duo</span><span class="tr">Sweet</span><span class="tr">Inseparable</span></div></div>
-        <div class="purr-meter"><div class="purr-label"><span>Purr Level</span><span>💛💛💛💛💛</span></div><div class="purr-bar"><div class="purr-fill" data-width="100" style="background:linear-gradient(90deg,#FFD166,#FFA94D)"></div></div></div>
-        <button class="cc-btn" style="background:linear-gradient(135deg,#FFD166,#FFA94D);color:var(--brown)" onclick="event.stopPropagation();openCat('Latte & Espresso','🐾','Always curled up together — double the love and fluff! ☕☕')">Say Hi to the Duo</button>
-      </div>
-
-      <div class="cat-card rv" style="transition-delay:.4s" onclick="openCat('Nishi','😻','Female, 4 years old. Nishi is a curious tuxedo sweetheart with striking eyes, a playful spirit, and serious main-character energy. Ready to steal hearts and maybe go home with you. ✨')">
-        <div class="cc-top">
-          <img src="assets/images/InShot_20260407_021538883.jpg" alt="Nishi the tuxedo cat" class="cat-real-photo">
-          <span class="mood">✨</span>
-        </div>
-        <div class="cc-body">
-  <div class="cc-name">Nishi</div>
-  <div class="cc-meta">♀ Female • 4 years old • Domestic short hair</div>
-  <div class="cc-sub">A bright-eyed tuxedo sweetheart with a playful little sparkle and main-character charm.</div>
-
-  <div class="traits">
-    <span class="tr">Playful</span>
-    <span class="tr">Sweet</span>
-    <span class="tr">Curious</span>
-  </div>
-</div>
-        <div class="purr-meter"><div class="purr-label"><span>Purr Level</span><span>✨✨✨✨✨</span></div><div class="purr-bar"><div class="purr-fill" data-width="96" style="background:linear-gradient(90deg,#ff8fab,#ff6b9d)"></div></div></div>
-        <button class="cc-btn" style="background:linear-gradient(135deg,#ff8fab,#ff6b9d)" onclick="event.stopPropagation();openCat('Nishi','😻','Female, 4 years old. Nishi is a curious tuxedo sweetheart with striking eyes, a playful spirit, and serious main-character energy. Ready to steal hearts and maybe go home with you. ✨')">Meet Nishi</button>
-      </div>
-
-     <div class="cat-card rv" onclick="openCat('Lucy','🐾','Lucy is a 3-year-old domestic short hair sweetheart with bright golden eyes and a calm, watchful charm.')">
-  <div class="cc-top">
-    <img src="assets/images/IMG_0302.jpg" alt="Lucy the black and white cat" class="cat-real-photo">
-    <span class="mood">🌼</span>
-  </div>
-
- <div class="cc-body">
-  <div class="cc-name">Lucy</div>
-  <div class="cc-meta">♀ Female • 3 years old • Domestic short hair</div>
-  <div class="cc-sub">A golden-eyed cuddlebug with a gentle soul, soft whiskers, and a quietly adorable stare.</div>
-
-  <div class="traits">
-    <span class="tr">Gentle</span>
-    <span class="tr">Curious</span>
-    <span class="tr">Sweet</span>
-  </div>
-</div>
-
-  <div class="purr-meter">
-    <div class="purr-label">
-      <span>Cuddle Level</span>
-      <span>94%</span>
-    </div>
-    <div class="purr-bar">
-      <div class="purr-fill" data-width="94"></div>
-    </div>
-  </div>
-
-  <button class="cc-btn">Meet Lucy</button>
-</div>
-      <div class="cat-card rv" onclick="openCat('Lulu','🐾','Lulu is a 1-year-old domestic short hair boy with endless energy, bright eyes, and a super playful personality.')">
-  <div class="cc-top">
-    <img src="assets/images/IMG_0701.jpg" alt="Lulu the tabby cat" class="cat-real-photo">
-    <span class="cbadge adopt-me">Adopt Me</span>
-    <span class="mood">⚡</span>
-  </div>
-
-  <div class="cc-body">
-  <div class="cc-name">Lulu</div>
-  <div class="cc-meta">♂ Male • 1 year old • Domestic short hair</div>
-  <div class="cc-sub">A tiny zoomie prince full of playful energy, curious eyes, and endless kitten mischief.</div>
-
-  <div class="traits">
-    <span class="tr">Playful</span>
-    <span class="tr">Energetic</span>
-    <span class="tr">Curious</span>
-  </div>
-</div>
-
-  <div class="purr-meter">
-    <div class="purr-label">
-      <span>Zoomie Level</span>
-      <span>99%</span>
-    </div>
-    <div class="purr-bar">
-      <div class="purr-fill" data-width="99"></div>
-    </div>
-  </div>
-
-  <button class="cc-btn">Meet Lulu</button>
-</div>
-
-      <div class="cat-card rv" style="transition-delay:.7s" onclick="openCat('Miso','🐱','Domestic Shorthair, 2 years old. Miso is the café\'s philosopher. She sits in the corner and observes everything with wide, thoughtful eyes. Once she decides she trusts you — and she will — she curls into a perfect little bread loaf on your lap. Worth the wait. 🍵')">
-        <div class="cc-top d" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2)"><span style="font-size:5rem">🐱</span><span class="cbadge b-yel">Deep Thinker</span><span class="mood">🍵</span></div>
-        <div class="cc-body"><div class="cc-name">Miso</div><div class="cc-sub">Domestic Shorthair · 2 yrs old · ♀ Female</div><div class="traits"><span class="tr">Observant</span><span class="tr">Shy at First</span><span class="tr">Loaf Mode</span></div></div>
-        <div class="purr-meter"><div class="purr-label"><span>Purr Level</span><span>🍵🍵🍵</span></div><div class="purr-bar"><div class="purr-fill" data-width="55" style="background:linear-gradient(90deg,#FFB74D,#F57C00)"></div></div></div>
-        <button class="cc-btn" style="background:linear-gradient(135deg,#FFB74D,#F57C00)" onclick="event.stopPropagation();openCat('Miso','🐱','Domestic Shorthair, 2 yrs. Quiet observer who turns into the sweetest loaf-mode lap cat once she trusts you. 🍵')">Say Hi to Miso</button>
-      </div>
-
-      <div class="cat-card rv" style="transition-delay:.8s" onclick="openCat('Luna','😸','Persian, 3 years old. Named after the moon, Luna has the most stunning silky coat you\'ve ever seen. She is elegant, graceful and has a dramatic flair for draping herself across the most photogenic spots in the café. A natural model. 🌙')">
-        <div class="cc-top a" style="background:linear-gradient(135deg,#E8EAF6,#C5CAE9)"><span style="font-size:5rem">😸</span><span class="cbadge b-lav">Moon Child</span><span class="mood">🌙</span></div>
-        <div class="cc-body"><div class="cc-name">Luna</div><div class="cc-sub">Persian · 3 yrs old · ♀ Female</div><div class="traits"><span class="tr">Elegant</span><span class="tr">Photogenic</span><span class="tr">Graceful</span></div></div>
-        <div class="purr-meter"><div class="purr-label"><span>Purr Level</span><span>🌙🌙🌙🌙</span></div><div class="purr-bar"><div class="purr-fill" data-width="80" style="background:linear-gradient(90deg,#9FA8DA,#5C6BC0)"></div></div></div>
-        <button class="cc-btn" style="background:linear-gradient(135deg,#9FA8DA,#5C6BC0)" onclick="event.stopPropagation();openCat('Luna','😸','Persian, 3 yrs. Silky flowing coat, effortless elegance — she knows she is beautiful and poses accordingly. 🌙')">Say Hi to Luna</button>
-      </div>
-
-      <div class="cat-card rv" style="transition-delay:.9s" onclick="openCat('Pumpkin','🐾','Domestic Longhair, 1 year old. The youngest and most chaotic member of the family. Pumpkin has one speed: maximum. He zooms, he leaps, he knocks things over — but he is so irresistibly fluffy and cute you cannot be mad. A pure burst of sunshine. 🍊')">
-        <div class="cc-top b" style="background:linear-gradient(135deg,#FFF3E0,#FFCCBC)"><span style="font-size:5rem">🐾</span><span class="cbadge b-pink" style="background:#FFD6A5;color:#8B4500">Baby Zoomie</span><span class="mood">🍊</span></div>
-        <div class="cc-body"><div class="cc-name">Pumpkin</div><div class="cc-sub">Domestic Longhair · 1 yr old · ♂ Male</div><div class="traits"><span class="tr">Energetic</span><span class="tr">Playful</span><span class="tr">Baby Chaos</span></div></div>
-        <div class="purr-meter"><div class="purr-label"><span>Purr Level</span><span>🍊🍊🍊🍊🍊</span></div><div class="purr-bar"><div class="purr-fill" data-width="99" style="background:linear-gradient(90deg,#FF8C00,#FF5722)"></div></div></div>
-        <button class="cc-btn" style="background:linear-gradient(135deg,#FF8C00,#FF5722)" onclick="event.stopPropagation();openCat('Pumpkin','🐾','Domestic Longhair, 1 yr. Pure chaos wrapped in fluffy fur — the youngest and most energetic resident. 🍊')">Say Hi to Pumpkin</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="adopt-home-cta" style="background:linear-gradient(135deg,#fff0f7,#fff8e7,#eef9f3);padding:4.5rem 2rem">
-  <div class="s-wrap" style="padding:0">
-    <div class="rv" style="background:white;border:3px solid var(--pink-light);box-shadow:var(--sh-lg);border-radius:30px;padding:2.5rem;display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center">
-      <div>
-        <div class="tag-pill">Adoption Corner 🐾</div>
-        <h2 style="font-family:'Pacifico',cursive;font-size:clamp(2rem,4vw,2.8rem);color:var(--brown);margin-bottom:.8rem">Sometimes your favorite café cat becomes your forever cat</h2>
-        <p style="color:var(--brown-l);font-size:.96rem;font-weight:600;line-height:1.85;margin-bottom:1rem">If you connect with one of our resident sweethearts, you can apply right from our adoption page. We review each application carefully to make sure every cat goes to the right loving home.</p>
-        <div style="display:flex;gap:.7rem;flex-wrap:wrap;margin:1.2rem 0 1.5rem">
-          <span class="pill">🏠 Indoor homes only</span>
-          <span class="pill">💉 Vaccinated & fixed</span>
-          <span class="pill">📋 Thoughtful matching</span>
-        </div>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap">
-          <a href="adopt.html" class="btn btn-pink">🐾 Start Adoption Application</a>
-          <a href="#cats" class="btn btn-outline">😻 Meet the Cats First</a>
+        <div class="mood-rail rv" aria-label="Fun reasons to visit">
+          <button class="mchip" onclick="showToast('☕ Cozy coffee date mode activated!')">☕ Cozy coffee</button>
+          <button class="mchip" onclick="showToast('😻 Maximum cuddle energy unlocked!')">😻 Cat cuddles</button>
+          <button class="mchip" onclick="showToast('📸 Camera ready — cutest photos incoming!')">📸 Cute pics</button>
+          <button class="mchip" onclick="showToast('✨ Soft, happy, playful vibes only!')">✨ Happy vibes</button>
         </div>
       </div>
-      <div style="background:linear-gradient(135deg,var(--pink-soft),var(--yellow-light));border:2.5px solid var(--pink-light);border-radius:28px;padding:1.8rem;position:relative;overflow:hidden">
-        <div style="position:absolute;right:-8px;bottom:-16px;font-size:7rem;opacity:.08">😻</div>
-        <div style="display:grid;gap:1rem">
-          <div style="background:white;border:2px solid var(--pink-light);border-radius:18px;padding:1rem 1.1rem">
-            <div style="font-weight:800;color:var(--brown);margin-bottom:.25rem">1. Visit and connect</div>
-            <div style="font-size:.85rem;color:var(--brown-l);font-weight:600;line-height:1.7">Spend time in the lounge and get to know the cats' personalities.</div>
+    </section>
+
+    <!-- QUICKBAR -->
+    <div class="quickbar">
+      <div class="qi">
+        📍<span><strong>21 Lenox Avenue</strong>, Paterson, NJ</span>
+      </div>
+      <div class="qi">
+        📞<span><strong>(929) 301-9368</strong></span>
+      </div>
+      <div class="qi">
+        🕐<span>Mon, Thu–Sun · <strong>11am–2:30pm</strong> & <strong>4–8pm</strong> · Tue &amp; Wed Closed</span>
+      </div>
+      <div class="qi">
+        🐾<span
+          ><strong><a href="adopt.html">Adoption applications open</a></strong></span
+        >
+      </div>
+      <div class="qi">
+        ✉️<span
+          ><strong
+            ><a href="mailto:lilmeowcafe@gmail.com" style="color: inherit; text-decoration: none"
+              >lilmeowcafe@gmail.com</a
+            ></strong
+          ></span
+        >
+      </div>
+    </div>
+
+    <!-- PILLARS -->
+    <div class="pillars">
+      <div class="pillar rv" onclick="window.location.href = '#reserve'" style="cursor: pointer">
+        <div class="pillar-img">🗓️</div>
+        <div class="pillar-body">
+          <h3>Book a Visit</h3>
+          <p>
+            Book ahead to guarantee your spot — or just <strong>walk in anytime</strong> we're open! No reservation
+            needed. 🚶
+          </p>
+          <a href="#reserve" class="btn btn-pink" style="font-size: 0.85rem; padding: 11px 24px">Reserve Now</a>
+        </div>
+      </div>
+      <div class="pillar rv" onclick="window.location.href = '#cats'" style="cursor: pointer; transition-delay: 0.1s">
+        <div class="pillar-img" style="padding: 0; overflow: hidden; height: 200px">
+          <img
+            src="assets/images/360.jpg"
+            style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block"
+          />
+        </div>
+        <div class="pillar-body">
+          <h3>Meet Our Cats</h3>
+          <p>10 resident cats who call this café home. Always here, always ready for cuddles & lap time.</p>
+          <a href="#cats" class="btn btn-outline" style="font-size: 0.85rem; padding: 11px 24px">Say Hello</a>
+        </div>
+      </div>
+      <div class="pillar rv" onclick="window.location.href = '#menu'" style="cursor: pointer; transition-delay: 0.2s">
+        <div class="pillar-img">☕</div>
+        <div class="pillar-body">
+          <h3>Our Menu</h3>
+          <p>
+            Cat-themed lattes, cappuccinos, chai, matcha, and more — every sip made with love. Cat-hair free, promise!
+            😄
+          </p>
+          <a href="#menu" class="btn btn-outline" style="font-size: 0.85rem; padding: 11px 24px">View Menu</a>
+        </div>
+      </div>
+      <div
+        class="pillar rv"
+        onclick="window.location.href = 'adopt.html'"
+        style="cursor: pointer; transition-delay: 0.3s"
+      >
+        <div class="pillar-img">🐾</div>
+        <div class="pillar-body">
+          <h3>Adopt a Cat</h3>
+          <p>
+            Meet a cat you cannot stop thinking about? Start an adoption application and see if one of our sweet
+            residents is your perfect match.
+          </p>
+          <a
+            href="adopt.html"
+            class="btn btn-outline"
+            style="font-size: 0.85rem; padding: 11px 24px; border-color: var(--lav-d); color: var(--lav-d)"
+            >Apply Now</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-divider">🐾 🐱 🐾 🐱 🐾 🐱 🐾</div>
+
+    <!-- ABOUT -->
+    <section id="about" class="about-section">
+      <div class="s-wrap">
+        <div class="about-grid">
+          <div class="about-visual rv-left">
+            <div class="about-paw-pattern"></div>
+            <div class="about-photo-stack" aria-hidden="true">
+              <img src="assets/images/window-cats.jpg" alt="" class="about-stack-photo stack-1" />
+              <img src="assets/images/cat-family-bed.jpg" alt="" class="about-stack-photo stack-2" />
+              <img src="assets/images/cat-family-bed.jpg" alt="" class="about-stack-photo stack-3" />
+            </div>
+
+            <div class="big-cat" onclick="catReact(this)" title="Click me!">😻</div>
+            <div class="stats-grid">
+              <div class="sbox rv"><span class="snum">10 🐈</span><span class="slbl">Resident Cats</span></div>
+              <div class="sbox rv" style="transition-delay: 0.1s">
+                <span class="snum">4.9⭐</span><span class="slbl">Google Rating</span>
+              </div>
+              <div class="sbox rv" style="transition-delay: 0.15s">
+                <span class="snum">🆕</span><span class="slbl">Just Opened!</span>
+              </div>
+              <div class="sbox rv" style="transition-delay: 0.2s">
+                <span class="snum">100%</span><span class="slbl">Pure Cat Vibes</span>
+              </div>
+            </div>
           </div>
-          <div style="background:white;border:2px solid var(--pink-light);border-radius:18px;padding:1rem 1.1rem">
-            <div style="font-weight:800;color:var(--brown);margin-bottom:.25rem">2. Apply online</div>
-            <div style="font-size:.85rem;color:var(--brown-l);font-weight:600;line-height:1.7">Tell us about your home, lifestyle, and the cat you are interested in.</div>
-          </div>
-          <div style="background:white;border:2px solid var(--pink-light);border-radius:18px;padding:1rem 1.1rem">
-            <div style="font-weight:800;color:var(--brown);margin-bottom:.25rem">3. Get matched thoughtfully</div>
-            <div style="font-size:.85rem;color:var(--brown-l);font-weight:600;line-height:1.7">We review applications carefully because the right home matters as much as the right cat.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section class="gallery-section" id="gallery">
-  <div class="s-wrap">
-    <div class="s-head rv">
-      <div class="tag-pill">Photo Paw-lery 📸</div>
-      <h2>Cutest Moments</h2>
-      <p>Peek into the sweet, silly, and cozy lives of our café kitties. Click a photo for a closer look. ✨</p>
-    </div>
-
-    <div class="gallery-grid rv">
-      <div class="gallery-item big" onclick="openGallery('🐱','Staircase Sweetheart','A black-and-white cutie posing on the stairs with wide curious eyes and a signature little chin spot.')">
-        <img src="assets/images/6BF29B28-.jpg" alt="Black and white cat sitting on stairs" class="gallery-photo real-photo">
-        <div class="gallery-overlay"><span>Staircase Sweetheart 🖤</span></div>
-      </div>
-      <div class="gallery-item" onclick="openGallery('🌿','Backyard Explorer','A tuxedo kitty relaxing under the picnic table, enjoying grass, sunshine, and outdoor adventure time.')">
-        <img src="assets/images/FB_IMG_1775542423518.jpg" alt="Black and white cat under picnic table in grass" class="gallery-photo real-photo">
-        <div class="gallery-overlay"><span>Backyard Explorer 🌿</span></div>
-      </div>
-      <div class="gallery-item" onclick="openGallery('🌞','Window Watcher','A sleek tuxedo cat by the window, keeping watch outside with glowing golden eyes.')">
-        <img src="assets/images/FB_IMG_1775542436385.jpg" alt="Black tuxedo cat by the window in side profile" class="gallery-photo real-photo">
-        <div class="gallery-overlay"><span>Window Watcher 🌞</span></div>
-      </div>
-      <div class="gallery-item" onclick="openGallery('🌙','Golden Eyes Close-Up','A close-up window moment with bright golden eyes, moon charm, and serious star energy.')">
-        <img src="assets/images/FB_IMG_1775542455241.jpg" alt="Close-up of black tuxedo cat by the window" class="gallery-photo real-photo">
-        <div class="gallery-overlay"><span>Golden Eyes Close-Up 🌙</span></div>
-      </div>
-      <div class="gallery-item" onclick="openGallery('🧸','Cozy Bed Crew','A black-and-white sweetheart tucked beside a giant plush buddy for peak bedtime coziness.')">
-        <img src="assets/images/IMG_0188.jpg" alt="Black and white cat on bed beside giant plush toy" class="gallery-photo real-photo">
-        <div class="gallery-overlay"><span>Cozy Bed Crew 🧸</span></div>
-      </div>
-      <div class="gallery-item" onclick="openGallery('😼','Tabby Chill Mode','A relaxed tabby lounging on the bed with calm eyes and laid-back little tiger energy.')">
-        <img src="assets/images/IMG_0710.jpg" alt="Tabby cat resting on a bed" class="gallery-photo real-photo">
-        <div class="gallery-overlay"><span>Tabby Chill Mode 😼</span></div>
-      </div>
-      <div class="gallery-item" onclick="openGallery('💫','Blanket Prince','A handsome tabby posing proudly on a red blanket like he totally knows he is adorable.')">
-        <img src="assets/images/IMG_0886.jpg" alt="Tabby cat posing on a red blanket" class="gallery-photo real-photo">
-        <div class="gallery-overlay"><span>Blanket Prince 💫</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="cat-divider">🎉 ☕ 🎉 ☕ 🎉 ☕ 🎉</div>
-
-<!-- EXPERIENCES -->
-
-<div class="cat-divider">⭐ 🐾 ⭐ 🐾 ⭐ 🐾 ⭐</div>
-
-<!-- REVIEWS -->
-<section id="reviews" style="background:white">
-  <div class="s-wrap">
-    <div class="s-head rv">
-      <div class="tag-pill">Happy Visitors ⭐</div>
-      <h2>What People Are Saying</h2>
-      <p>Real reviews from real cat lovers 🐾</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem" id="reviewsGrid">
-      <!-- Review cards inserted by JS -->
-    </div>
-    <div class="rv" style="text-align:center;margin-top:2.5rem">
-<a
-  href="https://www.google.com/maps/search/?api=1&query=21+Lenox+Avenue,+Paterson,+NJ+07502"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="btn btn-outline"
->
-  ⭐ Leave us a Google Review
-</a>
-    </div>
-  </div>
-</section>
-
-<section id="experiences" class="exp-section">
-  <div class="s-wrap">
-    <div class="s-head rv">
-      <div class="tag-pill">Experiences 🎉</div>
-      <h2>Choose Your Vibe</h2>
-      <p>From a solo coffee date with cats to a full group party — we have the perfect experience for you.</p>
-    </div>
-    <div class="exp-grid">
-      <div class="exp-card rv"><div class="exp-img e1">☕</div><div class="exp-body"><h3>Lil' Sip</h3><span class="exp-price">$20/person</span><p>40 min lounge + 1 specialty drink. Perfect for a quick cat fix on a busy day.</p><button class="exp-btn" onclick="jumpBook()">Book This →</button></div></div>
-      <div class="exp-card rv" style="transition-delay:.1s"><div class="exp-img e2">😻</div><div class="exp-body"><h3>Purr Package ⭐ Popular</h3><span class="exp-price">$25/person</span><p>60 min + 1 drink + 1 sweet treat. The classic Lil' Meow experience.</p><button class="exp-btn" onclick="jumpBook()">Book This →</button></div></div>
-      <div class="exp-card rv" style="transition-delay:.2s;border-color:var(--yellow);background:linear-gradient(180deg,#FFFBF0,white)">
-        <div style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--yellow),#FFB300);color:var(--brown);padding:4px 16px;border-radius:50px;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;white-space:nowrap;box-shadow:0 2px 8px rgba(255,179,0,.3)">✨ Add-On Extra</div>
-        <div class="exp-img e2" style="background:linear-gradient(135deg,#FFF8DC,#FFE680)">📸</div>
-        <div class="exp-body">
-          <h3>The Purr Extra Special</h3>
-          <span class="exp-price" style="color:var(--yellow);text-shadow:0 1px 0 rgba(0,0,0,.08)">+$10/person</span>
-          <p>Add on to any visit! Get a bag of our house cat treats to hand-feed the kitties <strong>plus</strong> a printed Polaroid photo of you with your favourite resident cat to take home. 🐾🎞️</p>
-          <button class="exp-btn" style="border-color:var(--yellow);color:#7A5C00;background:#FFFBE6" onclick="showToast('📸 Add the Purr Extra Special when booking — just mention it in Special Requests!')">Add This On →</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-<!-- MENU -->
-<section id="menu" class="menu-section">
-  <div class="s-wrap">
-    <div class="s-head rv">
-      <div class="tag-pill">Drinks & Treats ☕</div>
-      <h2>Our Lil' Menu</h2>
-      <p>Every item made with love — just like our cats! 🐾</p>
-    </div>
-    <!-- Note: all 6 drinks are available hot OR iced — same drink, your choice -->
-    <p class="rv" style="text-align:center;font-size:.88rem;font-weight:700;color:var(--brown-l);margin-bottom:1.5rem;background:var(--pink-soft);border:2px solid var(--pink-light);border-radius:50px;padding:10px 24px;display:inline-block;position:relative;left:50%;transform:translateX(-50%)">✨ All 6 drinks available <strong style="color:var(--pink-deep)">Hot ☕ or Iced 🧊</strong> — same price, your choice!</p>
-    <div class="menu-tabs">
-      <button class="mtab on" onclick="switchTab(this,'hot')"><span>☕ Hot</span></button>
-      <button class="mtab" onclick="switchTab(this,'iced')"><span>🧊 Iced</span></button>
-      <button class="mtab" onclick="switchTab(this,'treats')"><span>🧁 Treats</span></button>
-    </div>
-
-    <div class="mpanel on" id="tab-hot">
-      <div class="menu-items">
-        <div class="mi" onclick="showToast('☕ Purrfect Latte — also available iced!')">
-          <div><div class="mi-name">Purrfect Latte</div><div class="mi-desc">Silky espresso & steamed oat milk with a hand-drawn cat latte art on top</div></div><div class="mi-price">$6.50</div></div>
-        <div class="mi" onclick="showToast('🍵 Meowtcha Latte — also available iced!')">
-          <div><div class="mi-name">Meowtcha Latte</div><div class="mi-desc">Ceremonial-grade matcha whisked until frothy & poured into steamed oat milk — as calm and green-eyed as a sleepy cat in the sun 😸</div></div><div class="mi-price">$6.50</div></div>
-        <div class="mi" onclick="showToast('☕ Kitty Cappuccino — also available iced!')">
-          <div><div class="mi-name">Kitty Cappuccino</div><div class="mi-desc">Double shot espresso with thick velvety micro-foam & a sprinkle of cinnamon</div></div><div class="mi-price">$6.00</div></div>
-        <div class="mi" onclick="showToast('🐾 Purr Macchiato — also available iced!')">
-          <div><div class="mi-name">Purr Macchiato</div><div class="mi-desc">Layers of silky steamed milk, bold espresso & a drizzle of vanilla — perfectly balanced</div></div><div class="mi-price">$6.50</div></div>
-        <div class="mi" onclick="showToast('🍫 Midnight Mocha — also available iced!')">
-          <div><div class="mi-name">Midnight Mocha</div><div class="mi-desc">Rich dark chocolate, espresso & steamed milk topped with cocoa powder</div></div><div class="mi-price">$6.50</div></div>
-        <div class="mi" onclick="showToast('🍂 Brown Sugar Chai — also available iced!')">
-          <div><div class="mi-name">Brown Sugar Chai</div><div class="mi-desc">House-spiced chai with caramelised brown sugar, cinnamon & oat milk foam</div></div><div class="mi-price">$6.00</div></div>
-      </div>
-    </div>
-
-    <div class="mpanel" id="tab-iced">
-      <div class="menu-items">
-        <div class="mi" onclick="showToast('☕ Iced Purrfect Latte — also available hot!')">
-          <div><div class="mi-name">Iced Purrfect Latte</div><div class="mi-desc">Chilled espresso poured over ice with creamy oat milk & cat latte art</div></div><div class="mi-price">$6.50</div></div>
-        <div class="mi" onclick="showToast('🍵 Iced Meowtcha Latte — also available hot!')">
-          <div><div class="mi-name">Iced Meowtcha Latte</div><div class="mi-desc">Ceremonial matcha shaken with ice & oat milk — bright, grassy & refreshing</div></div><div class="mi-price">$6.50</div></div>
-        <div class="mi" onclick="showToast('☕ Iced Kitty Cappuccino — also available hot!')">
-          <div><div class="mi-name">Iced Kitty Cappuccino</div><div class="mi-desc">Double shot espresso over ice with cold foam & a dusting of cinnamon</div></div><div class="mi-price">$6.00</div></div>
-        <div class="mi" onclick="showToast('🐾 Iced Purr Macchiato — also available hot!')">
-          <div><div class="mi-name">Iced Purr Macchiato</div><div class="mi-desc">Cold oat milk, a shot of bold espresso & vanilla drizzle poured over ice — stunning & smooth</div></div><div class="mi-price">$6.50</div></div>
-        <div class="mi" onclick="showToast('🍫 Iced Midnight Mocha — also available hot!')">
-          <div><div class="mi-name">Iced Midnight Mocha</div><div class="mi-desc">Dark chocolate espresso over ice — bold, rich & dangerously good</div></div><div class="mi-price">$6.50</div></div>
-        <div class="mi" onclick="showToast('🍂 Iced Brown Sugar Chai — also available hot!')">
-          <div><div class="mi-name">Iced Brown Sugar Chai</div><div class="mi-desc">Shaken chai, brown sugar & oat milk over ice with a cinnamon drizzle</div></div><div class="mi-price">$6.00</div></div>
-      </div>
-    </div>
-
-    <div class="mpanel" id="tab-treats">
-      <div class="menu-items">
-        <div class="mi" onclick="showToast('🍪 Cat Paw Macarons — pick your flavours!')"><div><div class="mi-name">Cat Paw Macarons</div><div class="mi-desc">Four delicate shells — rose, matcha, vanilla & chocolate</div></div><div class="mi-price">$9.00</div></div>
-        <div class="mi" onclick="showToast('🍩 Kitty Donuts — pick your glaze!')"><div><div class="mi-name">Kitty Donuts</div><div class="mi-desc">Soft glazed rings decorated with a cute cat face — choose matcha, strawberry or chocolate</div></div><div class="mi-price">$4.50</div></div>
-        <div class="mi" onclick="showToast('🥐 Meow Croissant — warm & flaky!')"><div><div class="mi-name">Meow Croissant</div><div class="mi-desc">Buttery golden croissant with a cat ear shape, served warm with your choice of filling</div></div><div class="mi-price">$5.00</div></div>
-        <div class="mi" onclick="showToast('🧁 Paw Print Cupcake — too cute to eat!')"><div><div class="mi-name">Paw Print Cupcake</div><div class="mi-desc">Fluffy vanilla sponge with whipped rose buttercream & a fondant paw</div></div><div class="mi-price">$5.00</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RESERVATION -->
-<section id="reserve" class="res-section">
-  <div class="res-wrap">
-    <div class="s-head rv">
-      <div class="tag-pill">Reservations 🗓️</div>
-      <h2>Book Your Visit</h2>
-      <p>Reservations guarantee your spot — but <strong style="color:var(--pink-deep)">walk-ins are always welcome</strong> too! Just drop in anytime we're open. 🚶🐾</p>
-    </div>
-    <div class="res-card rv" id="resCard">
-      <div class="res-progress"><div class="res-progress-fill" id="resProg"></div></div>
-      <div class="step-bar">
-        <div class="sp on" id="sp1">1️⃣ Date & Time</div>
-        <div class="sp" id="sp2">2️⃣ Package</div>
-        <div class="sp" id="sp3">3️⃣ Confirm</div>
-      </div>
-
-      <div class="spanel on" id="s1">
-        <div class="frow">
-          <div class="fg"><label class="fl">Date <em>*</em></label><input type="date" class="fi" id="rDate" min="" oninput="validateField(this)"></div>
-          <div class="fg"><label class="fl">Guests <em>*</em></label>
-            <select class="fi" id="rGuests" onchange="validateField(this)"><option value="">How many?</option><option value="1">1 person</option><option value="2">2 people</option><option value="3">3 people</option><option value="4">4 people</option><option value="5">5 people</option><option value="6">6+ (contact us)</option></select>
-          </div>
-        </div>
-        <div class="fg"><label class="fl">Pick a Time <em>*</em></label>
-          <div class="tgrid">
-            <div style="grid-column:1/-1;font-size:.75rem;font-weight:800;color:var(--pink-deep);padding:4px 0 2px;letter-spacing:.5px;text-transform:uppercase">☀️ Morning Session</div>
-            <div class="ts" onclick="pickT(this)" data-t="11:00 AM"><span>11:00 AM</span><span class="ts-spots">6 spots</span></div>
-            <div class="ts" onclick="pickT(this)" data-t="12:00 PM"><span>12:00 PM</span><span class="ts-spots">6 spots</span></div>
-            <div class="ts" onclick="pickT(this)" data-t="1:00 PM"><span>1:00 PM</span><span class="ts-spots">6 spots</span></div>
-            <div class="ts" onclick="pickT(this)" data-t="2:00 PM"><span>2:00 PM</span><span class="ts-spots">6 spots</span></div>
-            <div class="ts off" style="grid-column:1/-1;border-radius:12px;background:var(--yellow-light);border-color:var(--yellow);color:var(--brown-m)"><span>☕ Break 2:30–4:00 PM</span><span class="ts-spots">Café closed</span></div>
-            <div style="grid-column:1/-1;font-size:.75rem;font-weight:800;color:var(--pink-deep);padding:4px 0 2px;letter-spacing:.5px;text-transform:uppercase">🌙 Afternoon Session</div>
-            <div class="ts" onclick="pickT(this)" data-t="4:00 PM"><span>4:00 PM</span><span class="ts-spots">6 spots</span></div>
-            <div class="ts" onclick="pickT(this)" data-t="5:00 PM"><span>5:00 PM</span><span class="ts-spots">6 spots</span></div>
-            <div class="ts" onclick="pickT(this)" data-t="6:00 PM"><span>6:00 PM</span><span class="ts-spots">6 spots</span></div>
-            <div class="ts" onclick="pickT(this)" data-t="7:00 PM"><span>7:00 PM</span><span class="ts-spots">6 spots</span></div>
-          </div>
-        </div>
-        <div class="snav"><span></span><button class="btn btn-pink" onclick="go(2)">Next: Package →</button></div>
-      </div>
-
-      <div class="spanel" id="s2">
-        <div class="fg"><label class="fl">Choose Your Experience <em>*</em></label>
-          <div class="pgrid">
-            <div class="pc" onclick="pickP(this,'Lil\'s Sip',20)"><span class="pc-icon">☕</span><div class="pc-name">Lil' Sip</div><div class="pc-price">$20/person</div><div class="pc-desc">40 min + 1 drink</div></div>
-            <div class="pc" onclick="pickP(this,'Purr Package',25)"><span class="pc-pop">⭐ Most Popular</span><span class="pc-icon">😻</span><div class="pc-name">Purr Package</div><div class="pc-price">$25/person</div><div class="pc-desc">60 min + drink + treat</div></div>
-          </div>
-        </div>
-        <div class="fg">
-          <label class="fl">✨ Add-Ons (optional)</label>
-          <div style="border:2.5px solid var(--yellow);border-radius:18px;padding:1.2rem 1.4rem;background:linear-gradient(135deg,#FFFBE6,#FFF8DC);display:flex;align-items:center;gap:14px;cursor:pointer" onclick="toggleAddon(this)">
-            <div id="addonCheck" style="width:24px;height:24px;border-radius:8px;border:2.5px solid var(--yellow);background:white;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:all .25s">•</div>
-            <div>
-              <div style="font-weight:800;font-size:.92rem;color:var(--brown)">📸 The Purr Extra Special — <span style="color:#B8860B">+$10/person</span></div>
-              <div style="font-size:.78rem;color:var(--brown-l);font-weight:600;margin-top:2px">Cat treats to hand-feed the kitties + a printed Polaroid photo to take home 🐾🎞️</div>
+          <div class="about-text rv-right">
+            <span class="tag-pill">Our Story 🌸</span>
+            <h2 style="position: relative">A cozy corner for cat lovers</h2>
+            <p>
+              Welcome to Lil' Meow Café — a magical little haven where every cup comes with a side of purring. Our
+              permanent feline family makes every single visit unforgettable.
+            </p>
+            <p>
+              Our cats live here full-time and genuinely love company. Whether you're a regular or first-timer, expect
+              warm laps, loud purrs, and a really good latte. ☕
+            </p>
+            <div class="pills">
+              <span class="pill">🐱 Permanent Residents</span>
+              <span class="pill">☕ Specialty Coffee</span>
+              <span class="pill">🧊 Hot or Iced</span>
+              <span class="pill">💕 Cat Therapy</span>
+              <span class="pill">📸 Photo Moments</span>
             </div>
           </div>
         </div>
-          </div>
-        </div>
-        <div class="fg"><label class="fl">Special Requests</label><textarea class="fi" rows="3" id="rNotes" placeholder="Allergies, birthday celebrations, accessibility needs..."></textarea></div>
-        <div class="snav"><button class="bbtn" onclick="go(1)">← Back</button><button class="btn btn-pink" onclick="go(3)">Next: Your Info →</button></div>
       </div>
+    </section>
 
-      <div class="spanel" id="s3">
-        <div class="frow">
-          <div class="fg"><label class="fl">First Name <em>*</em></label><input type="text" class="fi" id="rFirst" placeholder="e.g. Sakura" oninput="validateField(this)"></div>
-          <div class="fg"><label class="fl">Last Name <em>*</em></label><input type="text" class="fi" id="rLast" placeholder="e.g. Park" oninput="validateField(this)"></div>
+    <div class="cat-divider">😺 🌸 😺 🌸 😺 🌸 😺</div>
+
+    <!-- TODAY'S CATS -->
+    <section class="today-section">
+      <div class="s-wrap" style="padding: 3rem 2rem">
+        <div class="today-card rv">
+          <div class="today-header">
+            <div class="today-dot"></div>
+            <div class="today-title">Who's in the Lounge Today?</div>
+            <span style="font-size: 0.78rem; color: var(--brown-l); font-weight: 600; margin-left: auto"
+              >Live · Updates daily</span
+            >
+          </div>
+          <div class="today-cats">
+            <div class="today-cat" onclick="showToast('😻 Mochi is feeling extra cuddly today!')">
+              <div class="today-cat-emoji">🐱</div>
+              <div class="today-cat-name">Mochi</div>
+              <div class="today-cat-status">● In the lounge</div>
+            </div>
+            <div class="today-cat" onclick="showToast('😺 Boba is napping in the sun spot right now!')">
+              <div class="today-cat-emoji">😽</div>
+              <div class="today-cat-name">Boba</div>
+              <div class="today-cat-status">● Sunbathing</div>
+            </div>
+            <div class="today-cat" onclick="showToast('😽 Matcha is chatty today — she has opinions!')">
+              <div class="today-cat-emoji">😸</div>
+              <div class="today-cat-name">Matcha</div>
+              <div class="today-cat-status">● Very talkative</div>
+            </div>
+            <div class="today-cat" onclick="showToast('🐾 Latte & Espresso are curled up together as always!')">
+              <div class="today-cat-emoji">🐾</div>
+              <div class="today-cat-name">Latte & Espresso</div>
+              <div class="today-cat-status">● Snuggled up</div>
+            </div>
+            <div class="today-cat" onclick="showToast('🌸 Nishi is doing her signature slow blink — she likes you!')">
+              <div class="today-cat-emoji">😻</div>
+              <div class="today-cat-name">Nishi</div>
+              <div class="today-cat-status">● Slow blinking</div>
+            </div>
+            <div class="today-cat" onclick="showToast('💕 Lucy is chasing a feather toy — so playful today!')">
+              <div class="today-cat-emoji">🐈</div>
+              <div class="today-cat-name">Lucy</div>
+              <div class="today-cat-status">● Playing</div>
+            </div>
+            <div class="today-cat" onclick="showToast('🎀 Lulu is exploring the top shelf again — such a climber!')">
+              <div class="today-cat-emoji">😺</div>
+              <div class="today-cat-name">Lulu</div>
+              <div class="today-cat-status">● Exploring</div>
+            </div>
+            <div class="today-cat" onclick="showToast('🍵 Miso is quietly watching everyone from the cozy corner!')">
+              <div class="today-cat-emoji">🐱</div>
+              <div class="today-cat-name">Miso</div>
+              <div class="today-cat-status">● Observing</div>
+            </div>
+            <div class="today-cat" onclick="showToast('🌙 Luna is curled in the moon bed — extra cozy today!')">
+              <div class="today-cat-emoji">😽</div>
+              <div class="today-cat-name">Luna</div>
+              <div class="today-cat-status">● Napping</div>
+            </div>
+            <div class="today-cat" onclick="showToast('🍊 Pumpkin is zooming around — full of energy!')">
+              <div class="today-cat-emoji">🐾</div>
+              <div class="today-cat-name">Pumpkin</div>
+              <div class="today-cat-status">● Zooming</div>
+            </div>
+          </div>
         </div>
-        <div class="fg"><label class="fl">Email <em>*</em></label><input type="email" class="fi" id="rEmail" placeholder="you@email.com" oninput="validateEmail(this)"><span class="field-hint">We'll send your confirmation here</span></div>
-        <div class="fg"><label class="fl">Phone <em>*</em></label><input type="tel" class="fi" id="rPhone" placeholder="(555) 000-0000" oninput="validateField(this)"></div>
-        <div class="fg"><label class="fl">How did you hear about us?</label><select class="fi"><option value="">Select...</option><option>Instagram</option><option>TikTok</option><option>Google</option><option>Friend / Family</option><option>Yelp</option><option>Walking By</option></select></div>
+      </div>
+    </section>
 
-        <!-- Booking summary -->
-        <div class="sum-box" style="margin-top:1.4rem">
-          <div class="sr"><span>📅 Date</span><span id="sd">—</span></div>
-          <div class="sr"><span>⏰ Time</span><span id="st">—</span></div>
-          <div class="sr"><span>👥 Guests</span><span id="sg">—</span></div>
-          <div class="sr"><span>🎟️ Package</span><span id="spkg">—</span></div>
-          <div class="sr tot"><span>Total Due Now</span><span class="amt" id="sa">—</span></div>
+    <!-- CATS -->
+    <section id="cats" class="cats-section">
+      <div class="s-wrap">
+        <div class="s-head rv">
+          <div class="tag-pill">Our Feline Family 🐾</div>
+          <h2>Meet Our Resident Cats</h2>
+          <p>
+            These cuties live here full-time and love every visitor. Each has a unique personality — come find your
+            favourite!
+          </p>
         </div>
-
-        <!-- Stripe Card Payment -->
-        <div style="margin-top:1.4rem">
-          <label class="fl" style="font-size:.9rem;margin-bottom:10px;display:block">💳 Pay Securely Online <em>*</em></label>
-
-          <!-- Card number -->
-          <div style="margin-bottom:.8rem">
-            <label style="font-size:.75rem;font-weight:800;color:var(--brown-l);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px">Card Number</label>
-            <div id="card-number-element" style="background:white;border:2.5px solid var(--pink-light);border-radius:12px;padding:13px 16px;transition:border-color .3s"></div>
+        <div class="cats-grid">
+          <div
+            class="cat-card rv"
+            onclick="
+              openCat(
+                'Mochi',
+                '🐱',
+                'Domestic Shorthair, 2 years old. She will be on your lap before you even sit down. Mochi is our most cuddly resident and absolutely loves head scratches. Her favourite spot is the window perch in the afternoon sun. ☀️'
+              )
+            "
+          >
+            <div class="cc-top a">
+              <span style="font-size: 5rem">🐱</span><span class="cbadge b-pink">Staff Fave</span
+              ><span class="mood">☀️</span>
+            </div>
+            <div class="cc-body">
+              <div class="cc-name">Mochi</div>
+              <div class="cc-sub">Domestic Shorthair · 2 yrs old · ♀ Female</div>
+              <div class="traits">
+                <span class="tr">Cuddly</span><span class="tr">Playful</span><span class="tr">Loves Laps</span>
+              </div>
+            </div>
+            <div class="purr-meter">
+              <div class="purr-label"><span>Purr Level</span><span>💜💜💜💜💜</span></div>
+              <div class="purr-bar"><div class="purr-fill" data-width="95"></div></div>
+            </div>
+            <button
+              class="cc-btn"
+              onclick="
+                event.stopPropagation();
+                openCat(
+                  'Mochi',
+                  '🐱',
+                  'Domestic Shorthair, 2 yrs. She will be on your lap before you even sit down — the coziest lounge companion. ☀️'
+                );
+              "
+            >
+              Say Hi to Mochi
+            </button>
+          </div>
+          <div
+            class="cat-card rv"
+            style="transition-delay: 0.1s"
+            onclick="
+              openCat(
+                'Boba',
+                '😺',
+                'Domestic Longhair, 3 years old. The undisputed gentle giant of Lil\'s Meow Café. Boba is impossibly fluffy and somehow gets bigger every time you look at him. He loves slow mornings and long naps in the sun. 🌞'
+              )
+            "
+          >
+            <div class="cc-top b">
+              <span style="font-size: 5rem">😺</span><span class="cbadge b-mint">Gentle Giant</span
+              ><span class="mood">😴</span>
+            </div>
+            <div class="cc-body">
+              <div class="cc-name">Boba</div>
+              <div class="cc-sub">Domestic Longhair · 3 yrs old · ♂ Male</div>
+              <div class="traits">
+                <span class="tr">Fluffy</span><span class="tr">Gentle</span><span class="tr">Calm</span>
+              </div>
+            </div>
+            <div class="purr-meter">
+              <div class="purr-label"><span>Purr Level</span><span>🧡🧡🧡🧡</span></div>
+              <div class="purr-bar"><div class="purr-fill" data-width="78"></div></div>
+            </div>
+            <button
+              class="cc-btn"
+              style="background: linear-gradient(135deg, #4ecdc4, #2d9e96)"
+              onclick="
+                event.stopPropagation();
+                openCat(
+                  'Boba',
+                  '😺',
+                  'Domestic Longhair, 3 yrs. The fluffiest boy — impossible to resist a snuggle! 🌞'
+                );
+              "
+            >
+              Say Hi to Boba
+            </button>
+          </div>
+          <div
+            class="cat-card rv"
+            style="transition-delay: 0.2s"
+            onclick="
+              openCat(
+                'Matcha',
+                '😸',
+                'Domestic Shorthair, 1 year old. Our little diva. Matcha will meow at you until you pay full attention to her — and honestly, she deserves it. She is the smartest, sassiest cat in the room and she knows it. 👑'
+              )
+            "
+          >
+            <div class="cc-top c">
+              <span style="font-size: 5rem">😸</span><span class="cbadge b-lav">Little Diva</span
+              ><span class="mood">👑</span>
+            </div>
+            <div class="cc-body">
+              <div class="cc-name">Matcha</div>
+              <div class="cc-sub">Domestic Shorthair · 1 yr old · ♀ Female</div>
+              <div class="traits">
+                <span class="tr">Sassy</span><span class="tr">Smart</span><span class="tr">Talkative</span>
+              </div>
+            </div>
+            <div class="purr-meter">
+              <div class="purr-label"><span>Purr Level</span><span>💚💚💚</span></div>
+              <div class="purr-bar">
+                <div
+                  class="purr-fill"
+                  data-width="60"
+                  style="background: linear-gradient(90deg, var(--lav), var(--lav-d))"
+                ></div>
+              </div>
+            </div>
+            <button
+              class="cc-btn"
+              style="background: linear-gradient(135deg, var(--lav), var(--lav-d))"
+              onclick="
+                event.stopPropagation();
+                openCat(
+                  'Matcha',
+                  '😸',
+                  'Domestic Shorthair, 1 yr. Sassy, smart & always talkative — she is in charge and she knows it! 👑'
+                );
+              "
+            >
+              Say Hi to Matcha
+            </button>
+          </div>
+          <div
+            class="cat-card rv"
+            style="transition-delay: 0.3s"
+            onclick="
+              openCat(
+                'Latte & Espresso',
+                '🐾',
+                'Domestic Shorthairs, 4 years old. This bonded brother & sister duo has been inseparable since day one. You will always find them curled up together — one big fluffy pile of love. ☕☕'
+              )
+            "
+          >
+            <div class="cc-top d">
+              <span style="font-size: 5rem">🐾</span><span class="cbadge b-yel">BFFs Forever</span
+              ><span class="mood">💛</span>
+            </div>
+            <div class="cc-body">
+              <div class="cc-name">Latte & Espresso</div>
+              <div class="cc-sub">Domestic Shorthair · 4 yrs old · ♂♀ Siblings</div>
+              <div class="traits">
+                <span class="tr">Bonded Duo</span><span class="tr">Sweet</span><span class="tr">Inseparable</span>
+              </div>
+            </div>
+            <div class="purr-meter">
+              <div class="purr-label"><span>Purr Level</span><span>💛💛💛💛💛</span></div>
+              <div class="purr-bar">
+                <div
+                  class="purr-fill"
+                  data-width="100"
+                  style="background: linear-gradient(90deg, #ffd166, #ffa94d)"
+                ></div>
+              </div>
+            </div>
+            <button
+              class="cc-btn"
+              style="background: linear-gradient(135deg, #ffd166, #ffa94d); color: var(--brown)"
+              onclick="
+                event.stopPropagation();
+                openCat('Latte & Espresso', '🐾', 'Always curled up together — double the love and fluff! ☕☕');
+              "
+            >
+              Say Hi to the Duo
+            </button>
           </div>
 
-          <!-- Expiry + CVC row -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem">
-            <div>
-              <label style="font-size:.75rem;font-weight:800;color:var(--brown-l);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px">Expiry Date</label>
-              <div id="card-expiry-element" style="background:white;border:2.5px solid var(--pink-light);border-radius:12px;padding:13px 16px;transition:border-color .3s"></div>
+          <div
+            class="cat-card rv"
+            style="transition-delay: 0.4s"
+            onclick="
+              openCat(
+                'Nishi',
+                '😻',
+                'Female, 4 years old. Nishi is a curious tuxedo sweetheart with striking eyes, a playful spirit, and serious main-character energy. Ready to steal hearts and maybe go home with you. ✨'
+              )
+            "
+          >
+            <div class="cc-top">
+              <img
+                src="assets/images/InShot_20260407_021538883.jpg"
+                alt="Nishi the tuxedo cat"
+                class="cat-real-photo"
+              />
+              <span class="mood">✨</span>
             </div>
-            <div>
-              <label style="font-size:.75rem;font-weight:800;color:var(--brown-l);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px">Security Code (CVV)</label>
-              <div id="card-cvc-element" style="background:white;border:2.5px solid var(--pink-light);border-radius:12px;padding:13px 16px;transition:border-color .3s"></div>
+            <div class="cc-body">
+              <div class="cc-name">Nishi</div>
+              <div class="cc-meta">♀ Female • 4 years old • Domestic short hair</div>
+              <div class="cc-sub">
+                A bright-eyed tuxedo sweetheart with a playful little sparkle and main-character charm.
+              </div>
+
+              <div class="traits">
+                <span class="tr">Playful</span>
+                <span class="tr">Sweet</span>
+                <span class="tr">Curious</span>
+              </div>
             </div>
+            <div class="purr-meter">
+              <div class="purr-label"><span>Purr Level</span><span>✨✨✨✨✨</span></div>
+              <div class="purr-bar">
+                <div
+                  class="purr-fill"
+                  data-width="96"
+                  style="background: linear-gradient(90deg, #ff8fab, #ff6b9d)"
+                ></div>
+              </div>
+            </div>
+            <button
+              class="cc-btn"
+              style="background: linear-gradient(135deg, #ff8fab, #ff6b9d)"
+              onclick="
+                event.stopPropagation();
+                openCat(
+                  'Nishi',
+                  '😻',
+                  'Female, 4 years old. Nishi is a curious tuxedo sweetheart with striking eyes, a playful spirit, and serious main-character energy. Ready to steal hearts and maybe go home with you. ✨'
+                );
+              "
+            >
+              Meet Nishi
+            </button>
           </div>
 
-          <div id="card-error" style="color:#EF5350;font-size:.82rem;font-weight:700;margin-top:4px;display:none;padding:8px 12px;background:#FFF5F5;border-radius:8px;border:1.5px solid #FFCDD2"></div>
-        </div>
+          <div
+            class="cat-card rv"
+            onclick="
+              openCat(
+                'Lucy',
+                '🐾',
+                'Lucy is a 3-year-old domestic short hair sweetheart with bright golden eyes and a calm, watchful charm.'
+              )
+            "
+          >
+            <div class="cc-top">
+              <img src="assets/images/IMG_0302.jpg" alt="Lucy the black and white cat" class="cat-real-photo" />
+              <span class="mood">🌼</span>
+            </div>
 
-        <!-- Security badge -->
-        <div style="background:var(--pink-soft);border:2px solid var(--pink-light);border-radius:14px;padding:.9rem 1.2rem;margin:1rem 0;display:flex;align-items:center;gap:10px">
-          <span style="font-size:1.2rem">🔒</span>
+            <div class="cc-body">
+              <div class="cc-name">Lucy</div>
+              <div class="cc-meta">♀ Female • 3 years old • Domestic short hair</div>
+              <div class="cc-sub">
+                A golden-eyed cuddlebug with a gentle soul, soft whiskers, and a quietly adorable stare.
+              </div>
+
+              <div class="traits">
+                <span class="tr">Gentle</span>
+                <span class="tr">Curious</span>
+                <span class="tr">Sweet</span>
+              </div>
+            </div>
+
+            <div class="purr-meter">
+              <div class="purr-label">
+                <span>Cuddle Level</span>
+                <span>94%</span>
+              </div>
+              <div class="purr-bar">
+                <div class="purr-fill" data-width="94"></div>
+              </div>
+            </div>
+
+            <button class="cc-btn">Meet Lucy</button>
+          </div>
+          <div
+            class="cat-card rv"
+            onclick="
+              openCat(
+                'Lulu',
+                '🐾',
+                'Lulu is a 1-year-old domestic short hair boy with endless energy, bright eyes, and a super playful personality.'
+              )
+            "
+          >
+            <div class="cc-top">
+              <img src="assets/images/IMG_0701.jpg" alt="Lulu the tabby cat" class="cat-real-photo" />
+              <span class="cbadge adopt-me">Adopt Me</span>
+              <span class="mood">⚡</span>
+            </div>
+
+            <div class="cc-body">
+              <div class="cc-name">Lulu</div>
+              <div class="cc-meta">♂ Male • 1 year old • Domestic short hair</div>
+              <div class="cc-sub">
+                A tiny zoomie prince full of playful energy, curious eyes, and endless kitten mischief.
+              </div>
+
+              <div class="traits">
+                <span class="tr">Playful</span>
+                <span class="tr">Energetic</span>
+                <span class="tr">Curious</span>
+              </div>
+            </div>
+
+            <div class="purr-meter">
+              <div class="purr-label">
+                <span>Zoomie Level</span>
+                <span>99%</span>
+              </div>
+              <div class="purr-bar">
+                <div class="purr-fill" data-width="99"></div>
+              </div>
+            </div>
+
+            <button class="cc-btn">Meet Lulu</button>
+          </div>
+
+          <div
+            class="cat-card rv"
+            style="transition-delay: 0.7s"
+            onclick="
+              openCat(
+                'Miso',
+                '🐱',
+                'Domestic Shorthair, 2 years old. Miso is the café\'s philosopher. She sits in the corner and observes everything with wide, thoughtful eyes. Once she decides she trusts you — and she will — she curls into a perfect little bread loaf on your lap. Worth the wait. 🍵'
+              )
+            "
+          >
+            <div class="cc-top d" style="background: linear-gradient(135deg, #fff3e0, #ffe0b2)">
+              <span style="font-size: 5rem">🐱</span><span class="cbadge b-yel">Deep Thinker</span
+              ><span class="mood">🍵</span>
+            </div>
+            <div class="cc-body">
+              <div class="cc-name">Miso</div>
+              <div class="cc-sub">Domestic Shorthair · 2 yrs old · ♀ Female</div>
+              <div class="traits">
+                <span class="tr">Observant</span><span class="tr">Shy at First</span><span class="tr">Loaf Mode</span>
+              </div>
+            </div>
+            <div class="purr-meter">
+              <div class="purr-label"><span>Purr Level</span><span>🍵🍵🍵</span></div>
+              <div class="purr-bar">
+                <div
+                  class="purr-fill"
+                  data-width="55"
+                  style="background: linear-gradient(90deg, #ffb74d, #f57c00)"
+                ></div>
+              </div>
+            </div>
+            <button
+              class="cc-btn"
+              style="background: linear-gradient(135deg, #ffb74d, #f57c00)"
+              onclick="
+                event.stopPropagation();
+                openCat(
+                  'Miso',
+                  '🐱',
+                  'Domestic Shorthair, 2 yrs. Quiet observer who turns into the sweetest loaf-mode lap cat once she trusts you. 🍵'
+                );
+              "
+            >
+              Say Hi to Miso
+            </button>
+          </div>
+
+          <div
+            class="cat-card rv"
+            style="transition-delay: 0.8s"
+            onclick="
+              openCat(
+                'Luna',
+                '😸',
+                'Persian, 3 years old. Named after the moon, Luna has the most stunning silky coat you\'ve ever seen. She is elegant, graceful and has a dramatic flair for draping herself across the most photogenic spots in the café. A natural model. 🌙'
+              )
+            "
+          >
+            <div class="cc-top a" style="background: linear-gradient(135deg, #e8eaf6, #c5cae9)">
+              <span style="font-size: 5rem">😸</span><span class="cbadge b-lav">Moon Child</span
+              ><span class="mood">🌙</span>
+            </div>
+            <div class="cc-body">
+              <div class="cc-name">Luna</div>
+              <div class="cc-sub">Persian · 3 yrs old · ♀ Female</div>
+              <div class="traits">
+                <span class="tr">Elegant</span><span class="tr">Photogenic</span><span class="tr">Graceful</span>
+              </div>
+            </div>
+            <div class="purr-meter">
+              <div class="purr-label"><span>Purr Level</span><span>🌙🌙🌙🌙</span></div>
+              <div class="purr-bar">
+                <div
+                  class="purr-fill"
+                  data-width="80"
+                  style="background: linear-gradient(90deg, #9fa8da, #5c6bc0)"
+                ></div>
+              </div>
+            </div>
+            <button
+              class="cc-btn"
+              style="background: linear-gradient(135deg, #9fa8da, #5c6bc0)"
+              onclick="
+                event.stopPropagation();
+                openCat(
+                  'Luna',
+                  '😸',
+                  'Persian, 3 yrs. Silky flowing coat, effortless elegance — she knows she is beautiful and poses accordingly. 🌙'
+                );
+              "
+            >
+              Say Hi to Luna
+            </button>
+          </div>
+
+          <div
+            class="cat-card rv"
+            style="transition-delay: 0.9s"
+            onclick="
+              openCat(
+                'Pumpkin',
+                '🐾',
+                'Domestic Longhair, 1 year old. The youngest and most chaotic member of the family. Pumpkin has one speed: maximum. He zooms, he leaps, he knocks things over — but he is so irresistibly fluffy and cute you cannot be mad. A pure burst of sunshine. 🍊'
+              )
+            "
+          >
+            <div class="cc-top b" style="background: linear-gradient(135deg, #fff3e0, #ffccbc)">
+              <span style="font-size: 5rem">🐾</span
+              ><span class="cbadge b-pink" style="background: #ffd6a5; color: #8b4500">Baby Zoomie</span
+              ><span class="mood">🍊</span>
+            </div>
+            <div class="cc-body">
+              <div class="cc-name">Pumpkin</div>
+              <div class="cc-sub">Domestic Longhair · 1 yr old · ♂ Male</div>
+              <div class="traits">
+                <span class="tr">Energetic</span><span class="tr">Playful</span><span class="tr">Baby Chaos</span>
+              </div>
+            </div>
+            <div class="purr-meter">
+              <div class="purr-label"><span>Purr Level</span><span>🍊🍊🍊🍊🍊</span></div>
+              <div class="purr-bar">
+                <div
+                  class="purr-fill"
+                  data-width="99"
+                  style="background: linear-gradient(90deg, #ff8c00, #ff5722)"
+                ></div>
+              </div>
+            </div>
+            <button
+              class="cc-btn"
+              style="background: linear-gradient(135deg, #ff8c00, #ff5722)"
+              onclick="
+                event.stopPropagation();
+                openCat(
+                  'Pumpkin',
+                  '🐾',
+                  'Domestic Longhair, 1 yr. Pure chaos wrapped in fluffy fur — the youngest and most energetic resident. 🍊'
+                );
+              "
+            >
+              Say Hi to Pumpkin
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="adopt-home-cta"
+      style="background: linear-gradient(135deg, #fff0f7, #fff8e7, #eef9f3); padding: 4.5rem 2rem"
+    >
+      <div class="s-wrap" style="padding: 0">
+        <div
+          class="rv"
+          style="
+            background: white;
+            border: 3px solid var(--pink-light);
+            box-shadow: var(--sh-lg);
+            border-radius: 30px;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 2rem;
+            align-items: center;
+          "
+        >
           <div>
-            <div style="font-size:.78rem;font-weight:800;color:var(--brown)">Secured by Stripe</div>
-            <div style="font-size:.72rem;font-weight:600;color:var(--brown-l)">Your card details are encrypted and never stored</div>
+            <div class="tag-pill">Adoption Corner 🐾</div>
+            <h2
+              style="
+                font-family: 'Pacifico', cursive;
+                font-size: clamp(2rem, 4vw, 2.8rem);
+                color: var(--brown);
+                margin-bottom: 0.8rem;
+              "
+            >
+              Sometimes your favorite café cat becomes your forever cat
+            </h2>
+            <p
+              style="
+                color: var(--brown-l);
+                font-size: 0.96rem;
+                font-weight: 600;
+                line-height: 1.85;
+                margin-bottom: 1rem;
+              "
+            >
+              If you connect with one of our resident sweethearts, you can apply right from our adoption page. We review
+              each application carefully to make sure every cat goes to the right loving home.
+            </p>
+            <div style="display: flex; gap: 0.7rem; flex-wrap: wrap; margin: 1.2rem 0 1.5rem">
+              <span class="pill">🏠 Indoor homes only</span>
+              <span class="pill">💉 Vaccinated & fixed</span>
+              <span class="pill">📋 Thoughtful matching</span>
+            </div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap">
+              <a href="adopt.html" class="btn btn-pink">🐾 Start Adoption Application</a>
+              <a href="#cats" class="btn btn-outline">😻 Meet the Cats First</a>
+            </div>
           </div>
-          <div style="margin-left:auto;display:flex;gap:4px">
-            <span style="background:#1a1f71;color:white;font-size:.6rem;font-weight:800;padding:3px 6px;border-radius:4px">VISA</span>
-            <span style="background:#eb001b;color:white;font-size:.6rem;font-weight:800;padding:3px 6px;border-radius:4px">MC</span>
-            <span style="background:#2e77bc;color:white;font-size:.6rem;font-weight:800;padding:3px 6px;border-radius:4px">AMEX</span>
+          <div
+            style="
+              background: linear-gradient(135deg, var(--pink-soft), var(--yellow-light));
+              border: 2.5px solid var(--pink-light);
+              border-radius: 28px;
+              padding: 1.8rem;
+              position: relative;
+              overflow: hidden;
+            "
+          >
+            <div style="position: absolute; right: -8px; bottom: -16px; font-size: 7rem; opacity: 0.08">😻</div>
+            <div style="display: grid; gap: 1rem">
+              <div
+                style="
+                  background: white;
+                  border: 2px solid var(--pink-light);
+                  border-radius: 18px;
+                  padding: 1rem 1.1rem;
+                "
+              >
+                <div style="font-weight: 800; color: var(--brown); margin-bottom: 0.25rem">1. Visit and connect</div>
+                <div style="font-size: 0.85rem; color: var(--brown-l); font-weight: 600; line-height: 1.7">
+                  Spend time in the lounge and get to know the cats' personalities.
+                </div>
+              </div>
+              <div
+                style="
+                  background: white;
+                  border: 2px solid var(--pink-light);
+                  border-radius: 18px;
+                  padding: 1rem 1.1rem;
+                "
+              >
+                <div style="font-weight: 800; color: var(--brown); margin-bottom: 0.25rem">2. Apply online</div>
+                <div style="font-size: 0.85rem; color: var(--brown-l); font-weight: 600; line-height: 1.7">
+                  Tell us about your home, lifestyle, and the cat you are interested in.
+                </div>
+              </div>
+              <div
+                style="
+                  background: white;
+                  border: 2px solid var(--pink-light);
+                  border-radius: 18px;
+                  padding: 1rem 1.1rem;
+                "
+              >
+                <div style="font-weight: 800; color: var(--brown); margin-bottom: 0.25rem">
+                  3. Get matched thoughtfully
+                </div>
+                <div style="font-size: 0.85rem; color: var(--brown-l); font-weight: 600; line-height: 1.7">
+                  We review applications carefully because the right home matters as much as the right cat.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery-section" id="gallery">
+      <div class="s-wrap">
+        <div class="s-head rv">
+          <div class="tag-pill">Photo Paw-lery 📸</div>
+          <h2>Cutest Moments</h2>
+          <p>Peek into the sweet, silly, and cozy lives of our café kitties. Click a photo for a closer look. ✨</p>
+        </div>
+
+        <div class="gallery-grid rv">
+          <div
+            class="gallery-item big"
+            onclick="
+              openGallery(
+                '🐱',
+                'Staircase Sweetheart',
+                'A black-and-white cutie posing on the stairs with wide curious eyes and a signature little chin spot.'
+              )
+            "
+          >
+            <img
+              src="assets/images/6BF29B28-.jpg"
+              alt="Black and white cat sitting on stairs"
+              class="gallery-photo real-photo"
+            />
+            <div class="gallery-overlay"><span>Staircase Sweetheart 🖤</span></div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="
+              openGallery(
+                '🌿',
+                'Backyard Explorer',
+                'A tuxedo kitty relaxing under the picnic table, enjoying grass, sunshine, and outdoor adventure time.'
+              )
+            "
+          >
+            <img
+              src="assets/images/FB_IMG_1775542423518.jpg"
+              alt="Black and white cat under picnic table in grass"
+              class="gallery-photo real-photo"
+            />
+            <div class="gallery-overlay"><span>Backyard Explorer 🌿</span></div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="
+              openGallery(
+                '🌞',
+                'Window Watcher',
+                'A sleek tuxedo cat by the window, keeping watch outside with glowing golden eyes.'
+              )
+            "
+          >
+            <img
+              src="assets/images/FB_IMG_1775542436385.jpg"
+              alt="Black tuxedo cat by the window in side profile"
+              class="gallery-photo real-photo"
+            />
+            <div class="gallery-overlay"><span>Window Watcher 🌞</span></div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="
+              openGallery(
+                '🌙',
+                'Golden Eyes Close-Up',
+                'A close-up window moment with bright golden eyes, moon charm, and serious star energy.'
+              )
+            "
+          >
+            <img
+              src="assets/images/FB_IMG_1775542455241.jpg"
+              alt="Close-up of black tuxedo cat by the window"
+              class="gallery-photo real-photo"
+            />
+            <div class="gallery-overlay"><span>Golden Eyes Close-Up 🌙</span></div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="
+              openGallery(
+                '🧸',
+                'Cozy Bed Crew',
+                'A black-and-white sweetheart tucked beside a giant plush buddy for peak bedtime coziness.'
+              )
+            "
+          >
+            <img
+              src="assets/images/IMG_0188.jpg"
+              alt="Black and white cat on bed beside giant plush toy"
+              class="gallery-photo real-photo"
+            />
+            <div class="gallery-overlay"><span>Cozy Bed Crew 🧸</span></div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="
+              openGallery(
+                '😼',
+                'Tabby Chill Mode',
+                'A relaxed tabby lounging on the bed with calm eyes and laid-back little tiger energy.'
+              )
+            "
+          >
+            <img src="assets/images/IMG_0710.jpg" alt="Tabby cat resting on a bed" class="gallery-photo real-photo" />
+            <div class="gallery-overlay"><span>Tabby Chill Mode 😼</span></div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="
+              openGallery(
+                '💫',
+                'Blanket Prince',
+                'A handsome tabby posing proudly on a red blanket like he totally knows he is adorable.'
+              )
+            "
+          >
+            <img
+              src="assets/images/IMG_0886.jpg"
+              alt="Tabby cat posing on a red blanket"
+              class="gallery-photo real-photo"
+            />
+            <div class="gallery-overlay"><span>Blanket Prince 💫</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cat-divider">🎉 ☕ 🎉 ☕ 🎉 ☕ 🎉</div>
+
+    <!-- EXPERIENCES -->
+
+    <div class="cat-divider">⭐ 🐾 ⭐ 🐾 ⭐ 🐾 ⭐</div>
+
+    <!-- REVIEWS -->
+    <section id="reviews" style="background: white">
+      <div class="s-wrap">
+        <div class="s-head rv">
+          <div class="tag-pill">Happy Visitors ⭐</div>
+          <h2>What People Are Saying</h2>
+          <p>Real reviews from real cat lovers 🐾</p>
+        </div>
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem"
+          id="reviewsGrid"
+        >
+          <!-- Review cards inserted by JS -->
+        </div>
+        <div class="rv" style="text-align: center; margin-top: 2.5rem">
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=21+Lenox+Avenue,+Paterson,+NJ+07502"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >
+            ⭐ Leave us a Google Review
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiences" class="exp-section">
+      <div class="s-wrap">
+        <div class="s-head rv">
+          <div class="tag-pill">Experiences 🎉</div>
+          <h2>Choose Your Vibe</h2>
+          <p>From a solo coffee date with cats to a full group party — we have the perfect experience for you.</p>
+        </div>
+        <div class="exp-grid">
+          <div class="exp-card rv">
+            <div class="exp-img e1">☕</div>
+            <div class="exp-body">
+              <h3>Lil' Sip</h3>
+              <span class="exp-price">$20/person</span>
+              <p>40 min lounge. Perfect for a quick cat fix on a busy day.</p>
+              <button class="exp-btn" onclick="jumpBook()">Book This →</button>
+            </div>
+          </div>
+          <div class="exp-card rv" style="transition-delay: 0.1s">
+            <div class="exp-img e2">😻</div>
+            <div class="exp-body">
+              <h3>Purr Package ⭐ Popular</h3>
+              <span class="exp-price">$25/person</span>
+              <p>60 min + 1 specialty drink. The classic Lil' Meow experience.</p>
+              <button class="exp-btn" onclick="jumpBook()">Book This →</button>
+            </div>
+          </div>
+          <div
+            class="exp-card rv"
+            style="
+              transition-delay: 0.2s;
+              border-color: var(--yellow);
+              background: linear-gradient(180deg, #fffbf0, white);
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: -13px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(135deg, var(--yellow), #ffb300);
+                color: var(--brown);
+                padding: 4px 16px;
+                border-radius: 50px;
+                font-size: 0.7rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+                white-space: nowrap;
+                box-shadow: 0 2px 8px rgba(255, 179, 0, 0.3);
+              "
+            >
+              ✨ Add-On Extra
+            </div>
+            <div class="exp-img e2" style="background: linear-gradient(135deg, #fff8dc, #ffe680)">📸</div>
+            <div class="exp-body">
+              <h3>The Purr Extra Special</h3>
+              <span class="exp-price" style="color: var(--yellow); text-shadow: 0 1px 0 rgba(0, 0, 0, 0.08)"
+                >+$15/person</span
+              >
+              <p>
+                Add on to any visit! Get a printed Polaroid photo with your favourite resident cat to take home as a
+                cute keepsake. 🐾🎞️
+              </p>
+              <button
+                class="exp-btn"
+                style="border-color: var(--yellow); color: #7a5c00; background: #fffbe6"
+                onclick="showToast('📸 Add the Purr Extra Special when booking — just mention it in Special Requests!')"
+              >
+                Add This On →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="menu" class="menu-section">
+      <div class="s-wrap">
+        <div class="s-head rv">
+          <div class="tag-pill">Coffee & Drinks ☕</div>
+          <h2>Our Lil' Menu</h2>
+          <p>Every item made with love — just like our cats! 🐾</p>
+        </div>
+        <!-- Note: all 6 drinks are available hot OR iced — same drink, your choice -->
+        <p
+          class="rv"
+          style="
+            text-align: center;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--brown-l);
+            margin-bottom: 1.5rem;
+            background: var(--pink-soft);
+            border: 2px solid var(--pink-light);
+            border-radius: 50px;
+            padding: 10px 24px;
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+          "
+        >
+          ✨ All 6 drinks available <strong style="color: var(--pink-deep)">Hot ☕ or Iced 🧊</strong> — same price,
+          your choice!
+        </p>
+        <div class="menu-tabs">
+          <button class="mtab on" onclick="switchTab(this, 'hot')"><span>☕ Hot</span></button>
+          <button class="mtab" onclick="switchTab(this, 'iced')"><span>🧊 Iced</span></button>
+        </div>
+
+        <div class="mpanel on" id="tab-hot">
+          <div class="menu-items">
+            <div class="mi" onclick="showToast('☕ Purrfect Latte — also available iced!')">
+              <div>
+                <div class="mi-name">Purrfect Latte</div>
+                <div class="mi-desc">Silky espresso & steamed oat milk with a hand-drawn cat latte art on top</div>
+              </div>
+              <div class="mi-price">$6.50</div>
+            </div>
+            <div class="mi" onclick="showToast('🍵 Meowtcha Latte — also available iced!')">
+              <div>
+                <div class="mi-name">Meowtcha Latte</div>
+                <div class="mi-desc">
+                  Ceremonial-grade matcha whisked until frothy & poured into steamed oat milk — as calm and green-eyed
+                  as a sleepy cat in the sun 😸
+                </div>
+              </div>
+              <div class="mi-price">$6.50</div>
+            </div>
+            <div class="mi" onclick="showToast('☕ Kitty Cappuccino — also available iced!')">
+              <div>
+                <div class="mi-name">Kitty Cappuccino</div>
+                <div class="mi-desc">Double shot espresso with thick velvety micro-foam & a sprinkle of cinnamon</div>
+              </div>
+              <div class="mi-price">$6.00</div>
+            </div>
+            <div class="mi" onclick="showToast('🐾 Purr Macchiato — also available iced!')">
+              <div>
+                <div class="mi-name">Purr Macchiato</div>
+                <div class="mi-desc">
+                  Layers of silky steamed milk, bold espresso & a drizzle of vanilla — perfectly balanced
+                </div>
+              </div>
+              <div class="mi-price">$6.50</div>
+            </div>
+            <div class="mi" onclick="showToast('🍫 Midnight Mocha — also available iced!')">
+              <div>
+                <div class="mi-name">Midnight Mocha</div>
+                <div class="mi-desc">Rich dark chocolate, espresso & steamed milk topped with cocoa powder</div>
+              </div>
+              <div class="mi-price">$6.50</div>
+            </div>
+            <div class="mi" onclick="showToast('🍂 Brown Sugar Chai — also available iced!')">
+              <div>
+                <div class="mi-name">Brown Sugar Chai</div>
+                <div class="mi-desc">House-spiced chai with caramelised brown sugar, cinnamon & oat milk foam</div>
+              </div>
+              <div class="mi-price">$6.00</div>
+            </div>
           </div>
         </div>
 
-        <div class="snav"><button class="bbtn" onclick="go(2)">← Back</button><button class="btn btn-pink" id="payBtn" onclick="pay()">🔒 Pay & Confirm</button></div>
+        <div class="mpanel" id="tab-iced">
+          <div class="menu-items">
+            <div class="mi" onclick="showToast('☕ Iced Purrfect Latte — also available hot!')">
+              <div>
+                <div class="mi-name">Iced Purrfect Latte</div>
+                <div class="mi-desc">Chilled espresso poured over ice with creamy oat milk & cat latte art</div>
+              </div>
+              <div class="mi-price">$6.50</div>
+            </div>
+            <div class="mi" onclick="showToast('🍵 Iced Meowtcha Latte — also available hot!')">
+              <div>
+                <div class="mi-name">Iced Meowtcha Latte</div>
+                <div class="mi-desc">Ceremonial matcha shaken with ice & oat milk — bright, grassy & refreshing</div>
+              </div>
+              <div class="mi-price">$6.50</div>
+            </div>
+            <div class="mi" onclick="showToast('☕ Iced Kitty Cappuccino — also available hot!')">
+              <div>
+                <div class="mi-name">Iced Kitty Cappuccino</div>
+                <div class="mi-desc">Double shot espresso over ice with cold foam & a dusting of cinnamon</div>
+              </div>
+              <div class="mi-price">$6.00</div>
+            </div>
+            <div class="mi" onclick="showToast('🐾 Iced Purr Macchiato — also available hot!')">
+              <div>
+                <div class="mi-name">Iced Purr Macchiato</div>
+                <div class="mi-desc">
+                  Cold oat milk, a shot of bold espresso & vanilla drizzle poured over ice — stunning & smooth
+                </div>
+              </div>
+              <div class="mi-price">$6.50</div>
+            </div>
+            <div class="mi" onclick="showToast('🍫 Iced Midnight Mocha — also available hot!')">
+              <div>
+                <div class="mi-name">Iced Midnight Mocha</div>
+                <div class="mi-desc">Dark chocolate espresso over ice — bold, rich & dangerously good</div>
+              </div>
+              <div class="mi-price">$6.50</div>
+            </div>
+            <div class="mi" onclick="showToast('🍂 Iced Brown Sugar Chai — also available hot!')">
+              <div>
+                <div class="mi-name">Iced Brown Sugar Chai</div>
+                <div class="mi-desc">Shaken chai, brown sugar & oat milk over ice with a cinnamon drizzle</div>
+              </div>
+              <div class="mi-price">$6.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESERVATION -->
+    <section id="reserve" class="res-section">
+      <div class="res-wrap">
+        <div class="s-head rv">
+          <div class="tag-pill">Reservations 🗓️</div>
+          <h2>Book Your Visit</h2>
+          <p>
+            Reservations guarantee your spot — but
+            <strong style="color: var(--pink-deep)">walk-ins are always welcome</strong> too! Just drop in anytime we're
+            open. 🚶🐾
+          </p>
+        </div>
+        <div class="res-card rv" id="resCard">
+          <div class="res-progress"><div class="res-progress-fill" id="resProg"></div></div>
+          <div class="step-bar">
+            <div class="sp on" id="sp1">1️⃣ Date & Time</div>
+            <div class="sp" id="sp2">2️⃣ Package</div>
+            <div class="sp" id="sp3">3️⃣ Confirm</div>
+          </div>
+
+          <div class="spanel on" id="s1">
+            <div class="frow">
+              <div class="fg">
+                <label class="fl">Date <em>*</em></label
+                ><input type="date" class="fi" id="rDate" min="" oninput="validateField(this)" />
+              </div>
+              <div class="fg">
+                <label class="fl">Guests <em>*</em></label>
+                <select class="fi" id="rGuests" onchange="validateField(this)">
+                  <option value="">How many?</option>
+                  <option value="1">1 person</option>
+                  <option value="2">2 people</option>
+                  <option value="3">3 people</option>
+                  <option value="4">4 people</option>
+                  <option value="5">5 people</option>
+                  <option value="6">6+ (contact us)</option>
+                </select>
+              </div>
+            </div>
+            <div class="fg">
+              <label class="fl">Pick a Time <em>*</em></label>
+              <div class="tgrid">
+                <div
+                  style="
+                    grid-column: 1/-1;
+                    font-size: 0.75rem;
+                    font-weight: 800;
+                    color: var(--pink-deep);
+                    padding: 4px 0 2px;
+                    letter-spacing: 0.5px;
+                    text-transform: uppercase;
+                  "
+                >
+                  ☀️ Morning Session
+                </div>
+                <div class="ts" onclick="pickT(this)" data-t="11:00 AM">
+                  <span>11:00 AM</span><span class="ts-spots">6 spots</span>
+                </div>
+                <div class="ts" onclick="pickT(this)" data-t="12:00 PM">
+                  <span>12:00 PM</span><span class="ts-spots">6 spots</span>
+                </div>
+                <div class="ts" onclick="pickT(this)" data-t="1:00 PM">
+                  <span>1:00 PM</span><span class="ts-spots">6 spots</span>
+                </div>
+                <div class="ts" onclick="pickT(this)" data-t="2:00 PM">
+                  <span>2:00 PM</span><span class="ts-spots">6 spots</span>
+                </div>
+                <div
+                  class="ts off"
+                  style="
+                    grid-column: 1/-1;
+                    border-radius: 12px;
+                    background: var(--yellow-light);
+                    border-color: var(--yellow);
+                    color: var(--brown-m);
+                  "
+                >
+                  <span>☕ Break 2:30–4:00 PM</span><span class="ts-spots">Café closed</span>
+                </div>
+                <div
+                  style="
+                    grid-column: 1/-1;
+                    font-size: 0.75rem;
+                    font-weight: 800;
+                    color: var(--pink-deep);
+                    padding: 4px 0 2px;
+                    letter-spacing: 0.5px;
+                    text-transform: uppercase;
+                  "
+                >
+                  🌙 Afternoon Session
+                </div>
+                <div class="ts" onclick="pickT(this)" data-t="4:00 PM">
+                  <span>4:00 PM</span><span class="ts-spots">6 spots</span>
+                </div>
+                <div class="ts" onclick="pickT(this)" data-t="5:00 PM">
+                  <span>5:00 PM</span><span class="ts-spots">6 spots</span>
+                </div>
+                <div class="ts" onclick="pickT(this)" data-t="6:00 PM">
+                  <span>6:00 PM</span><span class="ts-spots">6 spots</span>
+                </div>
+                <div class="ts" onclick="pickT(this)" data-t="7:00 PM">
+                  <span>7:00 PM</span><span class="ts-spots">6 spots</span>
+                </div>
+              </div>
+            </div>
+            <div class="snav"><span></span><button class="btn btn-pink" onclick="go(2)">Next: Package →</button></div>
+          </div>
+          <div class="spanel" id="s2">
+            <div class="fg">
+              <label class="fl">Choose Your Experience <em>*</em></label>
+              <div class="pgrid">
+                <div class="pc" onclick="pickP(this, 'Lil\'s Sip', 20)">
+                  <span class="pc-icon">☕</span>
+                  <div class="pc-name">Lil' Sip</div>
+                  <div class="pc-price">$20/person</div>
+                  <div class="pc-desc">
+                    40 min cat lounge session<br />
+                    <span style="font-size: 0.9em">Drink available for purchase</span>
+                  </div>
+                </div>
+
+                <div class="pc" onclick="pickP(this, 'Purr Package', 25)">
+                  <span class="pc-pop">⭐ Most Popular</span>
+                  <span class="pc-icon">😻</span>
+                  <div class="pc-name">Purr Package</div>
+                  <div class="pc-price">$25/person</div>
+                  <div class="pc-desc">60 min cat lounge session + 1 drink included</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="fg">
+              <label class="fl">✨ Add-Ons (optional)</label>
+              <div
+                style="
+                  border: 2.5px solid var(--yellow);
+                  border-radius: 18px;
+                  padding: 1.2rem 1.4rem;
+                  background: linear-gradient(135deg, #fffbe6, #fff8dc);
+                  display: flex;
+                  align-items: center;
+                  gap: 14px;
+                  cursor: pointer;
+                "
+                onclick="toggleAddon(this)"
+              >
+                <div
+                  id="addonCheck"
+                  style="
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 8px;
+                    border: 2.5px solid var(--yellow);
+                    background: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1rem;
+                    flex-shrink: 0;
+                    transition: all 0.25s;
+                  "
+                >
+                  •
+                </div>
+                <div>
+                  <div style="font-weight: 800; font-size: 0.92rem; color: var(--brown)">
+                    📸 The Purr Extra Special — <span style="color: #b8860b">+$10/person</span>
+                  </div>
+                  <div style="font-size: 0.78rem; color: var(--brown-l); font-weight: 600; margin-top: 2px">
+                    A printed Polaroid photo with your favourite resident cat to take home 🐾🎞️
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="fg">
+              <label class="fl">Special Requests</label>
+              <textarea
+                class="fi"
+                rows="3"
+                id="rNotes"
+                placeholder="Allergies, birthday celebrations, accessibility needs..."
+              ></textarea>
+            </div>
+
+            <div class="snav">
+              <button class="bbtn" onclick="go(1)">← Back</button>
+              <button class="btn btn-pink" onclick="go(3)">Next: Your Info →</button>
+            </div>
+          </div>
+
+          <div class="spanel" id="s3">
+            <div class="frow">
+              <div class="fg">
+                <label class="fl">First Name <em>*</em></label
+                ><input type="text" class="fi" id="rFirst" placeholder="e.g. Sakura" oninput="validateField(this)" />
+              </div>
+              <div class="fg">
+                <label class="fl">Last Name <em>*</em></label
+                ><input type="text" class="fi" id="rLast" placeholder="e.g. Park" oninput="validateField(this)" />
+              </div>
+            </div>
+            <div class="fg">
+              <label class="fl">Email <em>*</em></label
+              ><input
+                type="email"
+                class="fi"
+                id="rEmail"
+                placeholder="you@email.com"
+                oninput="validateEmail(this)"
+              /><span class="field-hint">We'll send your confirmation here</span>
+            </div>
+            <div class="fg">
+              <label class="fl">Phone <em>*</em></label
+              ><input type="tel" class="fi" id="rPhone" placeholder="(555) 000-0000" oninput="validateField(this)" />
+            </div>
+            <div class="fg">
+              <label class="fl">How did you hear about us?</label
+              ><select class="fi">
+                <option value="">Select...</option>
+                <option>Instagram</option>
+                <option>TikTok</option>
+                <option>Google</option>
+                <option>Friend / Family</option>
+                <option>Yelp</option>
+                <option>Walking By</option>
+              </select>
+            </div>
+
+            <!-- Booking summary -->
+            <div class="sum-box" style="margin-top: 1.4rem">
+              <div class="sr"><span>📅 Date</span><span id="sd">—</span></div>
+              <div class="sr"><span>⏰ Time</span><span id="st">—</span></div>
+              <div class="sr"><span>👥 Guests</span><span id="sg">—</span></div>
+              <div class="sr"><span>🎟️ Package</span><span id="spkg">—</span></div>
+              <div class="sr tot"><span>Total Due Now</span><span class="amt" id="sa">—</span></div>
+            </div>
+
+            <!-- Stripe Card Payment -->
+            <div style="margin-top: 1.4rem">
+              <label class="fl" style="font-size: 0.9rem; margin-bottom: 10px; display: block"
+                >💳 Pay Securely Online <em>*</em></label
+              >
+
+              <!-- Card number -->
+              <div style="margin-bottom: 0.8rem">
+                <label
+                  style="
+                    font-size: 0.75rem;
+                    font-weight: 800;
+                    color: var(--brown-l);
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    display: block;
+                    margin-bottom: 5px;
+                  "
+                  >Card Number</label
+                >
+                <div
+                  id="card-number-element"
+                  style="
+                    background: white;
+                    border: 2.5px solid var(--pink-light);
+                    border-radius: 12px;
+                    padding: 13px 16px;
+                    transition: border-color 0.3s;
+                  "
+                ></div>
+              </div>
+
+              <!-- Expiry + CVC row -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem">
+                <div>
+                  <label
+                    style="
+                      font-size: 0.75rem;
+                      font-weight: 800;
+                      color: var(--brown-l);
+                      text-transform: uppercase;
+                      letter-spacing: 0.5px;
+                      display: block;
+                      margin-bottom: 5px;
+                    "
+                    >Expiry Date</label
+                  >
+                  <div
+                    id="card-expiry-element"
+                    style="
+                      background: white;
+                      border: 2.5px solid var(--pink-light);
+                      border-radius: 12px;
+                      padding: 13px 16px;
+                      transition: border-color 0.3s;
+                    "
+                  ></div>
+                </div>
+                <div>
+                  <label
+                    style="
+                      font-size: 0.75rem;
+                      font-weight: 800;
+                      color: var(--brown-l);
+                      text-transform: uppercase;
+                      letter-spacing: 0.5px;
+                      display: block;
+                      margin-bottom: 5px;
+                    "
+                    >Security Code (CVV)</label
+                  >
+                  <div
+                    id="card-cvc-element"
+                    style="
+                      background: white;
+                      border: 2.5px solid var(--pink-light);
+                      border-radius: 12px;
+                      padding: 13px 16px;
+                      transition: border-color 0.3s;
+                    "
+                  ></div>
+                </div>
+              </div>
+
+              <div
+                id="card-error"
+                style="
+                  color: #ef5350;
+                  font-size: 0.82rem;
+                  font-weight: 700;
+                  margin-top: 4px;
+                  display: none;
+                  padding: 8px 12px;
+                  background: #fff5f5;
+                  border-radius: 8px;
+                  border: 1.5px solid #ffcdd2;
+                "
+              ></div>
+            </div>
+
+            <!-- Security badge -->
+            <div
+              style="
+                background: var(--pink-soft);
+                border: 2px solid var(--pink-light);
+                border-radius: 14px;
+                padding: 0.9rem 1.2rem;
+                margin: 1rem 0;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+              "
+            >
+              <span style="font-size: 1.2rem">🔒</span>
+              <div>
+                <div style="font-size: 0.78rem; font-weight: 800; color: var(--brown)">Secured by Stripe</div>
+                <div style="font-size: 0.72rem; font-weight: 600; color: var(--brown-l)">
+                  Your card details are encrypted and never stored
+                </div>
+              </div>
+              <div style="margin-left: auto; display: flex; gap: 4px">
+                <span
+                  style="
+                    background: #1a1f71;
+                    color: white;
+                    font-size: 0.6rem;
+                    font-weight: 800;
+                    padding: 3px 6px;
+                    border-radius: 4px;
+                  "
+                  >VISA</span
+                >
+                <span
+                  style="
+                    background: #eb001b;
+                    color: white;
+                    font-size: 0.6rem;
+                    font-weight: 800;
+                    padding: 3px 6px;
+                    border-radius: 4px;
+                  "
+                  >MC</span
+                >
+                <span
+                  style="
+                    background: #2e77bc;
+                    color: white;
+                    font-size: 0.6rem;
+                    font-weight: 800;
+                    padding: 3px 6px;
+                    border-radius: 4px;
+                  "
+                  >AMEX</span
+                >
+              </div>
+            </div>
+
+            <div class="snav">
+              <button class="bbtn" onclick="go(2)">← Back</button
+              ><button class="btn btn-pink" id="payBtn" onclick="pay()">🔒 Pay & Confirm</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="succ" id="succBox">
+          <div class="confetti" id="confettiBox"></div>
+          <div class="succ-big">🎉</div>
+          <h2>You're all booked!</h2>
+          <p>Your visit to Lil' Meow Café is confirmed.<br />The cats are already excited to meet you! 🐾</p>
+          <div class="bcode" id="bCode">LMC-000000</div>
+          <div class="econf">✉️ Confirmation sent to your email</div>
+          <p style="color: var(--brown-l); font-size: 0.85rem; font-weight: 600; margin-top: 1.2rem">
+            Please arrive 5 min early · Clean socks required · Grab a cute pair from us if you forget! 🧦
+          </p>
+          <button class="btn btn-pink" onclick="location.reload()" style="margin-top: 1.8rem">
+            🗓️ Book Another Visit
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq-section">
+      <div class="s-wrap">
+        <div class="s-head rv">
+          <div class="tag-pill">FAQ 💬</div>
+          <h2>Got Questions?</h2>
+          <p>Everything you need to know before your first visit.</p>
+        </div>
+        <div class="faq-list">
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>Do I need a reservation?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              No reservation? No problem — <strong>walk-ins are always welcome!</strong> Just drop in anytime during
+              opening hours and we'll find you a spot. Reservations are recommended on weekends to guarantee entry, but
+              we never turn away a cat lover. 🐾
+            </div>
+          </div>
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>Are children allowed?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              Children aged 5 and above are welcome during all opening hours. For the safety and comfort of our resident
+              cats, younger children are not permitted in the lounge.
+            </div>
+          </div>
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>Why do I need to wear socks?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              Shoes are not permitted in the cat lounge to keep things clean and safe for our cats. Please bring clean
+              socks — or purchase a pair of adorable cat-themed socks from us at the door!
+            </div>
+          </div>
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>Can I bring my own food or drinks?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              Outside food and drinks are not permitted in the café. We serve specialty coffee and beverages only for
+              guests to enjoy.
+            </div>
+          </div>
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>Are your cats friendly?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              Absolutely! Our resident cats are well-socialised and love visitors. Each cat has their own personality —
+              some love cuddles, some prefer to observe. We ask all guests to let the cats approach at their own pace.
+            </div>
+          </div>
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>Can I adopt one of the cats I meet here?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              Yes — if a cat is available for adoption and you feel a connection, you can fill out our
+              <a href="adopt.html" style="color: var(--pink-deep); font-weight: 800">online adoption application</a>.
+              Submitting the form does not guarantee adoption, but it helps us find the best forever match for each cat.
+            </div>
+          </div>
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>Can I take photos of the cats?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              Yes, absolutely — we encourage it! 📸 Please share your photos and tag us with
+              <strong>#LilMeowCafe</strong> on Instagram and TikTok. We love seeing our cats through your eyes. Flash
+              photography is not permitted as it can startle the cats.
+            </div>
+          </div>
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>What should I wear?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              Wear whatever makes you comfortable! The one rule is <strong>no shoes inside the lounge</strong> — clean
+              socks are required. We sell adorable cat-themed socks at the door if you forget. We also recommend
+              avoiding strong perfumes or colognes as cats have sensitive noses. 🐾
+            </div>
+          </div>
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>I have a cat allergy — can I still visit?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              We do have cats throughout the lounge so we can't guarantee an allergen-free environment. If you have mild
+              allergies, antihistamines taken beforehand can help. We recommend checking with your doctor if you have
+              severe cat allergies before visiting.
+            </div>
+          </div>
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>What is the minimum age?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              Children aged 5 and above are welcome at all times. For the comfort and safety of our resident cats, we
+              kindly ask that younger children visit another time. All guests under 18 must be accompanied by an adult.
+            </div>
+          </div>
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>How do I pay when I arrive?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              Payments can be made in person at the café — Payments required when booking online. We accept
+              <strong>Credit Card</strong>, <strong>Debit Card</strong> and <strong>Zelle</strong>. 💳
+            </div>
+          </div>
+          <div class="fq rv">
+            <div class="fq-q" onclick="faqToggle(this)">
+              <span>What is the Purr Extra Special add-on?</span>
+              <div class="fq-icon">▾</div>
+            </div>
+            <div class="fq-a">
+              For an extra $15 per person you can add our special keepsake experience — a printed Polaroid photo of you
+              with your favourite resident cat to take home! 📸🐾 Just mention it when you book or ask at the door.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cat-divider">📍 🕐 📱 📍 🕐 📱 📍</div>
+
+    <!-- VISIT -->
+    <section id="visit" class="visit-section">
+      <div class="s-wrap">
+        <div class="s-head rv">
+          <div class="tag-pill">Plan Your Visit 📍</div>
+          <h2>Hours & Location</h2>
+        </div>
+        <div class="vgrid">
+          <div class="vc rv">
+            <span class="vc-icon">🕐</span>
+            <h3>Hours</h3>
+            <ul class="hlist" id="hoursList">
+              <li>
+                <span class="hday">Monday</span
+                ><span class="htime"
+                  >11:00 AM – 2:30 PM<br /><span style="font-size: 0.8em; opacity: 0.8">4:00 PM – 8:00 PM</span></span
+                >
+              </li>
+              <li><span class="hday">Tuesday</span><span class="hclosed">Closed</span></li>
+              <li><span class="hday">Wednesday</span><span class="hclosed">Closed</span></li>
+              <li>
+                <span class="hday">Thursday</span
+                ><span class="htime"
+                  >11:00 AM – 2:30 PM<br /><span style="font-size: 0.8em; opacity: 0.8">4:00 PM – 8:00 PM</span></span
+                >
+              </li>
+              <li>
+                <span class="hday">Friday</span
+                ><span class="htime"
+                  >11:00 AM – 2:30 PM<br /><span style="font-size: 0.8em; opacity: 0.8">4:00 PM – 8:00 PM</span></span
+                >
+              </li>
+              <li>
+                <span class="hday">Saturday</span
+                ><span class="htime"
+                  >11:00 AM – 2:30 PM<br /><span style="font-size: 0.8em; opacity: 0.8">4:00 PM – 8:00 PM</span></span
+                >
+              </li>
+              <li>
+                <span class="hday">Sunday</span
+                ><span class="htime"
+                  >11:00 AM – 2:30 PM<br /><span style="font-size: 0.8em; opacity: 0.8">4:00 PM – 8:00 PM</span></span
+                >
+              </li>
+              <li style="border-top: 1.5px dashed var(--pink-light); margin-top: 4px">
+                <span class="hday" style="color: var(--pink-deep); font-weight: 700">☕ Break</span
+                ><span class="hclosed" style="color: var(--brown-m)">2:30 – 4:00 PM daily</span>
+              </li>
+            </ul>
+            <div
+              style="
+                background: var(--mint);
+                border-radius: 12px;
+                padding: 0.8rem 1rem;
+                margin-top: 1rem;
+                font-size: 0.82rem;
+                font-weight: 700;
+                color: #1b6b4a;
+                text-align: center;
+              "
+            >
+              🚶 Walk-ins welcome · Tue &amp; Wed closed · Break 2:30–4pm
+            </div>
+          </div>
+          <div class="vc rv" style="transition-delay: 0.1s">
+            <span class="vc-icon">📍</span>
+            <h3>Find Us</h3>
+            <div
+              style="
+                border-radius: 16px;
+                overflow: hidden;
+                border: 2.5px solid var(--pink-light);
+                margin: 0.8rem 0 1.2rem;
+                box-shadow: var(--sh);
+              "
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3018.5!2d-74.2196!3d40.9001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s21+Lenox+Avenue%2C+Paterson%2C+NJ+07502!5e0!3m2!1sen!2sus!4v1710000000000"
+                width="100%"
+                height="180"
+                style="border: 0; display: block"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lil Meow Cafe Location"
+              >
+              </iframe>
+            </div>
+            <p class="addr">
+              🏠 21 Lenox Avenue<br />Paterson, NJ 07502<br /><br />📞 (929) 301-9368<br />✉️
+              <a href="mailto:lilmeowcafe@gmail.com" style="color: inherit; text-decoration: underline"
+                >lilmeowcafe@gmail.com</a
+              >
+            </p>
+            <a
+              href="https://maps.app.goo.gl/Y5ymFUZQy1QfnDLp9"
+              target="_blank"
+              rel="noopener"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                background: var(--pink-soft);
+                border: 2px solid var(--pink-light);
+                color: var(--pink-deep);
+                padding: 8px 18px;
+                border-radius: 50px;
+                font-weight: 800;
+                font-size: 0.82rem;
+                text-decoration: none;
+                margin-top: 0.8rem;
+                transition: all 0.25s;
+              "
+              onmouseover="
+                this.style.background = 'var(--pink)';
+                this.style.color = 'white';
+              "
+              onmouseout="
+                this.style.background = 'var(--pink-soft)';
+                this.style.color = 'var(--pink-deep)';
+              "
+              >📍 Get Directions →</a
+            >
+          </div>
+          <div class="vc rv" style="transition-delay: 0.2s">
+            <span class="vc-icon">📱</span>
+            <h3>Follow Along</h3>
+            <p class="addr" style="margin-bottom: 1.2rem">
+              Tag us in your cat photos!<br /><strong style="color: var(--pink)">#LilMeowCafe</strong> 🐾
+            </p>
+            <div class="socials">
+              <a class="soc" href="https://www.instagram.com/lilmeow_cafe/" target="_blank" rel="noopener"
+                ><span>📸 @lilmeowcafe on Instagram</span></a
+              >
+              <a class="soc" href="https://www.tiktok.com/@lilmeowcafe" target="_blank" rel="noopener"
+                ><span>🎵 @lilmeowcafe on TikTok</span></a
+              >
+              <a class="soc" href="https://www.facebook.com/lilmeowcafe" target="_blank" rel="noopener"
+                ><span>📘 Lil' Meow Café on Facebook</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <!-- CONTACT -->
+    <section id="contact-section" style="background: white; padding: 4rem 2rem">
+      <div style="max-width: 1100px; margin: 0 auto; text-align: center">
+        <div class="tag-pill rv">Get In Touch ✉️</div>
+        <h2
+          class="rv"
+          style="
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--brown);
+            margin: 0.6rem 0 0.7rem;
+          "
+        >
+          Contact Us
+        </h2>
+        <p class="rv" style="color: var(--brown-l); font-weight: 600; font-size: 1rem; margin-bottom: 2.2rem">
+          We'd love to hear from you! Reach out any way that works best. 🐾
+        </p>
+
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            align-items: stretch;
+          "
+        >
+          <a href="tel:9293019368" style="text-decoration: none">
+            <div
+              class="rv"
+              style="
+                height: 100%;
+                background: var(--pink-soft);
+                border: 3px solid var(--pink-light);
+                border-radius: 28px;
+                padding: 2rem 1.5rem;
+                transition: all 0.3s;
+                box-shadow: var(--sh);
+              "
+              onmouseover="
+                this.style.borderColor = 'var(--pink)';
+                this.style.transform = 'translateY(-6px)';
+                this.style.boxShadow = 'var(--sh-lg)';
+              "
+              onmouseout="
+                this.style.borderColor = 'var(--pink-light)';
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'var(--sh)';
+              "
+            >
+              <div style="font-size: 3rem; margin-bottom: 0.8rem">📞</div>
+              <div style="font-weight: 800; color: var(--brown); font-size: 1.55rem; line-height: 1.2">Call Us</div>
+              <div style="color: var(--pink-deep); font-weight: 700; font-size: 1.15rem; margin-top: 14px">
+                (929) 301-9368
+              </div>
+            </div>
+          </a>
+
+          <a href="mailto:lilmeowcafe@gmail.com" style="text-decoration: none">
+            <div
+              class="rv"
+              style="
+                height: 100%;
+                background: var(--yellow-light);
+                border: 3px solid #ffe4b5;
+                border-radius: 28px;
+                padding: 2rem 1.5rem;
+                transition: all 0.3s;
+                box-shadow: var(--sh);
+              "
+              onmouseover="
+                this.style.borderColor = 'var(--yellow)';
+                this.style.transform = 'translateY(-6px)';
+                this.style.boxShadow = 'var(--sh-lg)';
+              "
+              onmouseout="
+                this.style.borderColor = '#FFE4B5';
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'var(--sh)';
+              "
+            >
+              <div style="font-size: 3rem; margin-bottom: 0.8rem">✉️</div>
+              <div style="font-weight: 800; color: var(--brown); font-size: 1.55rem; line-height: 1.2">Email Us</div>
+              <div
+                style="
+                  color: var(--brown-m);
+                  font-weight: 700;
+                  font-size: 1.08rem;
+                  margin-top: 14px;
+                  word-break: break-word;
+                "
+              >
+                lilmeowcafe@gmail.com
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://maps.app.goo.gl/Y5ymFUZQy1QfnDLp9"
+            target="_blank"
+            rel="noopener"
+            style="text-decoration: none"
+          >
+            <div
+              class="rv"
+              style="
+                height: 100%;
+                background: var(--mint);
+                border: 3px solid #a0d9c5;
+                border-radius: 28px;
+                padding: 2rem 1.5rem;
+                transition: all 0.3s;
+                box-shadow: var(--sh);
+              "
+              onmouseover="
+                this.style.borderColor = '#7BC7A8';
+                this.style.transform = 'translateY(-6px)';
+                this.style.boxShadow = 'var(--sh-lg)';
+              "
+              onmouseout="
+                this.style.borderColor = '#A0D9C5';
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'var(--sh)';
+              "
+            >
+              <div style="font-size: 3rem; margin-bottom: 0.8rem">📍</div>
+              <div style="font-weight: 800; color: var(--brown); font-size: 1.55rem; line-height: 1.2">Find Us</div>
+              <div style="color: #1b6b4a; font-weight: 700; font-size: 1.15rem; margin-top: 14px">21 Lenox Avenue</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div class="foot-in">
+        <div>
+          <span class="f-brand">🐾 Lil' Meow Café</span>
+          <p class="f-tag">
+            Your cozy corner for coffee, cats & good vibes. Our resident cats are permanent family members — come meet
+            them any day we're open! 🐱
+          </p>
+        </div>
+        <div class="fcol">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#about">🐱 About Us</a></li>
+            <li><a href="#cats">😻 Our Cats</a></li>
+            <li><a href="adopt.html">🐾 Adopt a Cat</a></li>
+            <li><a href="#experiences">🎉 Experiences</a></li>
+            <li><a href="#menu">☕ Menu</a></li>
+            <li><a href="#gallery">📸 Gallery</a></li>
+            <li><a href="#reviews">⭐ Reviews</a></li>
+            <li><a href="#faq">💬 FAQ</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="#reserve">🗓️ Book a Visit</a></li>
+            <li><a href="#visit">📍 Hours & Location</a></li>
+            <li><a href="#contact">✉️ Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-btm">
+        © 2025 Lil' Meow Café · Made with 💕 and lots of purring · Visit for cozy café vibes or apply to adopt your
+        future best friend
+      </div>
+    </footer>
+
+    <!-- COOKIE CONSENT -->
+    <div
+      id="cookieBanner"
+      style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 99990;
+        background: white;
+        border-top: 3px solid #ffd6e0;
+        padding: 1.2rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        box-shadow: 0 -8px 32px rgba(255, 143, 171, 0.15);
+        transform: translateY(100%);
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      "
+    >
+      <div style="display: flex; align-items: center; gap: 12px; flex: 1; min-width: 260px">
+        <span style="font-size: 1.8rem">🍪</span>
+        <div>
+          <div style="font-weight: 800; font-size: 0.9rem; color: #3d1f0d; margin-bottom: 2px">We use cookies 🐾</div>
+          <div style="font-size: 0.78rem; color: #b07a5a; font-weight: 600; line-height: 1.5">
+            We use cookies to improve your experience and analyse how our site is used. By clicking Accept, you consent
+            to our use of cookies.
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.6rem; flex-shrink: 0">
+        <button
+          onclick="cookieDecline()"
+          style="
+            background: none;
+            border: 2px solid #ffd6e0;
+            color: #b07a5a;
+            padding: 9px 18px;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 800;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.25s;
+          "
+          onmouseover="
+            this.style.borderColor = '#FF8FAB';
+            this.style.color = '#FF8FAB';
+          "
+          onmouseout="
+            this.style.borderColor = '#FFD6E0';
+            this.style.color = '#B07A5A';
+          "
+        >
+          Decline
+        </button>
+        <button
+          onclick="cookieAccept()"
+          style="
+            background: linear-gradient(135deg, #ff8fab, #ff6b9d);
+            color: white;
+            border: 2px solid #ff6b9d;
+            padding: 9px 18px;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 800;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.25s;
+          "
+          onmouseover="
+            this.style.background = 'white';
+            this.style.color = '#FF8FAB';
+          "
+          onmouseout="
+            this.style.background = 'linear-gradient(135deg,#FF8FAB,#FF6B9D)';
+            this.style.color = 'white';
+          "
+        >
+          Accept 🐾
+        </button>
       </div>
     </div>
 
-    <div class="succ" id="succBox">
-      <div class="confetti" id="confettiBox"></div>
-      <div class="succ-big">🎉</div>
-      <h2>You're all booked!</h2>
-      <p>Your visit to Lil' Meow Café is confirmed.<br>The cats are already excited to meet you! 🐾</p>
-      <div class="bcode" id="bCode">LMC-000000</div>
-      <div class="econf">✉️ Confirmation sent to your email</div>
-      <p style="color:var(--brown-l);font-size:.85rem;font-weight:600;margin-top:1.2rem">Please arrive 5 min early · Clean socks required · Grab a cute pair from us if you forget! 🧦</p>
-      <button class="btn btn-pink" onclick="location.reload()" style="margin-top:1.8rem">🗓️ Book Another Visit</button>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="faq-section">
-  <div class="s-wrap">
-    <div class="s-head rv"><div class="tag-pill">FAQ 💬</div><h2>Got Questions?</h2><p>Everything you need to know before your first visit.</p></div>
-    <div class="faq-list">
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>Do I need a reservation?</span><div class="fq-icon">▾</div></div><div class="fq-a">No reservation? No problem — <strong>walk-ins are always welcome!</strong> Just drop in anytime during opening hours and we'll find you a spot. Reservations are recommended on weekends to guarantee entry, but we never turn away a cat lover. 🐾</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>Are children allowed?</span><div class="fq-icon">▾</div></div><div class="fq-a">Children aged 5 and above are welcome during all opening hours. For the safety and comfort of our resident cats, younger children are not permitted in the lounge.</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>Why do I need to wear socks?</span><div class="fq-icon">▾</div></div><div class="fq-a">Shoes are not permitted in the cat lounge to keep things clean and safe for our cats. Please bring clean socks — or purchase a pair of adorable cat-themed socks from us at the door!</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>Can I bring my own food or drinks?</span><div class="fq-icon">▾</div></div><div class="fq-a">Outside food and drinks are not permitted in the café. We have a full menu of specialty drinks and fresh sweet treats available for you to enjoy!</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>Are your cats friendly?</span><div class="fq-icon">▾</div></div><div class="fq-a">Absolutely! Our resident cats are well-socialised and love visitors. Each cat has their own personality — some love cuddles, some prefer to observe. We ask all guests to let the cats approach at their own pace.</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>Can I adopt one of the cats I meet here?</span><div class="fq-icon">▾</div></div><div class="fq-a">Yes — if a cat is available for adoption and you feel a connection, you can fill out our <a href="adopt.html" style="color:var(--pink-deep);font-weight:800">online adoption application</a>. Submitting the form does not guarantee adoption, but it helps us find the best forever match for each cat.</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>Can I take photos of the cats?</span><div class="fq-icon">▾</div></div><div class="fq-a">Yes, absolutely — we encourage it! 📸 Please share your photos and tag us with <strong>#LilMeowCafe</strong> on Instagram and TikTok. We love seeing our cats through your eyes. Flash photography is not permitted as it can startle the cats.</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>What should I wear?</span><div class="fq-icon">▾</div></div><div class="fq-a">Wear whatever makes you comfortable! The one rule is <strong>no shoes inside the lounge</strong> — clean socks are required. We sell adorable cat-themed socks at the door if you forget. We also recommend avoiding strong perfumes or colognes as cats have sensitive noses. 🐾</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>I have a cat allergy — can I still visit?</span><div class="fq-icon">▾</div></div><div class="fq-a">We do have cats throughout the lounge so we can't guarantee an allergen-free environment. If you have mild allergies, antihistamines taken beforehand can help. We recommend checking with your doctor if you have severe cat allergies before visiting.</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>What is the minimum age?</span><div class="fq-icon">▾</div></div><div class="fq-a">Children aged 5 and above are welcome at all times. For the comfort and safety of our resident cats, we kindly ask that younger children visit another time. All guests under 18 must be accompanied by an adult.</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>How do I pay when I arrive?</span><div class="fq-icon">▾</div></div><div class="fq-a">Payments can be made in person at the café — Payments required when booking online. We accept <strong>Credit Card</strong>, <strong>Debit Card</strong> and <strong>Zelle</strong>. 💳</div></div>
-      <div class="fq rv"><div class="fq-q" onclick="faqToggle(this)"><span>What is the Purr Extra Special add-on?</span><div class="fq-icon">▾</div></div><div class="fq-a">For an extra $10 per person you can add our special experience — a bag of house cat treats to hand-feed the kitties yourself, plus a printed Polaroid photo of you with your favourite resident cat to take home as a keepsake! 📸🐾 Just mention it when you book or ask at the door.</div></div>
-    </div>
-  </div>
-</section>
-
-<div class="cat-divider">📍 🕐 📱 📍 🕐 📱 📍</div>
-
-<!-- VISIT -->
-<section id="visit" class="visit-section">
-  <div class="s-wrap">
-    <div class="s-head rv"><div class="tag-pill">Plan Your Visit 📍</div><h2>Hours & Location</h2></div>
-    <div class="vgrid">
-      <div class="vc rv">
-        <span class="vc-icon">🕐</span><h3>Hours</h3>
-        <ul class="hlist" id="hoursList">
-          <li><span class="hday">Monday</span><span class="htime">11:00 AM – 2:30 PM<br><span style="font-size:.8em;opacity:.8">4:00 PM – 8:00 PM</span></span></li>
-          <li><span class="hday">Tuesday</span><span class="hclosed">Closed</span></li>
-          <li><span class="hday">Wednesday</span><span class="hclosed">Closed</span></li>
-          <li><span class="hday">Thursday</span><span class="htime">11:00 AM – 2:30 PM<br><span style="font-size:.8em;opacity:.8">4:00 PM – 8:00 PM</span></span></li>
-          <li><span class="hday">Friday</span><span class="htime">11:00 AM – 2:30 PM<br><span style="font-size:.8em;opacity:.8">4:00 PM – 8:00 PM</span></span></li>
-          <li><span class="hday">Saturday</span><span class="htime">11:00 AM – 2:30 PM<br><span style="font-size:.8em;opacity:.8">4:00 PM – 8:00 PM</span></span></li>
-          <li><span class="hday">Sunday</span><span class="htime">11:00 AM – 2:30 PM<br><span style="font-size:.8em;opacity:.8">4:00 PM – 8:00 PM</span></span></li>
-          <li style="border-top:1.5px dashed var(--pink-light);margin-top:4px"><span class="hday" style="color:var(--pink-deep);font-weight:700">☕ Break</span><span class="hclosed" style="color:var(--brown-m)">2:30 – 4:00 PM daily</span></li>
-        </ul>
-        <div style="background:var(--mint);border-radius:12px;padding:.8rem 1rem;margin-top:1rem;font-size:.82rem;font-weight:700;color:#1B6B4A;text-align:center">🚶 Walk-ins welcome · Tue &amp; Wed closed · Break 2:30–4pm</div>
-      </div>
-      <div class="vc rv" style="transition-delay:.1s">
-        <span class="vc-icon">📍</span><h3>Find Us</h3>
-        <div style="border-radius:16px;overflow:hidden;border:2.5px solid var(--pink-light);margin:.8rem 0 1.2rem;box-shadow:var(--sh)">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3018.5!2d-74.2196!3d40.9001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s21+Lenox+Avenue%2C+Paterson%2C+NJ+07502!5e0!3m2!1sen!2sus!4v1710000000000"
-            width="100%" height="180" style="border:0;display:block" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Lil Meow Cafe Location">
-          </iframe>
-        </div>
-        <p class="addr">🏠 21 Lenox Avenue<br>Paterson, NJ 07502<br><br>📞 (929) 301-9368<br>✉️ <a href="mailto:lilmeowcafe@gmail.com" style="color:inherit;text-decoration:underline">lilmeowcafe@gmail.com</a></p>
-        <a href="https://maps.app.goo.gl/Y5ymFUZQy1QfnDLp9" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:var(--pink-soft);border:2px solid var(--pink-light);color:var(--pink-deep);padding:8px 18px;border-radius:50px;font-weight:800;font-size:.82rem;text-decoration:none;margin-top:.8rem;transition:all .25s" onmouseover="this.style.background='var(--pink)';this.style.color='white'" onmouseout="this.style.background='var(--pink-soft)';this.style.color='var(--pink-deep)'">📍 Get Directions →</a>
-      </div>
-      <div class="vc rv" style="transition-delay:.2s">
-        <span class="vc-icon">📱</span><h3>Follow Along</h3>
-        <p class="addr" style="margin-bottom:1.2rem">Tag us in your cat photos!<br><strong style="color:var(--pink)">#LilMeowCafe</strong> 🐾</p>
-        <div class="socials">
-          <a class="soc" href="https://www.instagram.com/lilmeow_cafe/" target="_blank" rel="noopener"><span>📸 @lilmeowcafe on Instagram</span></a>
-          <a class="soc" href="https://www.tiktok.com/@lilmeowcafe" target="_blank" rel="noopener"><span>🎵 @lilmeowcafe on TikTok</span></a>
-          <a class="soc" href="https://www.facebook.com/lilmeowcafe" target="_blank" rel="noopener"><span>📘 Lil' Meow Café on Facebook</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- FOOTER -->
-<!-- CONTACT -->
-<section id="contact-section" style="background:white;padding:4rem 2rem">
-  <div style="max-width:1100px;margin:0 auto;text-align:center">
-    <div class="tag-pill rv">Get In Touch ✉️</div>
-    <h2 class="rv" style="font-family:'Pacifico',cursive;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--brown);margin:.6rem 0 .7rem">Contact Us</h2>
-    <p class="rv" style="color:var(--brown-l);font-weight:600;font-size:1rem;margin-bottom:2.2rem">We'd love to hear from you! Reach out any way that works best. 🐾</p>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;align-items:stretch">
-      <a href="tel:9293019368" style="text-decoration:none">
-        <div class="rv" style="height:100%;background:var(--pink-soft);border:3px solid var(--pink-light);border-radius:28px;padding:2rem 1.5rem;transition:all .3s;box-shadow:var(--sh)"
-             onmouseover="this.style.borderColor='var(--pink)';this.style.transform='translateY(-6px)';this.style.boxShadow='var(--sh-lg)'"
-             onmouseout="this.style.borderColor='var(--pink-light)';this.style.transform='translateY(0)';this.style.boxShadow='var(--sh)'">
-          <div style="font-size:3rem;margin-bottom:.8rem">📞</div>
-          <div style="font-weight:800;color:var(--brown);font-size:1.55rem;line-height:1.2">Call Us</div>
-          <div style="color:var(--pink-deep);font-weight:700;font-size:1.15rem;margin-top:14px">(929) 301-9368</div>
-        </div>
-      </a>
-
-      <a href="mailto:lilmeowcafe@gmail.com" style="text-decoration:none">
-        <div class="rv" style="height:100%;background:var(--yellow-light);border:3px solid #FFE4B5;border-radius:28px;padding:2rem 1.5rem;transition:all .3s;box-shadow:var(--sh)"
-             onmouseover="this.style.borderColor='var(--yellow)';this.style.transform='translateY(-6px)';this.style.boxShadow='var(--sh-lg)'"
-             onmouseout="this.style.borderColor='#FFE4B5';this.style.transform='translateY(0)';this.style.boxShadow='var(--sh)'">
-          <div style="font-size:3rem;margin-bottom:.8rem">✉️</div>
-          <div style="font-weight:800;color:var(--brown);font-size:1.55rem;line-height:1.2">Email Us</div>
-          <div style="color:var(--brown-m);font-weight:700;font-size:1.08rem;margin-top:14px;word-break:break-word">lilmeowcafe@gmail.com</div>
-        </div>
-      </a>
-
-      <a href="https://maps.app.goo.gl/Y5ymFUZQy1QfnDLp9" target="_blank" rel="noopener" style="text-decoration:none">
-        <div class="rv" style="height:100%;background:var(--mint);border:3px solid #A0D9C5;border-radius:28px;padding:2rem 1.5rem;transition:all .3s;box-shadow:var(--sh)"
-             onmouseover="this.style.borderColor='#7BC7A8';this.style.transform='translateY(-6px)';this.style.boxShadow='var(--sh-lg)'"
-             onmouseout="this.style.borderColor='#A0D9C5';this.style.transform='translateY(0)';this.style.boxShadow='var(--sh)'">
-          <div style="font-size:3rem;margin-bottom:.8rem">📍</div>
-          <div style="font-weight:800;color:var(--brown);font-size:1.55rem;line-height:1.2">Find Us</div>
-          <div style="color:#1B6B4A;font-weight:700;font-size:1.15rem;margin-top:14px">21 Lenox Avenue</div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<footer id="contact">
-  <div class="foot-in">
-    <div>
-      <span class="f-brand">🐾 Lil' Meow Café</span>
-      <p class="f-tag">Your cozy corner for coffee, cats & good vibes. Our resident cats are permanent family members — come meet them any day we're open! 🐱</p>
-    </div>
-    <div class="fcol"><h4>Explore</h4><ul><li><a href="#about">🐱 About Us</a></li><li><a href="#cats">😻 Our Cats</a></li><li><a href="adopt.html">🐾 Adopt a Cat</a></li><li><a href="#experiences">🎉 Experiences</a></li><li><a href="#menu">☕ Menu</a></li><li><a href="#gallery">📸 Gallery</a></li><li><a href="#reviews">⭐ Reviews</a></li><li><a href="#faq">💬 FAQ</a></li></ul></div>
-    <div class="fcol"><h4>Visit</h4><ul><li><a href="#reserve">🗓️ Book a Visit</a></li><li><a href="#visit">📍 Hours & Location</a></li><li><a href="#contact">✉️ Contact Us</a></li></ul></div>
-  </div>
-  <div class="foot-btm">© 2025 Lil' Meow Café · Made with 💕 and lots of purring · Visit for cozy café vibes or apply to adopt your future best friend</div>
-</footer>
-
-
-
-<!-- COOKIE CONSENT -->
-<div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;z-index:99990;background:white;border-top:3px solid #FFD6E0;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;box-shadow:0 -8px 32px rgba(255,143,171,.15);transform:translateY(100%);transition:transform .5s cubic-bezier(0.175,.885,.32,1.275)">
-  <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:260px">
-    <span style="font-size:1.8rem">🍪</span>
-    <div>
-      <div style="font-weight:800;font-size:.9rem;color:#3D1F0D;margin-bottom:2px">We use cookies 🐾</div>
-      <div style="font-size:.78rem;color:#B07A5A;font-weight:600;line-height:1.5">We use cookies to improve your experience and analyse how our site is used. By clicking Accept, you consent to our use of cookies.</div>
-    </div>
-  </div>
-  <div style="display:flex;gap:.6rem;flex-shrink:0">
-    <button onclick="cookieDecline()" style="background:none;border:2px solid #FFD6E0;color:#B07A5A;padding:9px 18px;border-radius:50px;font-family:'Quicksand',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;transition:all .25s" onmouseover="this.style.borderColor='#FF8FAB';this.style.color='#FF8FAB'" onmouseout="this.style.borderColor='#FFD6E0';this.style.color='#B07A5A'">Decline</button>
-    <button onclick="cookieAccept()" style="background:linear-gradient(135deg,#FF8FAB,#FF6B9D);color:white;border:2px solid #FF6B9D;padding:9px 18px;border-radius:50px;font-family:'Quicksand',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;transition:all .25s" onmouseover="this.style.background='white';this.style.color='#FF8FAB'" onmouseout="this.style.background='linear-gradient(135deg,#FF8FAB,#FF6B9D)';this.style.color='white'">Accept 🐾</button>
-  </div>
-</div>
-  
-  
-  <script src="assets/js/main.js"></script>
-<script>
-(function(){
-  var cats=['🐱','😺','😸','😻','🐾'];
-  var i=0;
-  var el=document.getElementById('loaderCat');
-  var iv=setInterval(function(){
-    if(el) el.textContent=cats[i%cats.length];
-    i++;
-  },400);
-  function hide(){
-    var l=document.getElementById('loader');
-    if(l) l.style.display='none';
-    clearInterval(iv);
-  }
-  setTimeout(hide, 2000);
-})();
-</script>
-</body>
+    <script src="assets/js/main.js"></script>
+    <script>
+      (function () {
+        var cats = ['🐱', '😺', '😸', '😻', '🐾'];
+        var i = 0;
+        var el = document.getElementById('loaderCat');
+        var iv = setInterval(function () {
+          if (el) el.textContent = cats[i % cats.length];
+          i++;
+        }, 400);
+        function hide() {
+          var l = document.getElementById('loader');
+          if (l) l.style.display = 'none';
+          clearInterval(iv);
+        }
+        setTimeout(hide, 2000);
+      })();
+    </script>
+  </body>
 </html>
