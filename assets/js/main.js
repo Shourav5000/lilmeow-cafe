@@ -475,39 +475,66 @@ window.validateEmail = function (el) {
 
 // ── Stripe Setup ──
 var stripe = null;
-var cardElement = null;
+var cardNumberElement = null;
+var cardExpiryElement = null;
+var cardCvcElement = null;
 
 function initStripe() {
   if (stripe) return;
+
   stripe = Stripe(
     'pk_test_51TJOPpQ099dXCJOyFUMzdbeWGLOsAwYzLR2OXDsvm9ornt1Fr8eznibpQP5hvg2TBQzRnYBsRgOoLLquR6JUuM5z00OqMMgKHj'
   );
-  var elements = stripe.elements();
-  cardElement = elements.create('card', {
-    style: {
-      base: {
-        fontFamily: "'Quicksand', sans-serif",
-        fontSize: '15px',
-        color: '#3D1F0D',
-        fontWeight: '600',
-        '::placeholder': { color: '#B07A5A' },
-        iconColor: '#FF8FAB',
+
+  var elements = stripe.elements({
+    fonts: [
+      {
+        cssSrc: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap',
       },
-      invalid: { color: '#EF5350', iconColor: '#EF5350' },
-    },
+    ],
   });
-  cardElement.mount('#card-element');
-  cardElement.on('change', function (e) {
+
+  var elementStyle = {
+    base: {
+      fontFamily: "'Quicksand', sans-serif",
+      fontSize: '15px',
+      color: '#3D1F0D',
+      fontWeight: '600',
+      '::placeholder': {
+        color: '#B07A5A',
+      },
+      iconColor: '#FF8FAB',
+    },
+    invalid: {
+      color: '#EF5350',
+      iconColor: '#EF5350',
+    },
+  };
+
+  cardNumberElement = elements.create('cardNumber', { style: elementStyle });
+  cardExpiryElement = elements.create('cardExpiry', { style: elementStyle });
+  cardCvcElement = elements.create('cardCvc', { style: elementStyle });
+
+  cardNumberElement.mount('#card-number-element');
+  cardExpiryElement.mount('#card-expiry-element');
+  cardCvcElement.mount('#card-cvc-element');
+
+  function handleStripeChange(event) {
     var errEl = document.getElementById('card-error');
-    if (e.error) {
-      errEl.textContent = e.error.message;
+    if (!errEl) return;
+
+    if (event.error) {
+      errEl.textContent = event.error.message;
       errEl.style.display = 'block';
     } else {
+      errEl.textContent = '';
       errEl.style.display = 'none';
     }
-    var cardEl = document.getElementById('card-element');
-    if (cardEl) cardEl.style.borderColor = e.error ? '#EF5350' : e.complete ? '#4CAF50' : 'var(--pink-light)';
-  });
+  }
+
+  cardNumberElement.on('change', handleStripeChange);
+  cardExpiryElement.on('change', handleStripeChange);
+  cardCvcElement.on('change', handleStripeChange);
 }
 
 window.pay = async function () {
@@ -530,7 +557,7 @@ window.pay = async function () {
     window.showToast('📞 Please enter your phone number!');
     return;
   }
-  if (!cardElement) {
+  if (!cardNumberElement) {
     window.showToast('💳 Please enter your card details!');
     return;
   }
@@ -556,7 +583,7 @@ window.pay = async function () {
 
     const result = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: cardElement,
+        card: cardNumberElement,
         billing_details: { name, email: rEmail.value, phone: rPhone.value },
       },
     });
@@ -599,37 +626,12 @@ window.pay = async function () {
       window.showToast('✉️ Confirmation sent to ' + rEmail.value + '!');
     }
 
-    // Send confirmation email
     emailjs
       .send('service_rlsav7s', 'template_z8fdc9g', templateParams)
       .then(showSuccess)
       .catch(function () {
         showSuccess();
       });
-
-    // Save booking to Google Sheets
-    fetch(
-      'https://script.google.com/macros/s/AKfycbwD-CwuboSJOlrQVw5E20k3Rik-7a8WQA65kdlGSYzR3kKlpu9O1AQOmFBwIwCafqvF/exec',
-      {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ref: ref,
-          name: name,
-          email: rEmail.value,
-          phone: rPhone.value,
-          date: document.getElementById('sd') ? document.getElementById('sd').textContent : '',
-          time: selT,
-          guests: guests,
-          package: selPkg,
-          addon: addon,
-          total: '$' + total + '.00',
-        }),
-      }
-    ).catch(function () {
-      // silent fail — booking still confirmed even if sheet logging fails
-    });
   } catch (err) {
     console.error('Payment error:', err);
     window.showToast('❌ Payment failed. Please try again.');
