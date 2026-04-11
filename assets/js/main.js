@@ -543,6 +543,7 @@ window.pay = async function () {
   const rEmail = document.getElementById('rEmail');
   const rPhone = document.getElementById('rPhone');
   const rGuests = document.getElementById('rGuests');
+  const rDate = document.getElementById('rDate');
   const payBtn = document.getElementById('payBtn');
 
   if (!rFirst || !rFirst.value || !rLast || !rLast.value) {
@@ -557,6 +558,10 @@ window.pay = async function () {
     window.showToast('📞 Please enter your phone number!');
     return;
   }
+  if (!rDate || !rDate.value) {
+    window.showToast('🗓️ Please choose a valid date!');
+    return;
+  }
   if (!cardNumberElement) {
     window.showToast('💳 Please enter your card details!');
     return;
@@ -568,28 +573,42 @@ window.pay = async function () {
 
   const ref = 'LMC-' + Math.floor(100000 + Math.random() * 900000);
   const guests = rGuests ? rGuests.value || '1' : '1';
-  const total = selPrice * parseInt(guests, 10) + (addonSelected ? 15 * parseInt(guests, 10) : 0);
+  const guestCount = parseInt(guests, 10) || 1;
+  const total = selPrice * guestCount + (addonSelected ? 15 * guestCount : 0);
   const addon = addonSelected ? 'Yes — Polaroid Photo Keepsake (+$15/person)' : 'No';
   const name = rFirst.value + ' ' + rLast.value;
+  const rawDate = rDate.value;
 
   try {
     const res = await fetch('/api/create-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: total, guests, package: selPkg, name, email: rEmail.value }),
+      body: JSON.stringify({
+        amount: total,
+        guests,
+        package: selPkg,
+        name,
+        email: rEmail.value,
+      }),
     });
+
     if (!res.ok) throw new Error('Payment setup failed');
+
     const { clientSecret } = await res.json();
 
     const result = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: cardNumberElement,
-        billing_details: { name, email: rEmail.value, phone: rPhone.value },
+        billing_details: {
+          name,
+          email: rEmail.value,
+          phone: rPhone.value,
+        },
       },
     });
 
     if (result.error) {
-      var errEl = document.getElementById('card-error');
+      const errEl = document.getElementById('card-error');
       if (errEl) {
         errEl.textContent = result.error.message;
         errEl.style.display = 'block';
@@ -606,9 +625,9 @@ window.pay = async function () {
       to_name: name,
       to_email: rEmail.value,
       booking_ref: ref,
-      date: document.getElementById('sd') ? document.getElementById('sd').textContent : '',
+      date: document.getElementById('sd') ? document.getElementById('sd').textContent : rawDate,
       time: selT,
-      guests: guests + ' guest' + (parseInt(guests, 10) > 1 ? 's' : ''),
+      guests: guestCount + ' guest' + (guestCount > 1 ? 's' : ''),
       package: selPkg,
       total: '$' + total + '.00 (paid online ✅)',
       addon,
@@ -633,8 +652,7 @@ window.pay = async function () {
         showSuccess();
       });
 
-    // Save booking to Google Sheets
-    fetch(
+    await fetch(
       'https://script.google.com/macros/s/AKfycbwD-CwuboSJOlrQVw5E20k3Rik-7a8WQA65kdlGSYzR3kKlpu9O1AQOmFBwIwCafqvF/exec',
       {
         method: 'POST',
@@ -645,15 +663,17 @@ window.pay = async function () {
           name: name,
           email: rEmail.value,
           phone: rPhone.value,
-          date: document.getElementById('sd') ? document.getElementById('sd').textContent : '',
+          date: rawDate,
           time: selT,
-          guests: guests,
+          guests: guestCount,
           package: selPkg,
           addon: addon,
           total: '$' + total + '.00',
         }),
       }
-    ).catch(function () {});
+    ).catch(function (err) {
+      console.error('Booking save failed:', err);
+    });
   } catch (err) {
     console.error('Payment error:', err);
     window.showToast('❌ Payment failed. Please try again.');
@@ -661,6 +681,7 @@ window.pay = async function () {
     payBtn.disabled = false;
   }
 };
+
 function launchConfetti() {
   const container = document.getElementById('confettiBox');
   if (!container) return;
