@@ -2,7 +2,7 @@ document.documentElement.classList.add('js');
 
 (function () {
   if (typeof emailjs !== 'undefined') {
-    emailjs.init({ publicKey: '5MW4lMv5kQQFbX-BW' });
+    emailjs.init({ publicKey: 'sjOXsB55yxEaLgdKS' });
   }
 })();
 
@@ -652,11 +652,11 @@ window.pay = async function () {
         showSuccess();
       });
 
-    await fetch(
-      'https://script.google.com/macros/s/AKfycbwD-CwuboSJOlrQVw5E20k3Rik-7a8WQA65kdlGSYzR3kKlpu9O1AQOmFBwIwCafqvF/exec',
+    const saveRes = await fetch(
+      'https://script.google.com/macros/s/AKfycbzoehlSP3HsB0GHEmHUl_CixMGqJ7ZIJFWDb7XsxbMCp0p_c5bksvhH1K5RtWzqIR94/exec',
       {
         method: 'POST',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ref: ref,
@@ -671,9 +671,14 @@ window.pay = async function () {
           total: '$' + total + '.00',
         }),
       }
-    ).catch(function (err) {
-      console.error('Booking save failed:', err);
-    });
+    );
+
+    if (!saveRes.ok) {
+      throw new Error('Booking save failed with status ' + saveRes.status);
+    }
+
+    const saveData = await saveRes.json();
+    console.log('Booking save success:', saveData);
   } catch (err) {
     console.error('Payment error:', err);
     window.showToast('❌ Payment failed. Please try again.');
